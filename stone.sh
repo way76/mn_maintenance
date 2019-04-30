@@ -87,14 +87,15 @@ EXPBLOCK=$(curl -s4 "http://explorer.stonecoin.rocks/api/getblockcount")
 sleep 2
 echo "$(date +%F_%T) Masternode Block $MNBLOCK" >> stonesync.log
 echo "$(date +%F_%T) Explorer Block $EXPBLOCK" >> stonesync.log
-EXPBLOCKLOW=$(expr $EXPBLOCK - 4)
-EXPBLOCKHIGH=$(expr $EXPBLOCK + 4)
+EXPBLOCKLOW=$(expr $EXPBLOCK - 25)
+EXPBLOCKHIGH=$(expr $EXPBLOCK + 25)
+
 if [ "$MNBLOCK" -ge "$EXPBLOCKLOW" ] && [ "$MNBLOCK" -le "$EXPBLOCKHIGH" ]; then
   echo "$(date +%F_%T) Block Height matches!" >> stonesync.log
   complete
 else
   echo "$(date +%F_%T) Confirmed out of sync, running resync function.." >> stonesync.log
-  reSync
+  #reSync
 fi
 }
 
