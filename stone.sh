@@ -4,8 +4,8 @@
 
 EXPBLOCK=$(curl -s4 "http://explorer.stonecoin.rocks/api/getblockcount")
 #EXPBLOCK="1500000" #used for mismatch testing
-EXPBLOCKLOW=$(expr $EXPBLOCK - 4)
-EXPBLOCKHIGH=$(expr $EXPBLOCK + 4)
+EXPBLOCKLOW=$(expr $EXPBLOCK - 25)
+EXPBLOCKHIGH=$(expr $EXPBLOCK + 25)
 MNBLOCK=$(cd /usr/local/bin &&./stone-cli getblockcount)
 
 BOOTSTRAPURL='https://github.com/stonecoinproject/Stonecoin/releases/download/Bootstrapv2.0/stonecore.tar.gz'
