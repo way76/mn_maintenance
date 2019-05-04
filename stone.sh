@@ -4,8 +4,8 @@
 
 EXPBLOCK=$(curl -s4 "http://explorer.stonecoin.rocks/api/getblockcount")
 #EXPBLOCK="1500000" #used for mismatch testing
-EXPBLOCKLOW=$(expr $EXPBLOCK - 25)
-EXPBLOCKHIGH=$(expr $EXPBLOCK + 25)
+EXPBLOCKLOW=$(expr $EXPBLOCK - 50)
+EXPBLOCKHIGH=$(expr $EXPBLOCK + 50)
 MNBLOCK=$(cd /usr/local/bin &&./stone-cli getblockcount)
 
 BOOTSTRAPURL='https://github.com/stonecoinproject/Stonecoin/releases/download/Bootstrapv2.0/stonecore.tar.gz'
@@ -87,8 +87,8 @@ EXPBLOCK=$(curl -s4 "http://explorer.stonecoin.rocks/api/getblockcount")
 sleep 2
 echo "$(date +%F_%T) Masternode Block $MNBLOCK" >> stonesync.log
 echo "$(date +%F_%T) Explorer Block $EXPBLOCK" >> stonesync.log
-EXPBLOCKLOW=$(expr $EXPBLOCK - 25)
-EXPBLOCKHIGH=$(expr $EXPBLOCK + 25)
+EXPBLOCKLOW=$(expr $EXPBLOCK - 50)
+EXPBLOCKHIGH=$(expr $EXPBLOCK + 50)
 
 if [ "$MNBLOCK" -ge "$EXPBLOCKLOW" ] && [ "$MNBLOCK" -le "$EXPBLOCKHIGH" ]; then
   echo "$(date +%F_%T) Block Height matches!" >> stonesync.log
@@ -130,7 +130,8 @@ exit
 function reSync() {
   echo "$(date +%F_%T) Disabling Stone.service.." >> stonesync.log
   echo "$(date +%F_%T) Resync in progress... ////////////////////////////////////////////////////////////////////////" >> stonesync.log
-  stone-cli invalidateblock 00000000032196cb3cd60724a335b84c4500b89bfa4cb090082536c75720e249
+  #invalidates block 371000
+  stone-cli invalidateblock 00000000d9f9683a006aaab94804b7dd08a9853139902ed851ea8ef388d8e206
   systemctl restart Stone.service
   sleep 30
   stone-cli addnode 80.211.213.40 add
@@ -147,7 +148,7 @@ function reSync() {
   stone-cli addnode 167.86.78.222 add
   stone-cli addnode 173.212.247.119 add
   stone-cli addnode 173.249.56.247 add 
-  stone-cli reconsiderblock 00000000032196cb3cd60724a335b84c4500b89bfa4cb090082536c75720e249
+  stone-cli reconsiderblock 00000000d9f9683a006aaab94804b7dd08a9853139902ed851ea8ef388d8e206
   echo "$(date +%F_%T) Resync completed     ////////////////////////////////////////////////////////////////////////" >> stonesync.log
   sleep 5
   complete
