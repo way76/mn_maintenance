@@ -8,7 +8,7 @@
 
 TMP_FOLDER=$(mktemp -d)
 
-DAEMON_ARCHIVE=${1:-"https://github.com/MarketArbitrageCoin/MARCcore/releases/download/1.4.0.1/ubuntu-linux-64bit.tar.gz"}
+DAEMON_ARCHIVE=${1:-"https://github.com/MarketArbitrageCoin/MARCcore/releases/download/1.6.0.1/ubuntu-linux-64bit.tar.gz"}
 ARCHIVE_STRIP=""
 DEFAULT_PORT=44004
 
