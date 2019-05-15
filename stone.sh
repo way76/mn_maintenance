@@ -136,6 +136,9 @@ function reSync() {
   stone-cli invalidateblock 000000001bfcdebf55fdfda40abc27ee2891db8d9df385678b3c3f93de1ad973
   systemctl restart Stone.service
   sleep 30
+  stone-cli addnode 85.255.5.140 add
+  stone-cli addnode 124.64.160.112 add
+  stone-cli addnode 195.181.212.110 add
   stone-cli addnode 80.211.213.40 add
   stone-cli addnode 81.2.251.10 add
   stone-cli addnode 85.255.5.140 add
