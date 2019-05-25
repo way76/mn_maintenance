@@ -4,8 +4,8 @@
 
 EXPBLOCK=$(curl -s4 "http://explorer.stonecoin.rocks/api/getblockcount")
 #EXPBLOCK="1500000" #used for mismatch testing
-EXPBLOCKLOW=$(expr $EXPBLOCK - 50)
-EXPBLOCKHIGH=$(expr $EXPBLOCK + 50)
+EXPBLOCKLOW=$(expr $EXPBLOCK - 20)
+EXPBLOCKHIGH=$(expr $EXPBLOCK + 20)
 MNBLOCK=$(cd /usr/local/bin &&./stone-cli getblockcount)
 
 BOOTSTRAPURL='https://github.com/stonecoinproject/Stonecoin/releases/download/Bootstrapv2.0/stonecore.tar.gz'
@@ -87,8 +87,8 @@ EXPBLOCK=$(curl -s4 "http://explorer.stonecoin.rocks/api/getblockcount")
 sleep 2
 echo "$(date +%F_%T) Masternode Block $MNBLOCK" >> stonesync.log
 echo "$(date +%F_%T) Explorer Block $EXPBLOCK" >> stonesync.log
-EXPBLOCKLOW=$(expr $EXPBLOCK - 50)
-EXPBLOCKHIGH=$(expr $EXPBLOCK + 50)
+EXPBLOCKLOW=$(expr $EXPBLOCK - 20)
+EXPBLOCKHIGH=$(expr $EXPBLOCK + 20)
 
 if [ "$MNBLOCK" -ge "$EXPBLOCKLOW" ] && [ "$MNBLOCK" -le "$EXPBLOCKHIGH" ]; then
   echo "$(date +%F_%T) Block Height matches!" >> stonesync.log
