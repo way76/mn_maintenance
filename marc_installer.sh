@@ -211,10 +211,11 @@ function get_port_and_user()
 
   local num=$(ls -al /home | grep ${COIN_NAME}-mn | cut -d' ' -f4 | cut -d'-' -f2 | sed s/mn//g | sort -n | tail -1)
 
-  if [[ ! -z ${num} ]];
+  #if [[ ! -z ${num} ]];
+  if [[ 1==1 ]];
   then
     num=$((num + 1))
-    if [[ ${num} > 25 ]];
+    if [[ ${num} > 15 ]];
     then
       echo -e "${RED} To ensure your VPS and masternode run smoothly, you should not run more than 3 ${COIN_NAME} nodes on the same VPS${NC}"
       echo -e "${RED} The install script will now exit so you can run it from another VPS.${NC}"
@@ -314,7 +315,7 @@ function update_config()
 {  
   cat << EOF >> ${HOME_FOLDER}/${CONFIG_FILE}
 logtimestamps=1
-maxconnections=256
+maxconnections=32
 masternode=1
 externalip=${NODE_IP}
 masternodeprivkey=${PRIVKEY}
