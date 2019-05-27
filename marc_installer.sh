@@ -214,7 +214,7 @@ function get_port_and_user()
   if [[ ! -z ${num} ]];
   then
     num=$((num + 1))
-    if [[ ${num} > 15 ]];
+    if [[ ${num} > 25 ]];
     then
       echo -e "${RED} To ensure your VPS and masternode run smoothly, you should not run more than 3 ${COIN_NAME} nodes on the same VPS${NC}"
       echo -e "${RED} The install script will now exit so you can run it from another VPS.${NC}"
