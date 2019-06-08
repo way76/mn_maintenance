@@ -210,8 +210,7 @@ function get_port_and_user()
   echo -e "${GREEN} Identifying username and port for the masternode${NC}"
 
   #local num=$(ls -al /home | grep ${COIN_NAME}-mn | cut -d' ' -f4 | cut -d'-' -f2 | sed s/mn//g | sort -n | tail -1)
-  local num=0   
-  DIR1="/home/marcoin-mn1"
+  local num=1   
  
   if [ -d /home/marcoin-mn1 ]; then num=2; else num=1'; fi
   if [ -d /home/marcoin-mn2 ]; then num=3; else num=2'; fi
@@ -235,7 +234,7 @@ function get_port_and_user()
   if [ -d /home/marcoin-mn20 ]; then num=21; else num=20'; fi
 
 
-echo $num
+ echo -e "${RED} The install script will now exit so you can run it from another VPS.${num}"
 
 
   PORT=$((${DEFAULT_PORT} + ((${num} - 1) * 2)))
