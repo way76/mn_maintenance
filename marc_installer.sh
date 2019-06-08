@@ -213,7 +213,7 @@ function get_port_and_user()
      
   DIR1="/home/marcoin-mn1"
  
-  if [ -d "$DIR1" ]
+  if [ -d "/home/marcoin-mn1" ]
   then
     echo "$DIR1 directory  exists!"
   else
