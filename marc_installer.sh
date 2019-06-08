@@ -272,34 +272,6 @@ function get_port_and_user()
   else num=2; fi
   else num=1; fi 
    
-   
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-   
-
-
-
-  echo -e "disponibile ${num}."
-
-
   PORT=$((${DEFAULT_PORT} + ((${num} - 1) * 2)))
   USER_NAME="${COIN_NAME}-mn${num}"
 }
@@ -457,17 +429,17 @@ function show_output()
 function setup_node() 
 {
   get_port_and_user
-  #create_user
-  #create_config
-  #chown_home_folder
-  #start_node
-  #create_key
-  #update_config
-  #chown_home_folder
-  #enable_firewall
-  #add_daemon_service
-  #add_log_rotate
-  #show_output
+  create_user
+  create_config
+  chown_home_folder
+  start_node
+  create_key
+  update_config
+  chown_home_folder
+  enable_firewall
+  add_daemon_service
+  add_log_rotate
+  show_output
 }
 
 clear
