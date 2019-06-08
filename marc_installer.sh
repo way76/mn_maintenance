@@ -211,26 +211,29 @@ function get_port_and_user()
 
   local num=$(ls -al /home | grep ${COIN_NAME}-mn | cut -d' ' -f4 | cut -d'-' -f2 | sed s/mn//g | sort -n | tail -1)
    
-  if [ -d /home/marcoin-mn1 ]; then num=2; else num=1; fi
-  if [ -d /home/marcoin-mn2 ]; then num=3; else num=2; fi
-  if [ -d /home/marcoin-mn3 ]; then num=4; else num=3; fi
-  if [ -d /home/marcoin-mn4 ]; then num=5; else num=4; fi
-  if [ -d /home/marcoin-mn5 ]; then num=6; else num=5; fi
-  if [ -d /home/marcoin-mn6 ]; then num=7; else num=6; fi
-  if [ -d /home/marcoin-mn7 ]; then num=8; else num=7; fi
-  if [ -d /home/marcoin-mn8 ]; then num=9; else num=8; fi
-  if [ -d /home/marcoin-mn9 ]; then num=10; else num=9; fi
-  if [ -d /home/marcoin-mn10 ]; then num=11; else num=10; fi
-  if [ -d /home/marcoin-mn11 ]; then num=12; else num=11; fi
-  if [ -d /home/marcoin-mn12 ]; then num=13; else num=12; fi
-  if [ -d /home/marcoin-mn13 ]; then num=14; else num=13; fi
-  if [ -d /home/marcoin-mn14 ]; then num=15; else num=14; fi
-  if [ -d /home/marcoin-mn15 ]; then num=16; else num=15; fi
-  if [ -d /home/marcoin-mn16 ]; then num=17; else num=16; fi
-  if [ -d /home/marcoin-mn17 ]; then num=18; else num=17; fi
-  if [ -d /home/marcoin-mn18 ]; then num=19; else num=18; fi
-  if [ -d /home/marcoin-mn19 ]; then num=20; else num=19; fi
-  if [ -d /home/marcoin-mn20 ]; then num=21; else num=20; fi
+   
+   if [ -d /home/marcoin-mn20 ]; then num=21; else num=20; fi
+if [ -d /home/marcoin-mn19 ]; then num=20; else num=19; fi
+if [ -d /home/marcoin-mn18 ]; then num=19; else num=18; fi
+if [ -d /home/marcoin-mn17 ]; then num=18; else num=17; fi
+if [ -d /home/marcoin-mn16 ]; then num=17; else num=16; fi
+if [ -d /home/marcoin-mn15 ]; then num=16; else num=15; fi
+if [ -d /home/marcoin-mn14 ]; then num=15; else num=14; fi
+if [ -d /home/marcoin-mn13 ]; then num=14; else num=13; fi
+if [ -d /home/marcoin-mn12 ]; then num=13; else num=12; fi	
+if [ -d /home/marcoin-mn11 ]; then num=12; else num=11; fi	
+if [ -d /home/marcoin-mn10 ]; then num=11; else num=10; fi	
+if [ -d /home/marcoin-mn9 ]; then num=10; else num=9; fi	
+if [ -d /home/marcoin-mn8 ]; then num=9; else num=8; fi	
+if [ -d /home/marcoin-mn7 ]; then num=8; else num=7; fi 
+if [ -d /home/marcoin-mn6 ]; then num=7; else num=6; fi
+if [ -d /home/marcoin-mn5 ]; then num=6; else num=5; fi
+if [ -d /home/marcoin-mn4 ]; then num=5; else num=4; fi
+if [ -d /home/marcoin-mn3 ]; then num=4; else num=3; fi
+if [ -d /home/marcoin-mn2 ]; then num=3; else num=2; fi
+if [ -d /home/marcoin-mn1 ]; then num=2; else num=1; fi
+   
+
 
 
   echo -e "disponibile ${num}."
