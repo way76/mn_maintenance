@@ -210,14 +210,20 @@ function get_port_and_user()
   echo -e "${GREEN} Identifying username and port for the masternode${NC}"
 
   #local num=$(ls -al /home | grep ${COIN_NAME}-mn | cut -d' ' -f4 | cut -d'-' -f2 | sed s/mn//g | sort -n | tail -1)
-     
+  local num=0   
   DIR1="/home/marcoin-mn1"
  
   if [ -d "/home/marcoin-mn1" ]
   then
-    echo "$DIR1 directory  exists!"
+    echo "1 directory  exists!"
+    if [ -d "/home/marcoin-mn2" ]
+    then
+      echo "2 directory  exists!"
+    else
+      num=2
+    fi    
   else
-    echo "$DIR1 directory not found!"
+    num=1
   fi
 
   
