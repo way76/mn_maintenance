@@ -233,8 +233,7 @@ function get_port_and_user()
   if [ -d /home/marcoin-mn20 ]; then num=21; else num=20; fi
 
 
-  echo -e "  - it is running as the ${GREEN}${USER_NAME}${NC} user, listening on port ${GREEN}${PORT}${NC} at your VPS address ${GREEN}${NODE_IP}${NC}."
-
+  echo -e "disponibile ${num}."
 
 
   PORT=$((${DEFAULT_PORT} + ((${num} - 1) * 2)))
