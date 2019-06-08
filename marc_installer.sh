@@ -209,21 +209,16 @@ function get_port_and_user()
 {
   echo -e "${GREEN} Identifying username and port for the masternode${NC}"
 
-  local num=$(ls -al /home | grep ${COIN_NAME}-mn | cut -d' ' -f4 | cut -d'-' -f2 | sed s/mn//g | sort -n | tail -1)
-
-  #if [[ ! -z ${num} ]];
-  if [[ 1==1 ]];
-  then
-    num=$((num + 1))
-    if [[ ${num} > 15 ]];
+  #local num=$(ls -al /home | grep ${COIN_NAME}-mn | cut -d' ' -f4 | cut -d'-' -f2 | sed s/mn//g | sort -n | tail -1)
+  local num=1
+  if -d /home/marcoin-mn1
     then
-      echo -e "${RED} To ensure your VPS and masternode run smoothly, you should not run more than 3 ${COIN_NAME} nodes on the same VPS${NC}"
-      echo -e "${RED} The install script will now exit so you can run it from another VPS.${NC}"
-      exit 1
-    fi
-  else
-    num=1
+     echo "Directory marcoin 1 exists"
   fi
+    
+  
+  
+  
   
   PORT=$((${DEFAULT_PORT} + ((${num} - 1) * 2)))
   USER_NAME="${COIN_NAME}-mn${num}"
@@ -382,17 +377,17 @@ function show_output()
 function setup_node() 
 {
   get_port_and_user
-  create_user
-  create_config
-  chown_home_folder
-  start_node
-  create_key
-  update_config
-  chown_home_folder
-  enable_firewall
-  add_daemon_service
-  add_log_rotate
-  show_output
+  #create_user
+  #create_config
+  #chown_home_folder
+  #start_node
+  #create_key
+  #update_config
+  #chown_home_folder
+  #enable_firewall
+  #add_daemon_service
+  #add_log_rotate
+  #show_output
 }
 
 clear
