@@ -213,19 +213,9 @@ function get_port_and_user()
   local num=0   
   DIR1="/home/marcoin-mn1"
  
-  if [ -d "/home/marcoin-mn1" ]
-  then
-    echo "1 directory  exists!"
-    if [ -d "/home/marcoin-mn2" ]
-    then
-      echo "2 directory  exists!"
-    else
-      num=2
-    fi    
-  else
-    num=1
-  fi
-
+  if [ -d /home/marcoin-mn1 ]; then echo 'Exists 1'; else echo 'Not found 1'; fi
+  if [ -d /home/marcoin-mn2 ]; then echo 'Exists 2'; else echo 'Not found 2'; fi
+  if [ -d /home/marcoin-mn3 ]; then echo 'Exists 3'; else echo 'Not found 3'; fi 
   
   
   PORT=$((${DEFAULT_PORT} + ((${num} - 1) * 2)))
