@@ -3,8 +3,10 @@
 
 TMP_FOLDER=$(mktemp -d)
 #new
-CONFIG_FILE='stone.conf'
-CONFIGFOLDER='/root/.stonecore'
+UTENTE='stone-mn01'
+COIN_NAME='stone'
+CONFIG_FILE="${COIN_NAME}.conf"
+CONFIGFOLDER='/${UTENTE}/.stonecore'
 CONFIGFOLDERONLY='.stonecore'
 COIN_DAEMON='stoned'
 COIN_CLI='stone-cli'
@@ -98,8 +100,8 @@ function configure_systemd() {
 Description=$COIN_NAME service
 After=network.target
 [Service]
-User=root
-Group=root
+User=${UTENTE}
+Group=${UTENTE}
 Type=forking
 #PIDFile=$CONFIGFOLDER/$COIN_NAME.pid
 ExecStart=$COIN_PATH$COIN_DAEMON -daemon -conf=$CONFIGFOLDER/$CONFIG_FILE -datadir=$CONFIGFOLDER
@@ -116,8 +118,9 @@ EOF
 
   systemctl daemon-reload
   sleep 3
-  systemctl start $COIN_NAME.service
-  systemctl enable $COIN_NAME.service >/dev/null 2>&1
+  #systemctl start $COIN_NAME.service
+  systemctl start $UTENTE.service
+  systemctl enable $UTENTE.service >/dev/null 2>&1
 
   if [[ -z "$(ps axo cmd:100 | egrep $COIN_DAEMON)" ]]; then
     echo -e "${RED}$COIN_NAME is not running${NC}, please investigate. You should start by running the following commands as root:"
