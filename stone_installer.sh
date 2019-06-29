@@ -1,623 +1,500 @@
 #!/bin/bash
-#Originally based on work by BitYoda, reworked and optimized for StoneCoin by CryproTYM
+
+# Script created by click2install, 
+# if you want to fork it, play nice and ask first. donations are always a nice surprise too
+
+# Discord: click2install#0001
+
 
 TMP_FOLDER=$(mktemp -d)
-#new
-UTENTE='stone-mn01'
-COIN_NAME='stone'
+
+DAEMON_ARCHIVE=${1:-"https://github.com/stonecoinproject/Stonecoin/releases/download/v2.1.0.1-9523a37/stonecore-2.1.0-linux64.tar.gz"}
+ARCHIVE_STRIP=""
+DEFAULT_PORT=22323
+
+NODE_IP=$(curl -4 icanhazip.com)
+
+COIN_NAME="stone"
 CONFIG_FILE="${COIN_NAME}.conf"
-CONFIGFOLDER='/${UTENTE}/.stonecore'
-CONFIGFOLDERONLY='.stonecore'
-COIN_DAEMON='stoned'
-COIN_CLI='stone-cli'
-COIN_TX='stone-tx'
-EXTRACT_DIR='stonecore-2.1.0/bin' # Todo make this work and auto
+DAEMON_FILE="${COIN_NAME}d"
+CLI_FILE="${COIN_NAME}-cli" 
 
-#Old for removal
-OLD_CONFIG_FILE='stonecoin.conf'
-OLD_CONFIGFOLDER='/root/.stonecrypto'
-OLD_CONFIGFOLDERONLY='.stonecrypto'
-OLD_COIN_DAEMON='stonecoind'
-OLD_COIN_CLI='stonecoin-cli'
-OLD_COIN_TX='stonecoin-tx'
+BINARIES_PATH=/usr/local/bin
+DAEMON_PATH="${BINARIES_PATH}/${DAEMON_FILE}"
+CLI_PATH="${BINARIES_PATH}/${CLI_FILE}"
 
-#other settings
-COIN_PATH='/usr/local/bin/'
-COIN_REPO='https://github.com/stonecoinproject/stonecoin'
-COIN_TGZ='https://github.com/stonecoinproject/Stonecoin/releases/download/v2.1.0.1-9523a37/stonecore-2.1.0-linux64.tar.gz'
-COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
-SENTINEL_REPO='N/A'
-COIN_NAME='Stone'
-COIN_PORT=22323
-RPC_PORT=22324
-
-#addnodes
-ADDNODE1='pool.stonecoin.rocks:22323'
-ADDNODE2='explorer.stonecoin.rocks:22323'
-ADDNODE3=''
-ADDNODE4=''
-ADDNODE5=''
-ADDNODE6=''
-
-#data
-DATE=$(date +"%Y%m%d%H%M")
-NODEIP=$(curl -s4 icanhazip.com)
-BOOTSTRAPURL='https://github.com/stonecoinproject/Stonecoin/releases/download/Bootstrapv2.0/stonecore.tar.gz'
-
-BLUE="\033[0;34m"
-YELLOW="\033[0;33m"
-CYAN="\033[0;36m"
-PURPLE="\033[0;35m"
 RED='\033[0;31m'
-GREEN="\033[0;32m"
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
 NC='\033[0m'
-MAG='\e[1;35m'
 
-purgeOldInstallation() {
-    echo -e "${GREEN}Searching and removing old $COIN_NAME files and configurations${NC}"
-    #kill wallet daemon
-    sudo killall $OLD_COIN_DAEMON > /dev/null 2>&1
-    sudo killall $COIN_DAEMON > /dev/null 2>&1
-    sudo systemctl disable Stonecoin.service
-    sudo systemctl stop Stonecoin.service
-    sudo systemctl disable Stone.service
-    sudo systemctl stop Stone.service
-    sleep 1
-    #Backup old just in case
-    mkdir ~/.stonebackups
-    cp ~/.stonecrypto/wallet.dat ~/.stonebackups/wallet.dat.1.$DATE
-    cp ~/.stonecore/wallet.dat ~/.stonebackups/wallet.dat.$DATE
-    sleep 1
-    #remove files
-    rm -r ~/.stonecrypto/ #blocks ~/.stonecrypto/chainstate ~/.stonecrypto/database
-   # rm ~/.stonecrypto/ #peers.dat ~/.stonecrypto/mncache.dat ~/.stonecrypto/banlist.dat
-    rm -r ~/.stonecore/ #blocks ~/.stonecore/chainstate ~/.stonecore/database
-   # rm ~/.stonecore/ #peers.dat ~/.stonecore/mncache.dat ~/.stonecore/banlist.dat
-    #remove binaries and Stone utilities
-    cd /usr/local/bin && sudo rm $OLD_COIN_CLI $OLD_COIN_TX $OLD_COIN_DAEMON > /dev/null 2>&1 && sleep 2 && cd
-    cd /usr/local/bin && sudo rm $COIN_CLI $COIN_TX $COIN_DAEMON > /dev/null 2>&1 && sleep 2 && cd
-    echo -e "${GREEN}* Done${NONE}";
+function checks() 
+{
+  if [[ $(lsb_release -d) != *16.04* ]]; then
+    echo -e " ${RED}You are not running Ubuntu 16.04. Installation is cancelled.${NC}"
+    exit 1
+  fi
+
+  if [[ $EUID -ne 0 ]]; then
+     echo -e " ${RED}$0 must be run as root so it can update your system and create the required masternode users.${NC}"
+     exit 1
+  fi
+
+  if [ -n "$(pidof ${DAEMON_FILE})" ]; 
+  then
+    read -e -p " $(echo -e The ${COIN_NAME} daemon is already running.${YELLOW} Do you want to add another master node? [Y/N] $NC)" NEW_NODE
+    clear
+  else
+    NEW_NODE="new"
+  fi
 }
 
+function prepare_system() 
+{
+  clear
+  echo -e "Checking if swap space is required."
+  local PHYMEM=$(free -g | awk '/^Mem:/{print $2}')
+  
+  if [ "${PHYMEM}" -lt "2" ]; then
+    local SWAP=$(swapon -s get 1 | awk '{print $1}')
+    if [ -z "${SWAP}" ]; then
+      echo -e "${GREEN}Server is running without a swap file and has less than 2G of RAM, creating a 2G swap file.${NC}"
+      dd if=/dev/zero of=/swapfile bs=1024 count=2M
+      chmod 600 /swapfile
+      mkswap /swapfile
+      swapon -a /swapfile
+      echo "/swapfile    none    swap    sw    0   0" >> /etc/fstab
+    else
+      echo -e "${GREEN}Swap file already exists.${NC}"
+    fi
+  else
+    echo -e "${GREEN}Server running with at least 2G of RAM, no swap file needed.${NC}"
+  fi
+  
+  echo -e "${GREEN}Updating package manager.${NC}"
+  apt update
+  
+  echo -e "${GREEN}Upgrading existing packages, it may take some time to finish.${NC}"
+  DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y -qq upgrade 
+  
+  echo -e "${GREEN}Installing all dependencies for the ${COIN_NAME} master node, it may take some time to finish.${NC}"
+  apt install -y software-properties-common
+  apt-add-repository -y ppa:bitcoin/bitcoin
+  apt update
+  apt install -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" \
+    automake \
+    bsdmainutils \
+    build-essential \
+    curl \
+    git \
+    htop \
+    libboost-chrono-dev \
+    libboost-dev \
+    libboost-filesystem-dev \
+    libboost-program-options-dev \
+    libboost-system-dev \
+    libboost-test-dev \
+    libboost-thread-dev \
+    libdb4.8-dev \
+    libdb4.8++-dev \
+    libdb5.3++ \
+    libevent-dev \
+    libgmp3-dev \
+    libminiupnpc-dev \
+    libssl-dev \
+    libtool autoconf \
+    libzmq5 \
+    make \
+    pkg-config \
+    pwgen \
+    software-properties-common \
+    tar \
+    ufw \
+    unzip \
+    wget
 
-function download_node() {
-  echo -e "${GREEN}Downloading and Installing VPS $COIN_NAME Daemon${NC}"
-  cd $TMP_FOLDER >/dev/null 2>&1
-  wget -q $COIN_TGZ
-  #compile_error
-  tar xvzf $COIN_ZIP >/dev/null 2>&1
-  # need to make this auto update with new releases
-  cd stonecore-2.1.0/bin
-  chmod +x $COIN_DAEMON $COIN_CLI
-  cp $COIN_DAEMON $COIN_CLI $COIN_PATH
-  cd ~ >/dev/null 2>&1
-  rm -rf $TMP_FOLDER >/dev/null 2>&1
+  clear
 }
 
-function configure_systemd() {
-  cat << EOF > /etc/systemd/system/$COIN_NAME.service
+function deploy_binary() 
+{
+  if [ -f ${DAEMON_PATH} ]; 
+  then
+    echo -e " ${GREEN}${COIN_NAME} daemon binary file already exists, using binary from ${DAEMON_PATH}.${NC}"
+  else
+    cd ${TMP_FOLDER}
+
+    local archive=${COIN_NAME}.tar.gz
+    echo -e " ${GREEN}Downloading ${DAEMON_ARCHIVE} and deploying the ${COIN_NAME} service.${NC}"
+    wget ${DAEMON_ARCHIVE} -O ${archive}
+
+    tar xvzf ${archive}${ARCHIVE_STRIP} >/dev/null 2>&1
+    cp ${DAEMON_FILE} ${CLI_FILE} ${BINARIES_PATH}
+    chmod +x ${DAEMON_PATH} >/dev/null 2>&1
+    chmod +x ${CLI_PATH} >/dev/null 2>&1
+    cd
+
+    rm -rf ${TMP_FOLDER}
+  fi
+}
+
+function enable_firewall() 
+{
+  echo -e " ${GREEN}Installing fail2ban and setting up firewall to allow access on port ${PORT}.${NC}"
+
+  apt install ufw -y >/dev/null 2>&1
+
+  ufw disable >/dev/null 2>&1
+  ufw allow ${PORT}/tcp comment "${COIN_NAME} Masternode port" >/dev/null 2>&1
+
+  ufw allow 22/tcp comment "SSH port" >/dev/null 2>&1
+  ufw limit 22/tcp >/dev/null 2>&1
+  
+  ufw logging on >/dev/null 2>&1
+  ufw default deny incoming >/dev/null 2>&1
+  ufw default allow outgoing >/dev/null 2>&1
+
+  echo "y" | ufw enable >/dev/null 2>&1
+  systemctl enable fail2ban >/dev/null 2>&1
+  systemctl start fail2ban >/dev/null 2>&1
+}
+
+function add_daemon_service() 
+{
+  cat << EOF > /etc/systemd/system/${USER_NAME}.service
 [Unit]
-Description=$COIN_NAME service
+Description=${COIN_NAME} masternode daemon service
 After=network.target
+After=syslog.target
 [Service]
-User=${UTENTE}
-Group=${UTENTE}
 Type=forking
-#PIDFile=$CONFIGFOLDER/$COIN_NAME.pid
-ExecStart=$COIN_PATH$COIN_DAEMON -daemon -conf=$CONFIGFOLDER/$CONFIG_FILE -datadir=$CONFIGFOLDER
-ExecStop=-$COIN_PATH$COIN_CLI -conf=$CONFIGFOLDER/$CONFIG_FILE -datadir=$CONFIGFOLDER stop
+User=${USER_NAME}
+Group=${USER_NAME}
+WorkingDirectory=${HOME_FOLDER}
+ExecStart=${DAEMON_PATH} -datadir=${HOME_FOLDER} -conf=${HOME_FOLDER}/$CONFIG_FILE -daemon 
+ExecStop=${CLI_PATH} -datadir=${HOME_FOLDER} -conf=${HOME_FOLDER}/$CONFIG_FILE stop
 Restart=always
+RestartSec=3
 PrivateTmp=true
 TimeoutStopSec=60s
 TimeoutStartSec=10s
 StartLimitInterval=120s
 StartLimitBurst=5
+  
 [Install]
 WantedBy=multi-user.target
 EOF
 
   systemctl daemon-reload
   sleep 3
-  #systemctl start $COIN_NAME.service
-  systemctl start $UTENTE.service
-  systemctl enable $UTENTE.service >/dev/null 2>&1
 
-  if [[ -z "$(ps axo cmd:100 | egrep $COIN_DAEMON)" ]]; then
-    echo -e "${RED}$COIN_NAME is not running${NC}, please investigate. You should start by running the following commands as root:"
-    echo -e "${GREEN}systemctl start $COIN_NAME.service"
-    echo -e "systemctl status $COIN_NAME.service"
-    echo -e "less /var/log/syslog${NC}"
+  echo -e " ${GREEN}Starting the ${COIN_NAME} service from ${DAEMON_PATH} on port ${PORT}.${NC}"
+  systemctl start ${USER_NAME}.service >/dev/null 2>&1
+  
+  echo -e " ${GREEN}Enabling the service to start on reboot.${NC}"
+  systemctl enable ${USER_NAME}.service >/dev/null 2>&1
+
+  if [[ -z $(pidof $DAEMON_FILE) ]]; then
+    echo -e "${RED}The ${COIN_NAME} masternode service is not running${NC}. You should start by running the following commands as root:"
+    echo "systemctl start ${USER_NAME}.service"
+    echo "systemctl status ${USER_NAME}.service"
+    echo "less /var/log/syslog"
     exit 1
   fi
 }
 
-function wipe_config() {
-  echo -e "Stopping systemd.."
-  sudo systemctl disable Stone.service
-  sudo systemctl stop Stone.service
-  echo -e "Clearing current config file.."
-  sleep 1
-  rm ~/.stonecore/stone.conf
-  sleep 1
-  echo -e "Creating new config file.."
-  sleep 1
+function get_port_and_user()
+{
+  echo -e "${GREEN} Identifying username and port for the masternode${NC}"
+
+  local num=$(ls -al /home | grep ${COIN_NAME}-mn | cut -d' ' -f4 | cut -d'-' -f2 | sed s/mn//g | sort -n | tail -1)
+   
+  if [ -d /home/stone-mn1 ]; then 
+  num=2; 
+  if [ -d /home/stone-mn2 ]; then 
+  num=3; 
+  if [ -d /home/stone-mn3 ]; then 
+  num=4; 
+  if [ -d /home/stone-mn4 ]; then 
+  num=5; 
+  if [ -d /home/stone-mn5 ]; then 
+  num=6;
+  if [ -d /home/stone-mn6 ]; then 
+  num=7;
+  if [ -d /home/stone-mn7 ]; then 
+  num=8; 
+  if [ -d /home/stone-mn8 ]; then 
+  num=9; 
+  if [ -d /home/stone-mn9 ]; then 
+  num=10; 
+  if [ -d /home/stone-mn10 ]; then 
+  num=11; 
+  if [ -d /home/stone-mn11 ]; then 
+  num=12; 
+  if [ -d /home/stone-mn12 ]; then 
+  num=13; 
+  if [ -d /home/stone-mn13 ]; then 
+  num=14; 
+  if [ -d /home/stone-mn14 ]; then 
+  num=15; 
+  if [ -d /home/stone-mn15 ]; then 
+  num=16; 
+  if [ -d /home/stone-mn16 ]; then 
+  num=17; 
+  if [ -d /home/stone-mn17 ]; then 
+  num=18; 
+  if [ -d /home/stone-mn18 ]; then 
+  num=19; 
+  if [ -d /home/stone-mn19 ]; then 
+  num=20; 
+  if [ -d /home/stone-mn20 ]; then 
+  num=21; 
+  else num=20; fi
+  else num=19; fi
+  else num=18; fi
+  else num=17; fi
+  else num=16; fi
+  else num=15; fi
+  else num=14; fi
+  else num=13; fi
+  else num=12; fi	
+  else num=11; fi	
+  else num=10; fi
+  else num=9; fi	
+  else num=8; fi	
+  else num=7; fi 
+  else num=6; fi
+  else num=5; fi
+  else num=4; fi
+  else num=3; fi
+  else num=2; fi
+  else num=1; fi 
+  
+  
+  
+  if [[ ${num} > 20 ]];
+    then
+      echo -e "${RED} To ensure your VPS and masternode run smoothly, you should not run more than 20 ${COIN_NAME} nodes on the same VPS${NC}"
+      echo -e "${RED} The install script will now exit so you can run it from another VPS.${NC}"
+      exit 1
+    fi
+  
+  
+  PORT=$((${DEFAULT_PORT} + ((${num} - 1) * 2)))
+  USER_NAME="${COIN_NAME}-mn${num}"
 }
 
-function reEnableSystemd() {
-  echo -e "Re-enabling systemd.."
-  sleep 1
-  systemctl daemon-reload
-  sleep 3
-  systemctl start $COIN_NAME.service
-  systemctl enable $COIN_NAME.service >/dev/null 2>&1
-  sleep 1
+function create_user() 
+{  
+  echo -e "${GREEN} Creating a new user ${USER_NAME} to run the masternode${NC}"
+  useradd -m ${USER_NAME}
+
+  USERPASS=$(pwgen -s 12 1)
+  echo "${USER_NAME}:${USERPASS}" | chpasswd
+
+  local home=$(sudo -H -u ${USER_NAME} bash -c 'echo ${HOME}')
+  HOME_FOLDER="${home}/.${COIN_NAME}"
+      
+  mkdir -p ${HOME_FOLDER}
 }
 
-function addBootstrap() {
-  echo -e "Downloading Bootstrap"
-  #mkdir $CONFIGFOLDER >/dev/null 2>&1
-  cd ~/
-  wget -q $BOOTSTRAPURL
-  tar -xzf stonecore.tar.gz
-  rm stonecore.tar.gz
-  sleep 1
+function chown_home_folder()
+{
+  chown -R ${USER_NAME}:${USER_NAME} ${HOME_FOLDER} >/dev/null 2>&1
 }
 
-function create_config() {
-  sleep 1
-  RPCUSER=$(tr -cd '[:alnum:]' < /dev/urandom | fold -w10 | head -n1)
-  RPCPASSWORD=$(tr -cd '[:alnum:]' < /dev/urandom | fold -w22 | head -n1)
-  cat << EOF > $CONFIGFOLDER/$CONFIG_FILE
-rpcuser=$RPCUSER
-rpcpassword=$RPCPASSWORD
+function create_config() 
+{
+  RPCUSER=$(pwgen -s 8 1)
+  RPCPASSWORD=$(pwgen -s 15 1)
+  cat << EOF > ${HOME_FOLDER}/${CONFIG_FILE}
+rpcuser=${RPCUSER}
+rpcpassword=${RPCPASSWORD}
 rpcallowip=127.0.0.1
-rpcport=22324
+rpcport=$[PORT+1]
+port=${PORT}
 listen=1
 server=1
-daemon=1
-port=$COIN_PORT
+daemon=0
+staking=0
+addnode=pool.stonecoin.rocks:22323
+addnode=explorer.stonecoin.rocks:22323
+addnode=45.76.32.30
 EOF
 }
 
-function create_key() {
-  #Can be used in the future if we want to have users input their own key.
-  #echo -e "${YELLOW}Enter your ${RED}$COIN_NAME Masternode GEN Key${NC}."
-  #read -e COINKEY
-  sleep 10
-  $COIN_PATH$COIN_DAEMON -daemon
-  sleep 30
-  if [ -z "$(ps axo cmd:100 | grep $COIN_DAEMON)" ]; then
-   echo -e "${RED}$COIN_NAME server couldn not start. Check /var/log/syslog for errors.{$NC}"
-   exit 1
-  fi
-  COINKEY=$($COIN_PATH$COIN_CLI masternode genkey)
-  if [ "$?" -gt "0" ];
+function start_node()
+{
+  sudo -u ${USER_NAME} ${DAEMON_PATH} -datadir=${HOME_FOLDER} -conf=${HOME_FOLDER}/${CONFIG_FILE} -daemon >/dev/null 2>&1
+  sleep 5
+}
+
+KEY_ATTEMPT=0
+function create_key() 
+{
+  echo -e "${GREEN} Creating masternode private key${NC}"
+  local privkey=$(sudo -u ${USER_NAME} ${CLI_PATH} -datadir=${HOME_FOLDER} -conf=${HOME_FOLDER}/${CONFIG_FILE} masternode genkey 2>&1)
+
+  if [[ -z "${privkey}" ]] || [[ "${privkey^^}" = *"ERROR"* ]]; 
+  then
+    local retry=5
+    echo -e "${GREEN}  - Attempt ${KEY_ATTEMPT}/20: Unable to request private key or node not ready, retrying in ${retry} seconds ...${NC}"
+    sleep ${retry}
+    
+    KEY_ATTEMPT=$[KEY_ATTEMPT+1]
+    if [[ ${KEY_ATTEMPT} -eq 20 ]];
     then
-    echo -e "${RED}Wallet not fully loaded. Let us wait and try again to generate the GEN Key${NC}"
-    sleep 30
-    COINKEY=$($COIN_PATH$COIN_CLI masternode genkey)
-  fi
-  $COIN_PATH$COIN_CLI stop
-}
-
-function update_config() {
-  sed -i 's/daemon=1/daemon=0/' $CONFIGFOLDER/$CONFIG_FILE
-  cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
-logintimestamps=1
-maxconnections=256
-#bind=$NODEIP
-masternode=1
-externalip=$NODEIP:$COIN_PORT
-masternodeprivkey=$COINKEY
-addnode=$ADDNODE1
-addnode=$ADDNODE2
-EOF
-}
-
-function enable_firewall() {
-  echo -e "Installing and setting up firewall to allow ingress on port ${GREEN}$COIN_PORT${NC}"
-  ufw allow $COIN_PORT/tcp comment "$COIN_NAME MN port" >/dev/null
-  ufw allow ssh comment "SSH" >/dev/null 2>&1
-  ufw limit ssh/tcp >/dev/null 2>&1
-  ufw default allow outgoing >/dev/null 2>&1
-  echo "y" | ufw enable >/dev/null 2>&1
-}
-
-function get_ip() {
-  declare -a NODE_IPS
-  for ips in $(netstat -i | awk '!/Kernel|Iface|lo/ {print $1," "}')
-  do
-    NODE_IPS+=($(curl --interface $ips --connect-timeout 2 -s4 icanhazip.com))
-  done
-
-  if [ ${#NODE_IPS[@]} -gt 1 ]
-    then
-      echo -e "${GREEN}More than one IP. Please type 0 to use the first IP, 1 for the second and so on...${NC}"
-      INDEX=0
-      for ip in "${NODE_IPS[@]}"
-      do
-        echo ${INDEX} $ip
-        let INDEX=${INDEX}+1
-      done
-      read -e choose_ip
-      NODEIP=${NODE_IPS[$choose_ip]}
+      echo -e "${RED}  - Attempt ${KEY_ATTEMPT}/20: Unable to request a private key from the masternode, installation cannot continue.${NC}"
+      exit 1
+    else
+      create_key
+    fi
   else
-    NODEIP=${NODE_IPS[0]}
+    echo -e "${GREEN}  - Privkey successfully generated${NC}"
+    PRIVKEY=${privkey}
+
+    sudo -u ${USER_NAME} ${CLI_PATH} -datadir=${HOME_FOLDER} -conf=${HOME_FOLDER}/${CONFIG_FILE} stop >/dev/null 2>&1
+    sleep 5
   fi
 }
 
-function compile_error() {
-if [ "$?" -gt "0" ];
- then
-  echo -e "${RED}Failed to compile $COIN_NAME. Please investigate.${NC}"
-  exit 1
-fi
+function update_config() 
+{  
+  cat << EOF >> ${HOME_FOLDER}/${CONFIG_FILE}
+logtimestamps=1
+maxconnections=32
+masternode=1
+externalip=${NODE_IP}
+masternodeprivkey=${PRIVKEY}
+EOF
 }
 
-function checks() {
-if [[ $(lsb_release -d) != *16.04* ]]; then
-  echo -e "${RED}You are not running Ubuntu 16.04. Installation is cancelled.${NC}"
-  exit 1
-fi
+function add_log_rotate()
+{
+  LOG_FILE="${HOME_FOLDER}/debug.log";
 
-if [[ $EUID -ne 0 ]]; then
-   echo -e "${RED}$0 must be run as root.${NC}"
-   exit 1
-fi
+  cat << EOF >> /home/${USER_NAME}/logrotate.conf
+${HOME_FOLDER}/*.log {
+    rotate 4
+    weekly
+    compress
+    missingok
+    notifempty
+}
+EOF
 
-if [ -n "$(pidof $COIN_DAEMON)" ] || [ -e "$COIN_DAEMOM" ] ; then
-  echo -e "${RED}$COIN_NAME is already installed.${NC}"
-  exit 1
-fi
+  if ! crontab -l >/dev/null | grep "/home/${USER_NAME}/logrotate.conf"; then
+    (crontab -l ; echo "1 0 * * 1 /usr/sbin/logrotate /home/${USER_NAME}/logrotate.conf --state /home/${USER_NAME}/logrotate-state") | crontab -
+  fi
 }
 
-# Cleanup, function depricated no compile required for future releases.
-function prepare_system() {
-echo -e "Preparing the VPS to setup. ${CYAN}$COIN_NAME${NC} ${RED}Masternode${NC}"
-apt-get update >/dev/null 2>&1
-DEBIAN_FRONTEND=noninteractive apt-get update > /dev/null 2>&1
-DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y -qq upgrade >/dev/null 2>&1
-apt install -y software-properties-common >/dev/null 2>&1
-echo -e "${PURPLE}Adding bitcoin PPA repository"
-apt-add-repository -y ppa:bitcoin/bitcoin >/dev/null 2>&1
-echo -e "Installing required packages, it may take some time to finish.${NC}"
-apt-get update -y >/dev/null 2>&1
-apt-get ufw -y >/dev/null 2>&1
-#apt-get install libzmq3-dev -y >/dev/null 2>&1
-apt-get install -y git wget curl >/dev/null 2>&1
-#if [ "$?" -gt "0" ];
-#  then
-#    echo -e "${RED}Not all required packages were installed properly. Try to install them manually by running the following commands:${NC}\n"
-#    echo "apt-get update"
-#    echo "apt -y install software-properties-common"
-#    echo "apt-add-repository -y ppa:bitcoin/bitcoin"
-#    echo "apt-get update"
-#    echo "apt install -y make build-essential libtool software-properties-common autoconf libssl-dev libboost-dev libboost-chrono-dev libboost-filesystem-dev \
-#libboost-program-options-dev libboost-system-dev libboost-test-dev libboost-thread-dev sudo automake git curl libdb4.8-dev \
-#bsdmainutils libdb4.8++-dev libminiupnpc-dev libgmp3-dev ufw pkg-config libevent-dev libdb5.3++ unzip libzmq5"
-# exit 1
-#fi
+function show_output() 
+{
+ echo
+ echo -e "================================================================================================================================"
+ echo -e "${GREEN}"
+ echo -e "                                                 ${COIN_NAME^^} installation completed${NC}"
+ echo
+ echo -e " Your ${COIN_NAME^^} coin master node is up and running." 
+ echo -e "  - it is running as the ${GREEN}${USER_NAME}${NC} user, listening on port ${GREEN}${PORT}${NC} at your VPS address ${GREEN}${NODE_IP}${NC}."
+ echo -e "  - the ${GREEN}${USER_NAME}${NC} password is ${GREEN}${USERPASS}${NC}"
+ echo -e "  - the ${COIN_NAME^^} configuration file is located at ${GREEN}${HOME_FOLDER}/${CONFIG_FILE}${NC}"
+ echo -e "  - the masternode privkey is ${GREEN}${PRIVKEY}${NC}"
+ echo
+ echo -e " You can manage your ${COIN_NAME^^} service from the cmdline with the following commands:"
+ echo -e "  - ${GREEN}systemctl start ${USER_NAME}.service${NC} to start the service for the given user."
+ echo -e "  - ${GREEN}systemctl stop ${USER_NAME}.service${NC} to stop the service for the given user."
+ echo -e "  - ${GREEN}systemctl status ${USER_NAME}.service${NC} to see the service status for the given user."
+ echo
+ echo -e " The installed service is set to:"
+ echo -e "  - auto start when your VPS is rebooted."
+ echo -e "  - rotate your ${GREEN}${LOG_FILE}${NC} file once per week and keep the last 4 weeks of logs."
+ echo
+ echo -e " You can find the masternode status when logged in as ${GREEN}${USER_NAME}${NC} using the command below:"
+ echo -e "  - ${GREEN}${CLI_FILE} getinfo${NC} to retreive your nodes status and information"
+ echo
+ echo -e " If you are not logged in as ${GREEN}${USER_NAME}${NC} then you can run ${YELLOW}su - ${USER_NAME}${NC} to switch to that user"
+ echo -e " before running the ${GREEN}${CLI_FILE} getinfo${NC} command."
+ echo -e " NOTE: the ${DAEMON_FILE} daemon must be running first before trying this command. See notes above on service commands usage."
+ echo
+ echo -e " Make sure you keep the information above somewhere private and secure so you can refer back to it." 
+ echo
+ echo -e " ${YELLOW}==> NEVER SHARE YOUR PRIVKEY WITH ANYONE, IF SOMEONE OBTAINS IT THEY CAN STEAL ALL YOUR COINS <==${NC}"
+ echo
+ echo -e "================================================================================================================================"
+ echo
+ echo
 }
 
-function masternode_info() {
-  echo
-  echo "Give your masternode a name: "
-  read mnAlias </dev/tty
-  echo "Paste the transaction ID from masternode outputs: "
-  read mnTx </dev/tty
-  echo "Enter the output index number from masternode outputs 0 or 1:"
-  read mnIndex </dev/tty
-  echo -e "Awesome you're almost done! Just paste the green line below into your local masternode.conf and then start alias."
-  echo "Press enter to continue"
-  read dumpEnter </dev/tty
-}
-
-function reSync() {
-    sudo systemctl disable Stone.service
-    sudo systemctl stop Stone.service
-    #replace addnodes need to add new cat func
-    #sed -i "/\b\(addnode\)\b/d" ~/.stonecore/stone.conf
-    #sleep 1
-#cat << EOF > $CONFIGFOLDER/$CONFIG_FILE
-#addnode=$ADDNODE1
-#addnode=$ADDNODE2
-#EOF
-    sleep 1
-    mkdir ~/.stonebackups
-    cp ~/.stonecore/stone.conf ~/.stonebackups/stone.conf
-    sleep 2
-    rm -r ~/.stonecore #/blocks ~/.stonecore/chainstate ~/.stonecore/database
-    #rm ~/.stonecore #/peers.dat ~/.stonecore/mncache.dat ~/.stonecore/banlist.dat
-    sleep 2
-    #stone-cli stop
-    addBootstrap
-    sleep 1
-    mv ~/.stonebackups/stone.conf ~/.stonecore/stone.conf
-    sleep 1
-    sudo systemctl enable Stone.service
-    sudo systemctl start Stone.service
-    echo -e "Finishing up..."
-    sleep 5
-    upgradeInfo
-}
-
-function clearBanned() {
-    echo -e "Doing some maintenance..."
-    sleep 2
-    $COIN_CLI clearbanned
-    $COIN_CLI stop
-    sleep 5
-}
-
-function goodBye() {
- clear
- echo -e "${BLUE}==================================================================================================================${NC}"
- echo -e "${GREEN}   \$\$\$\$\$${NC}${CYAN}  TTTTTTT  OOOOO  NN   NN EEEEEEE  CCCCC  OOOOO  IIIII NN   NN     RRRRRR   OOOOO   CCCCC KK  KK  ${NC}${GREEN}\$\$\$\$\$  ${NC}"
- echo -e    "${GREEN}  \$\$${NC}${CYAN}        TTT   OO   OO NNN  NN EE      CCC    OO   OO  III  NNN  NN     RR   RR OO   OO CCC    KK KK  ${NC}${GREEN}\$\$      ${NC}"
- echo -e "${GREEN}   \$\$\$\$\$${NC}${CYAN}    TTT   OO   OO NN N NN EEEEE   CC     OO   OO  III  NN N NN     RRRRRR  OO   OO CC     KKKK    ${NC}${GREEN}\$\$\$\$\$  ${NC}"
- echo -e    "${GREEN}       \$\$${NC}${CYAN}   TTT   OO   OO NN  NNN EE      CCC    OO   OO  III  NN  NNN ${NC}${GREEN}dot${NC}${CYAN} RR  RR  OO   OO CCC    KK KK       ${NC}${GREEN}\$\$ ${NC}"
- echo -e "${GREEN}   \$\$\$\$\$${NC}${CYAN}    TTT    OOOO0  NN   NN EEEEEEE  CCCCC  OOOO0  IIIII NN   NN ${NC}${GREEN}dot${NC}${CYAN} RR   RR  OOOO0   CCCCC KK  KK  ${NC}${GREEN}\$\$\$\$\$  ${NC}"
- echo -e "${BLUE}==================================================================================================================${NC}"
- echo -e "${GREEN}Hope you enjoyed another script from STONE${NC}"
- echo -e "${BLUE}==================================================================================================================${NC}"
- echo -e "${PURPLE}We're sorry to see you go, come back soon!${NC}"
- echo -e "${BLUE}==================================================================================================================${NC}"
- echo -e "${BLUE}==================================================================================================================${NC}"
- exit 1
-}
-
-function newInstallInfo() {
- clear
- echo -e "${BLUE}==================================================================================================================${NC}"
- echo -e "${GREEN}   \$\$\$\$\$${NC}${CYAN}  TTTTTTT  OOOOO  NN   NN EEEEEEE  CCCCC  OOOOO  IIIII NN   NN     RRRRRR   OOOOO   CCCCC KK  KK  ${NC}${GREEN}\$\$\$\$\$  ${NC}"
- echo -e    "${GREEN}  \$\$${NC}${CYAN}        TTT   OO   OO NNN  NN EE      CCC    OO   OO  III  NNN  NN     RR   RR OO   OO CCC    KK KK  ${NC}${GREEN}\$\$      ${NC}"
- echo -e "${GREEN}   \$\$\$\$\$${NC}${CYAN}    TTT   OO   OO NN N NN EEEEE   CC     OO   OO  III  NN N NN     RRRRRR  OO   OO CC     KKKK    ${NC}${GREEN}\$\$\$\$\$  ${NC}"
- echo -e    "${GREEN}       \$\$${NC}${CYAN}   TTT   OO   OO NN  NNN EE      CCC    OO   OO  III  NN  NNN ${NC}${GREEN}dot${NC}${CYAN} RR  RR  OO   OO CCC    KK KK       ${NC}${GREEN}\$\$ ${NC}"
- echo -e "${GREEN}   \$\$\$\$\$${NC}${CYAN}    TTT    OOOO0  NN   NN EEEEEEE  CCCCC  OOOO0  IIIII NN   NN ${NC}${GREEN}dot${NC}${CYAN} RR   RR  OOOO0   CCCCC KK  KK  ${NC}${GREEN}\$\$\$\$\$  ${NC}"
- echo -e "${BLUE}==================================================================================================================${NC}"
- echo -e "${BLUE}==================================================================================================================${NC}"
- echo -e "${GREEN}$mnAlias $NODEIP:$COIN_PORT $COINKEY $mnTx $mnIndex${NC}"
- echo -e "${BLUE}==================================================================================================================${NC}"
- echo -e "${BLUE}==================================================================================================================${NC}"
- echo -e "${PURPLE}Full Setup Guide. https://github.com/stonecoinproject/stonemnsetup/${NC}"
- echo -e "${BLUE}==================================================================================================================${NC}"
- echo -e "${CYAN}Ensure Node is fully SYNCED with BLOCKCHAIN.${NC}"
- echo -e "${BLUE}==================================================================================================================${NC}"
- echo -e "${PURPLE}Usage Commands.${NC}"
- echo -e "${PURPLE}Check masternode status: $COIN_CLI masternode status${NC}"
- echo -e "${PURPLE}Check blockchain status: $COIN_CLI getinfo${NC}"
- echo -e "${PURPLE}Restart daemon: $COIN_CLI stop${NC}"
- echo -e "${PURPLE}VPS Configuration file location:${NC}${CYAN}$CONFIGFOLDER/$CONFIG_FILE${NC}"
- echo -e "${BLUE}==================================================================================================================${NC}"
- echo -e "${CYAN}Follow in Discord to stay updated.  https://discord.gg/8u7U3gh${NC}"
- echo -e "${BLUE}==================================================================================================================${NC}"
- echo -e "${RED}Donations go towards STONE development${NC}"
- echo -e "${BLUE}==================================================================================================================${NC}"
- echo -e "${YELLOW}STONE: Si8dAZHaP1utVqxJJf1t2KVU6cBkk6FrVz${NC}"
- echo -e "${YELLOW}BTC: 3QFJ9UTJGbBHBYqZsqTzXHyxifML44Wdyp${NC}"
- echo -e "${YELLOW}XMR: 445kB5Mxzj5LKeTt6RrgTvciqnPVT4HgyE4zN3grJTvaEyrCMuCPAyx7Kah3bq2RBZMoTauDDVFVvBuKcer5NnCKDoeT9DW${NC}"
- echo -e "${YELLOW}LTC: LgdPXvnYRvQoAVGZq2SUomZwkbv4Hjecok${NC}"
- echo -e "${YELLOW}RAVEN: RKUaCMEKqJi3ERnbEXXh9M3LKTK79hJuSt${NC}"
- echo -e "${BLUE}==================================================================================================================${NC}"
- exit 1
-}
-
-function upgradeInfo() {
-  clear
-  echo -e "${BLUE}==================================================================================================================${NC}"
-  echo -e "${GREEN}   \$\$\$\$\$${NC}${CYAN}  TTTTTTT  OOOOO  NN   NN EEEEEEE  CCCCC  OOOOO  IIIII NN   NN     RRRRRR   OOOOO   CCCCC KK  KK  ${NC}${GREEN}\$\$\$\$\$  ${NC}"
-  echo -e    "${GREEN}  \$\$${NC}${CYAN}        TTT   OO   OO NNN  NN EE      CCC    OO   OO  III  NNN  NN     RR   RR OO   OO CCC    KK KK  ${NC}${GREEN}\$\$      ${NC}"
-  echo -e "${GREEN}   \$\$\$\$\$${NC}${CYAN}    TTT   OO   OO NN N NN EEEEE   CC     OO   OO  III  NN N NN     RRRRRR  OO   OO CC     KKKK    ${NC}${GREEN}\$\$\$\$\$  ${NC}"
-  echo -e    "${GREEN}       \$\$${NC}${CYAN}   TTT   OO   OO NN  NNN EE      CCC    OO   OO  III  NN  NNN ${NC}${GREEN}dot${NC}${CYAN} RR  RR  OO   OO CCC    KK KK       ${NC}${GREEN}\$\$ ${NC}"
-  echo -e "${GREEN}   \$\$\$\$\$${NC}${CYAN}    TTT    OOOO0  NN   NN EEEEEEE  CCCCC  OOOO0  IIIII NN   NN ${NC}${GREEN}dot${NC}${CYAN} RR   RR  OOOO0   CCCCC KK  KK  ${NC}${GREEN}\$\$\$\$\$  ${NC}"
-  echo -e "${BLUE}==================================================================================================================${NC}"
-  echo -e "${BLUE}==================================================================================================================${NC}"
-  echo -e "${PURPLE}Congratulations! You've just upgraded your masternode.${NC}"
-  echo -e "${PURPLE}We hope you enjoyed another Stone simple script!${NC}"
-  echo -e "${BLUE}==================================================================================================================${NC}"
-  echo -e "${BLUE}==================================================================================================================${NC}"
-  echo -e "${PURPLE}Usage Commands.${NC}"
-  echo -e "${PURPLE}Check version info: $COIN_DAEMON --version${NC}"
-  echo -e "${PURPLE}Check masternode status: $COIN_CLI masternode status${NC}"
-  echo -e "${PURPLE}Check blockchain status: $COIN_CLI getinfo${NC}"
-  echo -e "${PURPLE}Restart daemon: $COIN_CLI stop${NC}"
-  echo -e "${PURPLE}Help faster sync snd unstuck: $COIN_CLI clearbanned${NC}"
-  echo -e "${PURPLE}VPS Configuration file location:${NC}${CYAN}$CONFIGFOLDER/$CONFIG_FILE${NC}"
-  echo -e "${BLUE}==================================================================================================================${NC}"
-  echo -e "${CYAN}Follow in Discord to stay updated.  https://discord.gg/8u7U3gh${NC}"
-  echo -e "${BLUE}==================================================================================================================${NC}"
-  echo -e "${RED}Donations go towards STONE development${NC}"
-  echo -e "${BLUE}==================================================================================================================${NC}"
-  echo -e "${YELLOW}STONE: Si8dAZHaP1utVqxJJf1t2KVU6cBkk6FrVz${NC}"
-  echo -e "${YELLOW}BTC: 3QFJ9UTJGbBHBYqZsqTzXHyxifML44Wdyp${NC}"
-  echo -e "${YELLOW}XMR: 445kB5Mxzj5LKeTt6RrgTvciqnPVT4HgyE4zN3grJTvaEyrCMuCPAyx7Kah3bq2RBZMoTauDDVFVvBuKcer5NnCKDoeT9DW${NC}"
-  echo -e "${YELLOW}LTC: LgdPXvnYRvQoAVGZq2SUomZwkbv4Hjecok${NC}"
-  echo -e "${YELLOW}RAVEN: RKUaCMEKqJi3ERnbEXXh9M3LKTK79hJuSt${NC}"
-  echo -e "${BLUE}==================================================================================================================${NC}"
-  exit 1
-}
-
-function newInstall() {
-   while true; do
-       echo "You chose to install a new STONE masternode."
-       read -p "Are you sure? (y/n): " yn </dev/tty
-       case $yn in
-           [Yy]* ) echo "This may take some time, be patient and wait for the prompts."; sleep 2; installNode;;
-           [Nn]* ) echo "Restarting..."; sleep 2; clear; mainMenu; exit;;
-           * ) echo "Please answer yes or no.";;
-       esac
-   done
- }
-function unInstallConf() {
-   while true; do
-       echo "You chose to remove your STONE masternode."
-       read -p "Are you sure? (y/n): " yn </dev/tty
-       case $yn in
-           [Yy]* ) echo "This will only take a moment"; sleep 2; unInstall;;
-           [Nn]* ) echo "Restarting..."; sleep 2; clear; mainMenu; exit;;
-           * ) echo "Please answer yes or no.";;
-       esac
-   done
-}
-
-function upgradeOnly() {
-   while true; do
-       echo "You chose to upgrade your existing STONE masternode."
-       read -p "Are you sure? (y/n): " yn </dev/tty
-       case $yn in
-           [Yy]* ) echo "This should only take a moment."; sleep 2; upgradeNode;;
-           [Nn]* ) echo "Restarting..."; sleep 2; clear; mainMenu; exit;;
-           * ) echo "Please answer yes or no.";;
-       esac
-   done
- }
-function upgradeOnly1() {
-   while true; do
-       echo "You chose to upgrade your existing STONE masternode."
-       read -p "Are you sure? (y/n): " yn </dev/tty
-       case $yn in
-           [Yy]* ) echo "This should only take a moment."; sleep 2; upgradeNode;;
-           [Nn]* ) echo "Restarting..."; sleep 2; clear; mainMenu; exit;;
-           * ) echo "Please answer yes or no.";;
-       esac
-   done
- }
-function reSyncConf() {
-   while true; do
-       echo "You chose to resync your existing STONE masternode."
-       read -p "Are you sure? (y/n): " yn </dev/tty
-       case $yn in
-           [Yy]* ) echo "This should only take a moment."; sleep 2; reSync;;
-           [Nn]* ) echo "Restarting..."; sleep 2; clear; mainMenu; exit;;
-           * ) echo "Please answer yes or no.";;
-       esac
-   done
- }
- function reSyncConf1() {
-   while true; do
-       echo "You chose to resync your existing STONE masternode."
-       read -p "Are you sure? (y/n): " yn </dev/tty
-       case $yn in
-           [Yy]* ) echo "This should only take a moment."; sleep 2; reSync;;
-           [Nn]* ) echo "Restarting..."; sleep 2; clear; mainMenu; exit;;
-           * ) echo "Please answer yes or no.";;
-       esac
-   done
- }
- function UpgradeAndResync() {
-   upgradeOnly1;
-   reSyncConf1;
-
- }
-
-function newGenKeyConf() {
-    while true; do
-        echo "You chose to create a new Genkey for your existing STONE masternode.(This should only be used if your node is fully synced)"
-        read -p "Are you sure? (y/n): " yn </dev/tty
-        case $yn in
-            [Yy]* ) echo "Please have your tx id and output index ready, we will ask for them shortly.."; sleep 2; newGenKey;;
-            [Nn]* ) echo "Restarting..."; sleep 2; clear; mainMenu; exit;;
-            * ) echo "Please answer yes or no.";;
-        esac
-    done
-}
-
-function mainMenu(){
-    NORMAL=`echo "\033[m"`
-    MENU=`echo "\033[36m"` #Blue
-    NUMBER=`echo "\033[33m"` #yellow
-    FGRED=`echo "\033[41m"`
-    RED_TEXT=`echo "\033[31m"`
-    ENTER_LINE=`echo "\033[33m"`
-
-    echo -e "${MENU}*********************************************${NORMAL}"
-    echo -e "${MENU}****Welcome to the STONE Masternode Setup****${NORMAL}"
-    echo -e "${MENU}*********************************************${NORMAL}"
-    echo -e "${MENU}**${NUMBER} 1)${MENU} New Install                          **${NORMAL}"
-    echo -e "${MENU}**${NUMBER} 2)${MENU} Upgrade only                         **${NORMAL}"
-    echo -e "${MENU}**${NUMBER} 3)${MENU} Resync                               **${NORMAL}"
-    echo -e "${MENU}**${NUMBER} 4)${MENU} Upgrade and Resync                   **${NORMAL}"
-    echo -e "${MENU}**${NUMBER} 5)${MENU} Create New GenKey                    **${NORMAL}"
-    echo -e "${MENU}**${NUMBER} 6)${MENU} Uninstall                            **${NORMAL}"
-    echo -e "${MENU}**${NUMBER} 7)${MENU} Exit                                 **${NORMAL}"
-    echo -e "${MENU}*********************************************${NORMAL}"
-    echo -e "${ENTER_LINE}Enter option and press enter or ${RED_TEXT}enter to exit. ${NORMAL}"
-    echo -e "${ENTER_LINE}Note: You must complete new install if you are upgrading from pre x16r${NORMAL}"
-    read opt </dev/tty
-    menuLoop
-}
-
-function menuLoop() {
-
-while [ opt != '' ]
-    do
-        case $opt in
-        1)newInstall;
-        ;;
-        2)upgradeOnly;
-        ;;
-        3)reSyncConf;
-        ;;
-        4)UpgradeAndResync;
-        ;;
-        5)newGenKeyConf;
-        ;;
-        6)unInstallConf;
-        ;;
-        7)echo -e "Exiting...";sleep 1;exit 0;
-        ;;
-        \n)exit 0;
-        ;;
-        *)clear;
-        "Pick an option from the menu";
-        mainMenu;
-        ;;
-    esac
-done
-}
-
-function upgradeNode() {
-  #purgeOldInstallation #Removed from upgrade only, use resync if necessary
-  download_node
-  configure_systemd
-  clearBanned
-  upgradeInfo
-}
-
-function installNode() {
-  purgeOldInstallation
-  prepare_system #some vps do not have curl preinstalled
-  download_node
-  get_ip
-  addBootstrap
+function setup_node() 
+{
+  get_port_and_user
+  create_user
   create_config
+  chown_home_folder
+  start_node
   create_key
   update_config
+  chown_home_folder
   enable_firewall
-  configure_systemd
-  clearBanned
-  masternode_info
-  newInstallInfo
+  add_daemon_service
+  add_log_rotate
+  show_output
 }
-
-function newGenKey() {
-  wipe_config
-  get_ip
-  create_config
-  create_key
-  update_config
-  reEnableSystemd
-  masternode_info
-  newInstallInfo
-}
-
-function unInstall() {
-    purgeOldInstallation
-    echo -e "Finalilzing the cleanup..."
-    sleep 5
-    goodBye
-}
-##### Main #####
 
 clear
-mainMenu
+
+echo
+echo -e "${GREEN}"
+echo -e "============================================================================================================="
+echo
+echo -e "                                     8b    d8    db    88\"\"Yb  dP\"\"b8"
+echo -e "                                     88b  d88   dPYb   88__dP dP   \`\""
+echo -e "                                     88YbdP88  dP__Yb  88\"Yb  Yb"  
+echo -e "                                     88 YY 88 dP\"\"\"\"Yb 88  Yb  YboodP" 
+echo
+echo                          
+echo -e "${NC}"
+echo -e " This script will automate the installation of your ${COIN_NAME^^} coin masternode and server configuration by"
+echo -e " performing the following steps:"
+echo
+echo -e "  - Prepare your system with the required dependencies"
+echo -e "  - Obtain the latest ${COIN_NAME^^} masternode files from the ${COIN_NAME} GitHub repository"
+echo -e "  - Create a user and password to run the ${COIN_NAME^^} masternode service"
+echo -e "  - Install the ${COIN_NAME^^} masternode service under the new user [not root]"
+echo -e "  - Add DDoS protection using fail2ban"
+echo -e "  - Update the system firewall to only allow the masternode port and outgoing connections"
+echo -e "  - Rotate and archive the masternode logs to save disk space"
+echo
+echo -e " You will see ${YELLOW}questions${NC}, ${GREEN}information${NC} and ${RED}errors${NC}. A summary of what has been done will be shown at the end."
+echo
+echo -e " The files will be downloaded and installed from:"
+echo -e " ${GREEN}${DAEMON_ARCHIVE}${NC}"
+echo
+echo -e " Script created by click2install"
+echo -e "  - GitHub: https://github.com/click2install"
+echo -e "  - Discord: click2install#0001"
+echo -e "  - MARC: ${DONATION_ADDRESS}"
+echo -e "  -  BTC: 1DJdhFp6CiVZSBSsXcecp1FnuHXDcsYQPu"
+echo -e "${GREEN}"
+echo -e "============================================================================================================="              
+echo -e "${NC}"
+read -e -p "$(echo -e ${YELLOW} Do you want to continue? [Y/N] ${NC})" CHOICE
+
+if [[ ("${CHOICE}" == "n" || "${CHOICE}" == "N") ]]; then
+  exit 1;
+fi
+
+checks
+
+if [[ ("${NEW_NODE}" == "y" || "${NEW_NODE}" == "Y") ]]; then
+  setup_node
+  exit 0
+elif [[ "${NEW_NODE}" == "new" ]]; then
+  prepare_system
+  deploy_binary
+  setup_node
+else
+  echo -e "${GREEN}${COIN_NAME^^} daemon already running.${NC}"
+  exit 0
+fi
