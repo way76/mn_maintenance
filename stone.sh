@@ -130,8 +130,8 @@ exit
 function reSync() {
   echo "$(date +%F_%T) Disabling Stone.service.." >> stonesync.log
   echo "$(date +%F_%T) Resync in progress... ////////////////////////////////////////////////////////////////////////" >> stonesync.log
-  #invalidates block 325000
-  stone-cli invalidateblock 0000000027ce91a30aeb4267d4a64af8e5e09ff645ec7c57371f663569bc92be
+  #stone-cli getblockhash 355000
+  stone-cli invalidateblock 000000003b2d9e329f7315848cc16aed7e3d07c2659f5f92055ddb5d7181d7a9
   systemctl restart Stone.service
   sleep 30
   stone-cli addnode 85.255.5.140 add
@@ -151,7 +151,7 @@ function reSync() {
   stone-cli addnode 167.86.78.222 add
   stone-cli addnode 173.212.247.119 add
   stone-cli addnode 173.249.56.247 add 
-  stone-cli reconsiderblock 0000000027ce91a30aeb4267d4a64af8e5e09ff645ec7c57371f663569bc92be
+  stone-cli reconsiderblock 000000003b2d9e329f7315848cc16aed7e3d07c2659f5f92055ddb5d7181d7a9
   
   echo "$(date +%F_%T) Resync completed     ////////////////////////////////////////////////////////////////////////" >> stonesync.log
   sleep 5
