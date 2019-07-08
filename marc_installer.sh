@@ -42,13 +42,13 @@ function checks()
      exit 1
   fi
 
-  if [ -n "$(pidof ${DAEMON_FILE})" ]; 
-  then
-    read -e -p " $(echo -e The ${COIN_NAME} daemon is already running.${YELLOW} Do you want to add another master node? [Y/N] $NC)" NEW_NODE
-    clear
-  else
+  #if [ -n "$(pidof ${DAEMON_FILE})" ]; 
+  #then
+  #  read -e -p " $(echo -e The ${COIN_NAME} daemon is already running.${YELLOW} Do you want to add another master node? [Y/N] $NC)" NEW_NODE
+  #  clear
+  #else
     NEW_NODE="new"
-  fi
+  #fi
 }
 
 function prepare_system() 
