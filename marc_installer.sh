@@ -209,7 +209,7 @@ function get_port_and_user()
 {
   echo -e "${GREEN} Identifying username and port for the masternode${NC}"
 
-  local num=1;
+  num=1;
    
   if [ -d /home/marcoin-mn1 ]; then 
   num=2; 
