@@ -209,7 +209,7 @@ function get_port_and_user()
 {
   echo -e "${GREEN} Identifying username and port for the masternode${NC}"
 
-  local num=$(ls -al /home | grep ${COIN_NAME}-mn | cut -d' ' -f4 | cut -d'-' -f2 | sed s/mn//g | sort -n | tail -1)
+  local num=0;
    
   if [ -d /home/marcoin-mn1 ]; then 
   num=2; 
