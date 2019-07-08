@@ -8,13 +8,13 @@
 
 TMP_FOLDER=$(mktemp -d)
 
-DAEMON_ARCHIVE=${1:-"https://github.com/MarketArbitrageCoin/MARCcore/releases/download/1.6.0.1/ubuntu-linux-64bit.tar.gz"}
+DAEMON_ARCHIVE=${1:-"https://github.com/stonecoinproject/Stonecoin/releases/download/v2.1.0.1-9523a37/stonecore-2.1.0-linux64.tar.gz"}
 ARCHIVE_STRIP=""
-DEFAULT_PORT=44004
+DEFAULT_PORT=22323
 
 NODE_IP=$(curl -4 icanhazip.com)
 
-COIN_NAME="marcoin"
+COIN_NAME="stone"
 CONFIG_FILE="${COIN_NAME}.conf"
 DAEMON_FILE="${COIN_NAME}d"
 CLI_FILE="${COIN_NAME}-cli" 
@@ -27,8 +27,6 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
-
-DONATION_ADDRESS='MM42zP6xQdri2NuEKw2JtDwGKvVbVAMHt1'
 
 function checks() 
 {
@@ -211,45 +209,45 @@ function get_port_and_user()
 
   local num=$(ls -al /home | grep ${COIN_NAME}-mn | cut -d' ' -f4 | cut -d'-' -f2 | sed s/mn//g | sort -n | tail -1)
    
-  if [ -d /home/marcoin-mn1 ]; then 
+  if [ -d /home/stone-mn1 ]; then 
   num=2; 
-  if [ -d /home/marcoin-mn2 ]; then 
+  if [ -d /home/stone-mn2 ]; then 
   num=3; 
-  if [ -d /home/marcoin-mn3 ]; then 
+  if [ -d /home/stone-mn3 ]; then 
   num=4; 
-  if [ -d /home/marcoin-mn4 ]; then 
+  if [ -d /home/stone-mn4 ]; then 
   num=5; 
-  if [ -d /home/marcoin-mn5 ]; then 
+  if [ -d /home/stone-mn5 ]; then 
   num=6;
-  if [ -d /home/marcoin-mn6 ]; then 
+  if [ -d /home/stone-mn6 ]; then 
   num=7;
-  if [ -d /home/marcoin-mn7 ]; then 
+  if [ -d /home/stone-mn7 ]; then 
   num=8; 
-  if [ -d /home/marcoin-mn8 ]; then 
+  if [ -d /home/stone-mn8 ]; then 
   num=9; 
-  if [ -d /home/marcoin-mn9 ]; then 
+  if [ -d /home/stone-mn9 ]; then 
   num=10; 
-  if [ -d /home/marcoin-mn10 ]; then 
+  if [ -d /home/stone-mn10 ]; then 
   num=11; 
-  if [ -d /home/marcoin-mn11 ]; then 
+  if [ -d /home/stone-mn11 ]; then 
   num=12; 
-  if [ -d /home/marcoin-mn12 ]; then 
+  if [ -d /home/stone-mn12 ]; then 
   num=13; 
-  if [ -d /home/marcoin-mn13 ]; then 
+  if [ -d /home/stone-mn13 ]; then 
   num=14; 
-  if [ -d /home/marcoin-mn14 ]; then 
+  if [ -d /home/stone-mn14 ]; then 
   num=15; 
-  if [ -d /home/marcoin-mn15 ]; then 
+  if [ -d /home/stone-mn15 ]; then 
   num=16; 
-  if [ -d /home/marcoin-mn16 ]; then 
+  if [ -d /home/stone-mn16 ]; then 
   num=17; 
-  if [ -d /home/marcoin-mn17 ]; then 
+  if [ -d /home/stone-mn17 ]; then 
   num=18; 
-  if [ -d /home/marcoin-mn18 ]; then 
+  if [ -d /home/stone-mn18 ]; then 
   num=19; 
-  if [ -d /home/marcoin-mn19 ]; then 
+  if [ -d /home/stone-mn19 ]; then 
   num=20; 
-  if [ -d /home/marcoin-mn20 ]; then 
+  if [ -d /home/stone-mn20 ]; then 
   num=21; 
   else num=20; fi
   else num=19; fi
@@ -317,19 +315,11 @@ rpcport=$[PORT+1]
 port=${PORT}
 listen=1
 server=1
-daemon=1
+daemon=0
 staking=0
-addnode=31.131.17.92
-addnode=207.148.123.101
+addnode=pool.stonecoin.rocks:22323
+addnode=explorer.stonecoin.rocks:22323
 addnode=45.76.32.30
-addnode=212.237.33.48
-addnode=54.37.75.48
-addnode=108.61.178.208
-addnode=45.76.32.66
-addnode=209.250.255.116
-addnode=165.227.163.120
-addnode=31.220.24.50
-addnode=8.9.36.15
 EOF
 }
 
