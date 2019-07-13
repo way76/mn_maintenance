@@ -280,7 +280,7 @@ function get_port_and_user()
     fi
   
   
-  PORT=$((${DEFAULT_PORT} 
+  PORT=$((${DEFAULT_PORT} ))
   USER_NAME="${COIN_NAME}-mn${num}"
 }
 
