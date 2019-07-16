@@ -3,7 +3,7 @@
 EXPBLOCK=$(curl -s4 "http://149.28.83.1:3001/api/getblockcount")
 EXPBLOCKLOW=$(expr $EXPBLOCK - 20)
 EXPBLOCKHIGH=$(expr $EXPBLOCK + 20)
-MNBLOCK=$(cd /usr/local/bin && su mnv -c 'vivo-cli getblockcount')
+MNBLOCK=$(cd /usr/local/bin && 'vivo-cli -conf=/etc/masternodes/vivo_n1.conf getblockcount')
 
 checkBlock(){
 #MNBLOCK=$(cd /usr/local/bin &&./vivo-cli getblockcount)
@@ -19,7 +19,7 @@ if [ "$MNBLOCK" -ge "$EXPBLOCKLOW" ] && [ "$MNBLOCK" -le "$EXPBLOCKHIGH" ]; then
   #complete
 else
   echo "$(date +%F_%T) Block mismatch, updating------------------------------------------------"  >> vivomng.log
-    reinizializza
+    #reinizializza
 #  doubleCheckBlock
 fi
 }
