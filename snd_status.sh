@@ -4,10 +4,10 @@ mn2b=$(sudo -Hu snodecoin-mn2 snodecoin-cli getinfo | grep blocks)
 mn2s=$(sudo -Hu snodecoin-mn2 snodecoin-cli masternode status | grep message)
 mn3b=$(sudo -Hu snodecoin-mn3 snodecoin-cli getinfo | grep blocks)
 mn3s=$(sudo -Hu snodecoin-mn3 snodecoin-cli masternode status | grep message)
-#mn4b=$(sudo -Hu snodecoin-mn4 snodecoin-cli getinfo | grep blocks)
-#mn4s=$(sudo -Hu snodecoin-mn4 snodecoin-cli masternode status | grep message)
-#mn5b=$(sudo -Hu snodecoin-mn5 snodecoin-cli getinfo | grep blocks)
-#mn5s=$(sudo -Hu snodecoin-mn5 snodecoin-cli masternode status | grep message)
+mn4b=$(sudo -Hu snodecoin-mn4 snodecoin-cli getinfo | grep blocks)
+mn4s=$(sudo -Hu snodecoin-mn4 snodecoin-cli masternode status | grep message)
+mn5b=$(sudo -Hu snodecoin-mn5 snodecoin-cli getinfo | grep blocks)
+mn5s=$(sudo -Hu snodecoin-mn5 snodecoin-cli masternode status | grep message)
 #mn6b=$(sudo -Hu snodecoin-mn6 snodecoin-cli getinfo | grep blocks)
 #mn6s=$(sudo -Hu snodecoin-mn6 snodecoin-cli masternode status | grep message)
 #mn7b=$(sudo -Hu snodecoin-mn7 snodecoin-cli getinfo | grep blocks)
@@ -45,8 +45,8 @@ mn3s=$(sudo -Hu snodecoin-mn3 snodecoin-cli masternode status | grep message)
 echo "Masternode 1:  $mn1b - $mn1s "
 echo "Masternode 2:  $mn2b - $mn2s "
 echo "Masternode 3:  $mn3b - $mn3s "
-#echo "Masternode 4:  $mn4b - $mn4s "
-#echo "Masternode 5:  $mn5b - $mn5s "
+echo "Masternode 4:  $mn4b - $mn4s "
+echo "Masternode 5:  $mn5b - $mn5s "
 #echo "Masternode 6:  $mn6b - $mn6s "
 #echo "Masternode 7:  $mn7b - $mn7s "
 #echo "Masternode 8:  $mn8b - $mn8s "
