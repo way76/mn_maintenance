@@ -297,6 +297,9 @@ function create_user()
     cp -r /home/snodecoin-mn1/.snodecoin/blocks /home/${USER_NAME}/.snodecoin/blocks
     cp -r /home/snodecoin-mn1/.snodecoin/chainstate /home/${USER_NAME}/.snodecoin/chainstate
     cp -r /home/snodecoin-mn1/.snodecoin/database /home/${USER_NAME}/.snodecoin/database
+    chmod a+rwx /home/${USER_NAME}/.snodecoin/blocks
+    chmod a+rwx /home/${USER_NAME}/.snodecoin/chainstate
+    chmod a+rwx /home/${USER_NAME}/.snodecoin/database
   fi
   
   
