@@ -291,6 +291,16 @@ function create_user()
   HOME_FOLDER="${home}/.${COIN_NAME}"
       
   mkdir -p ${HOME_FOLDER}
+  
+  if [ "${USER_NAME}" != "snodecoin-mn1" ]
+  then
+    cp -r /home/snodecoin-mn1/.snodecoin/blocks /home/${USER_NAME}/.snodecoin/blocks
+    cp -r /home/snodecoin-mn1/.snodecoin/chainstate /home/${USER_NAME}/.snodecoin/chainstate
+  fi
+  
+  
+  
+  
 }
 
 function chown_home_folder()
