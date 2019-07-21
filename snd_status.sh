@@ -18,26 +18,26 @@ mn9b=$(sudo -Hu snodecoin-mn9 snodecoin-cli getinfo | grep blocks)
 mn9s=$(sudo -Hu snodecoin-mn9 snodecoin-cli masternode status | grep message)
 mn10b=$(sudo -Hu snodecoin-mn10 snodecoin-cli getinfo | grep blocks)
 mn10s=$(sudo -Hu snodecoin-mn10 snodecoin-cli masternode status | grep message)
-#mn11b=$(sudo -Hu snodecoin-mn11 snodecoin-cli getinfo | grep blocks)
-#mn11s=$(sudo -Hu snodecoin-mn11 snodecoin-cli masternode status | grep message)
-#mn12b=$(sudo -Hu snodecoin-mn12 snodecoin-cli getinfo | grep blocks)
-#mn12s=$(sudo -Hu snodecoin-mn12 snodecoin-cli masternode status | grep message)
-#mn13b=$(sudo -Hu snodecoin-mn13 snodecoin-cli getinfo | grep blocks)
-#mn13s=$(sudo -Hu snodecoin-mn13 snodecoin-cli masternode status | grep message)
-#mn14b=$(sudo -Hu snodecoin-mn14 snodecoin-cli getinfo | grep blocks)
-#mn14s=$(sudo -Hu snodecoin-mn14 snodecoin-cli masternode status | grep message)
-#mn15b=$(sudo -Hu snodecoin-mn15 snodecoin-cli getinfo | grep blocks)
-#mn15s=$(sudo -Hu snodecoin-mn15 snodecoin-cli masternode status | grep message)
-#mn16b=$(sudo -Hu snodecoin-mn16 snodecoin-cli getinfo | grep blocks)
-#mn16s=$(sudo -Hu snodecoin-mn16 snodecoin-cli masternode status | grep message)
-#mn17b=$(sudo -Hu snodecoin-mn17 snodecoin-cli getinfo | grep blocks)
-#mn17s=$(sudo -Hu snodecoin-mn17 snodecoin-cli masternode status | grep message)
-#mn18b=$(sudo -Hu snodecoin-mn18 snodecoin-cli getinfo | grep blocks)
-#mn18s=$(sudo -Hu snodecoin-mn18 snodecoin-cli masternode status | grep message)
-#mn19b=$(sudo -Hu snodecoin-mn19 snodecoin-cli getinfo | grep blocks)
-#mn19s=$(sudo -Hu snodecoin-mn19 snodecoin-cli masternode status | grep message)
-#mn20b=$(sudo -Hu snodecoin-mn20 snodecoin-cli getinfo | grep blocks)
-#mn20s=$(sudo -Hu snodecoin-mn20 snodecoin-cli masternode status | grep message)
+mn11b=$(sudo -Hu snodecoin-mn11 snodecoin-cli getinfo | grep blocks)
+mn11s=$(sudo -Hu snodecoin-mn11 snodecoin-cli masternode status | grep message)
+mn12b=$(sudo -Hu snodecoin-mn12 snodecoin-cli getinfo | grep blocks)
+mn12s=$(sudo -Hu snodecoin-mn12 snodecoin-cli masternode status | grep message)
+mn13b=$(sudo -Hu snodecoin-mn13 snodecoin-cli getinfo | grep blocks)
+mn13s=$(sudo -Hu snodecoin-mn13 snodecoin-cli masternode status | grep message)
+mn14b=$(sudo -Hu snodecoin-mn14 snodecoin-cli getinfo | grep blocks)
+mn14s=$(sudo -Hu snodecoin-mn14 snodecoin-cli masternode status | grep message)
+mn15b=$(sudo -Hu snodecoin-mn15 snodecoin-cli getinfo | grep blocks)
+mn15s=$(sudo -Hu snodecoin-mn15 snodecoin-cli masternode status | grep message)
+mn16b=$(sudo -Hu snodecoin-mn16 snodecoin-cli getinfo | grep blocks)
+mn16s=$(sudo -Hu snodecoin-mn16 snodecoin-cli masternode status | grep message)
+mn17b=$(sudo -Hu snodecoin-mn17 snodecoin-cli getinfo | grep blocks)
+mn17s=$(sudo -Hu snodecoin-mn17 snodecoin-cli masternode status | grep message)
+mn18b=$(sudo -Hu snodecoin-mn18 snodecoin-cli getinfo | grep blocks)
+mn18s=$(sudo -Hu snodecoin-mn18 snodecoin-cli masternode status | grep message)
+mn19b=$(sudo -Hu snodecoin-mn19 snodecoin-cli getinfo | grep blocks)
+mn19s=$(sudo -Hu snodecoin-mn19 snodecoin-cli masternode status | grep message)
+mn20b=$(sudo -Hu snodecoin-mn20 snodecoin-cli getinfo | grep blocks)
+mn20s=$(sudo -Hu snodecoin-mn20 snodecoin-cli masternode status | grep message)
 
 
 
@@ -52,15 +52,15 @@ echo "Masternode 7:  $mn7b - $mn7s "
 echo "Masternode 8:  $mn8b - $mn8s "
 echo "Masternode 9:  $mn9b - $mn9s "
 echo "Masternode 10: $mn10b - $mn10s "
-#echo "Masternode 11: $mn11b - $mn11s "
-#echo "Masternode 12: $mn12b - $mn12s "
-#echo "Masternode 13: $mn13b - $mn13s "
-#echo "Masternode 14: $mn14b - $mn14s "
-#echo "Masternode 15: $mn15b - $mn15s "
-#echo "Masternode 16: $mn16b - $mn16s "
-#echo "Masternode 17: $mn17b - $mn17s "
-#echo "Masternode 18: $mn18b - $mn18s "
-#echo "Masternode 19: $mn19b - $mn19s "
-#echo "Masternode 20: $mn20b - $mn20s "
+echo "Masternode 11: $mn11b - $mn11s "
+echo "Masternode 12: $mn12b - $mn12s "
+echo "Masternode 13: $mn13b - $mn13s "
+echo "Masternode 14: $mn14b - $mn14s "
+echo "Masternode 15: $mn15b - $mn15s "
+echo "Masternode 16: $mn16b - $mn16s "
+echo "Masternode 17: $mn17b - $mn17s "
+echo "Masternode 18: $mn18b - $mn18s "
+echo "Masternode 19: $mn19b - $mn19s "
+echo "Masternode 20: $mn20b - $mn20s "
 
 
