@@ -10,14 +10,14 @@ mn5b=$(sudo -Hu snodecoin-mn5 snodecoin-cli getinfo | grep blocks)
 mn5s=$(sudo -Hu snodecoin-mn5 snodecoin-cli masternode status | grep message)
 mn6b=$(sudo -Hu snodecoin-mn6 snodecoin-cli getinfo | grep blocks)
 mn6s=$(sudo -Hu snodecoin-mn6 snodecoin-cli masternode status | grep message)
-#mn7b=$(sudo -Hu snodecoin-mn7 snodecoin-cli getinfo | grep blocks)
-#mn7s=$(sudo -Hu snodecoin-mn7 snodecoin-cli masternode status | grep message)
-#mn8b=$(sudo -Hu snodecoin-mn8 snodecoin-cli getinfo | grep blocks)
-#mn8s=$(sudo -Hu snodecoin-mn8 snodecoin-cli masternode status | grep message)
-#mn9b=$(sudo -Hu snodecoin-mn9 snodecoin-cli getinfo | grep blocks)
-#mn9s=$(sudo -Hu snodecoin-mn9 snodecoin-cli masternode status | grep message)
-#mn10b=$(sudo -Hu snodecoin-mn10 snodecoin-cli getinfo | grep blocks)
-#mn10s=$(sudo -Hu snodecoin-mn10 snodecoin-cli masternode status | grep message)
+mn7b=$(sudo -Hu snodecoin-mn7 snodecoin-cli getinfo | grep blocks)
+mn7s=$(sudo -Hu snodecoin-mn7 snodecoin-cli masternode status | grep message)
+mn8b=$(sudo -Hu snodecoin-mn8 snodecoin-cli getinfo | grep blocks)
+mn8s=$(sudo -Hu snodecoin-mn8 snodecoin-cli masternode status | grep message)
+mn9b=$(sudo -Hu snodecoin-mn9 snodecoin-cli getinfo | grep blocks)
+mn9s=$(sudo -Hu snodecoin-mn9 snodecoin-cli masternode status | grep message)
+mn10b=$(sudo -Hu snodecoin-mn10 snodecoin-cli getinfo | grep blocks)
+mn10s=$(sudo -Hu snodecoin-mn10 snodecoin-cli masternode status | grep message)
 #mn11b=$(sudo -Hu snodecoin-mn11 snodecoin-cli getinfo | grep blocks)
 #mn11s=$(sudo -Hu snodecoin-mn11 snodecoin-cli masternode status | grep message)
 #mn12b=$(sudo -Hu snodecoin-mn12 snodecoin-cli getinfo | grep blocks)
@@ -48,10 +48,10 @@ echo "Masternode 3:  $mn3b - $mn3s "
 echo "Masternode 4:  $mn4b - $mn4s "
 echo "Masternode 5:  $mn5b - $mn5s "
 echo "Masternode 6:  $mn6b - $mn6s "
-#echo "Masternode 7:  $mn7b - $mn7s "
-#echo "Masternode 8:  $mn8b - $mn8s "
-#echo "Masternode 9:  $mn9b - $mn9s "
-#echo "Masternode 10: $mn10b - $mn10s "
+echo "Masternode 7:  $mn7b - $mn7s "
+echo "Masternode 8:  $mn8b - $mn8s "
+echo "Masternode 9:  $mn9b - $mn9s "
+echo "Masternode 10: $mn10b - $mn10s "
 #echo "Masternode 11: $mn11b - $mn11s "
 #echo "Masternode 12: $mn12b - $mn12s "
 #echo "Masternode 13: $mn13b - $mn13s "
