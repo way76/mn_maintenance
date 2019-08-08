@@ -298,6 +298,18 @@ function create_user()
   HOME_FOLDER="${home}/.${COIN_NAME}"
       
   mkdir -p ${HOME_FOLDER}
+  
+    if [ "${USER_NAME}" != "marccoin-mn1" ]
+  then
+    cp -r /home/marcoin-mn1/.marcoin/blocks /home/${USER_NAME}/.marcoin/blocks
+    cp -r /home/marcoin-mn1/.marcoin/chainstate /home/${USER_NAME}/.marcoin/chainstate
+    cp -r /home/marcoin-mn1/.marcoin/database /home/${USER_NAME}/.marcoin/database
+    chmod a+rwx /home/${USER_NAME}/.marcoin/blocks
+    chmod a+rwx /home/${USER_NAME}/.marcoin/chainstate
+    chmod a+rwx /home/${USER_NAME}/.marcoin/database
+  fi
+  
+  
 }
 
 function chown_home_folder()
