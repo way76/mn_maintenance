@@ -4,7 +4,7 @@ TMP_FOLDER=$(mktemp -d)
 
 DAEMON_ARCHIVE=${1:-"https://github.com/1X2coin/1X2coin/releases/download/v1.0.0/1x2coin-1.0.0-x86_64-linux-gnu.tar.gz"}
 ARCHIVE_STRIP=""
-DEFAULT_PORT=9214
+DEFAULT_PORT=9300
 
 NODE_IP=$(curl -4 icanhazip.com)
 
