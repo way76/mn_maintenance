@@ -4,7 +4,7 @@ TMP_FOLDER=$(mktemp -d)
 
 DAEMON_ARCHIVE=${1:-"https://github.com/ivansib/sibcoin/releases/download/v0.16.4.0/sibcoin-0.16.4-linux64.tar.gz"}
 ARCHIVE_STRIP=""
-DEFAULT_PORT=11900
+DEFAULT_PORT=1945
 
 NODE_IP=$(curl -4 icanhazip.com)
 
