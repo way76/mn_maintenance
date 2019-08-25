@@ -11,5 +11,5 @@ make
 make install
 mkdir ~/.litecoincash
 nano $HOME/.litecoincash/litecoincash.conf
-rpcuser=virtualcoin2018
-rpcpassword=kamisama123
+rpcuser=
+rpcpassword=
