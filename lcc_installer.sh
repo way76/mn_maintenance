@@ -1,10 +1,3 @@
-add-apt-repository ppa:bitcoin/bitcoin
-apt-get update
-apt-get install libdb4.8-dev libdb4.8++-dev
-apt-get install libboost-all-dev libzmq3-dev libminiupnpc-dev
-apt-get install curl git build-essential libtool autotools-dev
-apt-get install automake pkg-config bsdmainutils python3
-apt-get install software-properties-common libssl-dev libevent-dev
 mkdir /downloads
 cd /downloads
 git clone https://github.com/litecoincash-project/litecoincash
