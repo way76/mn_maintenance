@@ -1,7 +1,8 @@
 #!/bin/bash
 
 BLOCCO=365000
-EXPBLOCK=$(curl -s4 "http://explorer.stonecoin.rocks/api/getblockcount")
+EXPBLOCK=10000
+#EXPBLOCK=$(curl -s4 "http://explorer.stonecoin.rocks/api/getblockcount")
 EXPBLOCKLOW=$(expr $EXPBLOCK - 50)
 EXPBLOCKHIGH=$(expr $EXPBLOCK + 50)
 BLOCKHASH=$(/usr/local/bin/stone-cli -datadir=/home/stone-mn1/.stone -conf=/home/stone-mn1/.stone/stone.conf  getblockhash $BLOCCO)
@@ -29,8 +30,3 @@ ver_MN01()
 
 
 ver_MN01
-
-#echo "$(date +%F_%T) Explorer Block $EXPBLOCK.."
-#echo "$(date +%F_%T) Blocco minimo $EXPBLOCKLOW.."
-#echo "$(date +%F_%T) Blocco massimo $EXPBLOCKHIGH.."
-#echo "$(date +%F_%T) Blocco masternode 1 $MNBLOCK01.."
