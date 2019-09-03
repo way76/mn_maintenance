@@ -168,7 +168,7 @@ Group=${USER_NAME}
 WorkingDirectory=${HOME_FOLDER}
 ExecStart=${DAEMON_PATH} -datadir=${HOME_FOLDER} -conf=${HOME_FOLDER}/$CONFIG_FILE -daemon 
 ExecStop=${CLI_PATH} -datadir=${HOME_FOLDER} -conf=${HOME_FOLDER}/$CONFIG_FILE stop
-Restart=no
+Restart=always
 RestartSec=3
 PrivateTmp=true
 TimeoutStopSec=60s
