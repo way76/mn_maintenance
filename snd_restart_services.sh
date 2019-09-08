@@ -23,42 +23,42 @@ systemctl stop snodecoin-mn20.service
 killall snodecoind
 
 systemctl start snodecoin-mn1.service
-sleep 120
+sleep 180
 systemctl start snodecoin-mn2.service
-sleep 120
+sleep 180
 systemctl start snodecoin-mn3.service
-sleep 120
+sleep 180
 systemctl start snodecoin-mn4.service
-sleep 120
+sleep 180
 systemctl start snodecoin-mn5.service
-sleep 120
+sleep 180
 systemctl start snodecoin-mn6.service
-sleep 120
+sleep 180
 systemctl start snodecoin-mn7.service
-sleep 120
+sleep 180
 systemctl start snodecoin-mn8.service
-sleep 120
+sleep 180
 systemctl start snodecoin-mn9.service
-sleep 120
+sleep 180
 systemctl start snodecoin-mn10.service
-sleep 120
+sleep 180
 systemctl start snodecoin-mn11.service
-sleep 120
+sleep 180
 systemctl start snodecoin-mn12.service
-sleep 120
+sleep 180
 systemctl start snodecoin-mn13.service
-sleep 120
+sleep 180
 systemctl start snodecoin-mn14.service
-sleep 120
+sleep 180
 systemctl start snodecoin-mn15.service
-sleep 120
+sleep 180
 systemctl start snodecoin-mn16.service
-sleep 120
+sleep 180
 systemctl start snodecoin-mn17.service
-sleep 120
+sleep 180
 systemctl start snodecoin-mn18.service
-sleep 120
+sleep 180
 systemctl start snodecoin-mn19.service
-sleep 120
+sleep 180
 systemctl start snodecoin-mn20.service
-sleep 120
+sleep 180
