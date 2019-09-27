@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BLOCCO=400000
+BLOCCO=405000
 EXPBLOCK=10000
 #EXPBLOCK=$(curl -s4 "http://explorer.stonecoin.rocks/api/getblockcount")
 EXPBLOCKLOW=$(expr $EXPBLOCK - 50)
@@ -28,7 +28,6 @@ ver_MN01()
 	/usr/local/bin/stone-cli -datadir=/home/stone-mn1/.stone -conf=/home/stone-mn1/.stone/stone.conf getinfo
 	/usr/local/bin/stone-cli -datadir=/home/stone-mn1/.stone -conf=/home/stone-mn1/.stone/stone.conf masternode status
 }
-
 
 
 ver_MN01
