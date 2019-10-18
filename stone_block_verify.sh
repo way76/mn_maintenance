@@ -18,14 +18,12 @@ ver_MN01()
 	else
 	  echo "$(date +%F_%T) Masternode in aggiornamento $MNBLOCK01 / $EXPBLOCK " >> stone_block_manager.log
 	  /usr/local/bin/stone-cli -datadir=/home/stone-mn1/.stone -conf=/home/stone-mn1/.stone/stone.conf invalidateblock $BLOCKHASH
-	  systemctl stop stone-mn1.service
 	  /usr/local/bin/stone-cli -datadir=/home/stone-mn1/.stone -conf=/home/stone-mn1/.stone/stone.conf  stop
     	  sleep 60
     	  /usr/local/bin/stoned -datadir=/home/stone-mn1/.stone -conf=/home/stone-mn1/.stone/stone.conf -daemon
     	  sleep 60
     	  /usr/local/bin/stone-cli -datadir=/home/stone-mn1/.stone -conf=/home/stone-mn1/.stone/stone.conf reconsiderblock $BLOCKHASH
 	fi
-	rm  /etc/systemd/system/stone-mn1.service
 	/usr/local/bin/stone-cli -datadir=/home/stone-mn1/.stone -conf=/home/stone-mn1/.stone/stone.conf getinfo
 	/usr/local/bin/stone-cli -datadir=/home/stone-mn1/.stone -conf=/home/stone-mn1/.stone/stone.conf masternode status
 }
