@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BLOCCO=400000
+BLOCCO=415000
 EXPBLOCK=10000
 EXPBLOCK=$(curl -s4 "http://explorer.stonecoin.rocks/api/getblockcount")
 EXPBLOCKLOW=$(expr $EXPBLOCK - 50)
