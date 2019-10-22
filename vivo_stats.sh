@@ -105,4 +105,4 @@ echo "MN18 "
 echo "MN19 "
 /root/mnTroubleshoot/vivo/vivo19_runSentinelToSeeOutput.sh
 echo "MN20 "
-
+/root/mnTroubleshoot/vivo/vivo20_runSentinelToSeeOutput.sh
