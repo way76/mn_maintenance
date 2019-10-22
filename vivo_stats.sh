@@ -62,7 +62,7 @@ echo "Masternode 17: $mn17b - $mn17s "
 echo "Masternode 18: $mn18b - $mn18s "
 echo "Masternode 19: $mn19b - $mn19s "
 echo "Masternode 20: $mn20b - $mn20s "
-
+sleep 5
 
 
 echo "Erori sentinel: "
