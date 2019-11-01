@@ -66,50 +66,105 @@ sleep 5
 
 
 echo "Erori sentinel: "
-mn1=$(/root/mnTroubleshoot/vivo/vivo7_runSentinelToSeeOutput.sh)
-echo $mn1
+mn1=$(/root/mnTroubleshoot/vivo/vivo1_runSentinelToSeeOutput.sh)
+mn2=$(/root/mnTroubleshoot/vivo/vivo1_runSentinelToSeeOutput.sh)
+mn3=$(/root/mnTroubleshoot/vivo/vivo1_runSentinelToSeeOutput.sh)
+mn4=$(/root/mnTroubleshoot/vivo/vivo1_runSentinelToSeeOutput.sh)
+mn5=$(/root/mnTroubleshoot/vivo/vivo1_runSentinelToSeeOutput.sh)
+mn6=$(/root/mnTroubleshoot/vivo/vivo1_runSentinelToSeeOutput.sh)
+mn7=$(/root/mnTroubleshoot/vivo/vivo1_runSentinelToSeeOutput.sh)
+mn8=$(/root/mnTroubleshoot/vivo/vivo1_runSentinelToSeeOutput.sh)
+mn9=$(/root/mnTroubleshoot/vivo/vivo1_runSentinelToSeeOutput.sh)
+mn10=$(/root/mnTroubleshoot/vivo/vivo1_runSentinelToSeeOutput.sh)
+mn11=$(/root/mnTroubleshoot/vivo/vivo1_runSentinelToSeeOutput.sh)
+mn12=$(/root/mnTroubleshoot/vivo/vivo1_runSentinelToSeeOutput.sh)
+mn13=$(/root/mnTroubleshoot/vivo/vivo1_runSentinelToSeeOutput.sh)
+mn14=$(/root/mnTroubleshoot/vivo/vivo1_runSentinelToSeeOutput.sh)
+mn15=$(/root/mnTroubleshoot/vivo/vivo1_runSentinelToSeeOutput.sh)
+mn16=$(/root/mnTroubleshoot/vivo/vivo1_runSentinelToSeeOutput.sh)
+mn17=$(/root/mnTroubleshoot/vivo/vivo1_runSentinelToSeeOutput.sh)
+mn18=$(/root/mnTroubleshoot/vivo/vivo1_runSentinelToSeeOutput.sh)
+mn19=$(/root/mnTroubleshoot/vivo/vivo1_runSentinelToSeeOutput.sh)
+mn20=$(/root/mnTroubleshoot/vivo/vivo1_runSentinelToSeeOutput.sh)
+
 if [ "$mn1" != "" ]
 then
-  echo $mn1
+  echo echo "MN01: $mn1"
+fi
+if [ "$mn2" != "" ]
+then
+  echo echo "MN02: $mn2"
+fi
+if [ "$mn3" != "" ]
+then
+  echo echo "MN03: $mn3"
+fi
+if [ "$mn4" != "" ]
+then
+  echo echo "MN04: $mn4"
+fi
+if [ "$mn5" != "" ]
+then
+  echo echo "MN05: $mn5"
+fi
+if [ "$mn6" != "" ]
+then
+  echo echo "MN06: $mn6"
+fi
+if [ "$mn7" != "" ]
+then
+  echo echo "MN07: $mn7"
+fi
+if [ "$mn8" != "" ]
+then
+  echo echo "MN08: $mn8"
+fi
+if [ "$mn9" != "" ]
+then
+  echo echo "MN09: $mn9"
+fi
+if [ "$mn10" != "" ]
+then
+  echo echo "MN10: $mn10"
+fi
+if [ "$mn11" != "" ]
+then
+  echo echo "MN11: $mn11"
+fi
+if [ "$mn12" != "" ]
+then
+  echo echo "MN12: $mn12"
+fi
+if [ "$mn13" != "" ]
+then
+  echo echo "MN13: $mn13"
+fi
+if [ "$mn14" != "" ]
+then
+  echo echo "MN14: $mn14"
+fi
+if [ "$mn15" != "" ]
+then
+  echo echo "MN15: $mn15"
+fi
+if [ "$mn16" != "" ]
+then
+  echo echo "MN16: $mn16"
+fi
+if [ "$mn17" != "" ]
+then
+  echo echo "MN17: $mn17"
+fi
+if [ "$mn18" != "" ]
+then
+  echo echo "MN18: $mn18"
+fi
+if [ "$mn19" != "" ]
+then
+  echo echo "MN19: $mn19"
+fi
+if [ "$mn20" != "" ]
+then
+  echo echo "MN20: $mn20"
 fi
 
-echo "MN01 "
-/root/mnTroubleshoot/vivo/vivo1_runSentinelToSeeOutput.sh
-echo "MN02 "
-/root/mnTroubleshoot/vivo/vivo2_runSentinelToSeeOutput.sh
-echo "MN03 "
-/root/mnTroubleshoot/vivo/vivo3_runSentinelToSeeOutput.sh
-echo "MN04 "
-/root/mnTroubleshoot/vivo/vivo4_runSentinelToSeeOutput.sh
-echo "MN05 "
-/root/mnTroubleshoot/vivo/vivo5_runSentinelToSeeOutput.sh
-echo "MN06 "
-/root/mnTroubleshoot/vivo/vivo6_runSentinelToSeeOutput.sh
-echo "MN07 "
-/root/mnTroubleshoot/vivo/vivo7_runSentinelToSeeOutput.sh
-echo "MN08 "
-/root/mnTroubleshoot/vivo/vivo8_runSentinelToSeeOutput.sh
-echo "MN09 "
-/root/mnTroubleshoot/vivo/vivo9_runSentinelToSeeOutput.sh
-echo "MN10 "
-/root/mnTroubleshoot/vivo/vivo10_runSentinelToSeeOutput.sh
-echo "MN11 "
-/root/mnTroubleshoot/vivo/vivo11_runSentinelToSeeOutput.sh
-echo "MN12 "
-/root/mnTroubleshoot/vivo/vivo12_runSentinelToSeeOutput.sh
-echo "MN13 "
-/root/mnTroubleshoot/vivo/vivo13_runSentinelToSeeOutput.sh
-echo "MN14 "
-/root/mnTroubleshoot/vivo/vivo14_runSentinelToSeeOutput.sh
-echo "MN15 "
-/root/mnTroubleshoot/vivo/vivo15_runSentinelToSeeOutput.sh
-echo "MN16 "
-/root/mnTroubleshoot/vivo/vivo16_runSentinelToSeeOutput.sh
-echo "MN17 "
-/root/mnTroubleshoot/vivo/vivo17_runSentinelToSeeOutput.sh
-echo "MN18 "
-/root/mnTroubleshoot/vivo/vivo18_runSentinelToSeeOutput.sh
-echo "MN19 "
-/root/mnTroubleshoot/vivo/vivo19_runSentinelToSeeOutput.sh
-echo "MN20 "
-/root/mnTroubleshoot/vivo/vivo20_runSentinelToSeeOutput.sh
