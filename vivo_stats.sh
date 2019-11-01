@@ -66,6 +66,13 @@ sleep 5
 
 
 echo "Erori sentinel: "
+mn1=$(/root/mnTroubleshoot/vivo/vivo7_runSentinelToSeeOutput.sh)
+echo mn1
+if [ "$mn1" != "" ]
+then
+  echo mn1
+fi
+
 echo "MN01 "
 /root/mnTroubleshoot/vivo/vivo1_runSentinelToSeeOutput.sh
 echo "MN02 "
