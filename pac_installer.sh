@@ -348,7 +348,7 @@ logtimestamps=1
 maxconnections=16
 masternode=1
 externalip=${NODE_IP}
-masternodeprivkey=${PRIVKEY}
+masternodeblsprivkey=${PRIVKEY}
 EOF
 }
 
