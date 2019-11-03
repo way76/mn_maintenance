@@ -338,7 +338,7 @@ function start_node()
 KEY_ATTEMPT=0
 function create_key() 
 {
-  PRIVKEY="3a3fcea2743179867e5e78bb175781f6a1aa3f577db93ccaf8dc6cf376d13fdd"
+  PRIVKEY="645f8c15a53269fdbd73ba8f382c7ddc92c42df90fb6ad0e00d5bd0292d91d0d"
 }
 
 function update_config() 
