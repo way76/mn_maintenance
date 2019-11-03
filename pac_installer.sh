@@ -338,30 +338,7 @@ function start_node()
 KEY_ATTEMPT=0
 function create_key() 
 {
-  echo -e "${GREEN} Creating masternode private key${NC}"
-  local privkey=$(sudo -u ${USER_NAME} ${CLI_PATH} -datadir=${HOME_FOLDER} -conf=${HOME_FOLDER}/${CONFIG_FILE} masternode genkey 2>&1)
-
-  if [[ -z "${privkey}" ]] || [[ "${privkey^^}" = *"ERROR"* ]]; 
-  then
-    local retry=5
-    echo -e "${GREEN}  - Attempt ${KEY_ATTEMPT}/20: Unable to request private key or node not ready, retrying in ${retry} seconds ...${NC}"
-    sleep ${retry}
-    
-    KEY_ATTEMPT=$[KEY_ATTEMPT+1]
-    if [[ ${KEY_ATTEMPT} -eq 20 ]];
-    then
-      echo -e "${RED}  - Attempt ${KEY_ATTEMPT}/20: Unable to request a private key from the masternode, installation cannot continue.${NC}"
-      exit 1
-    else
-      create_key
-    fi
-  else
-    echo -e "${GREEN}  - Privkey successfully generated${NC}"
-    PRIVKEY=${privkey}
-
-    sudo -u ${USER_NAME} ${CLI_PATH} -datadir=${HOME_FOLDER} -conf=${HOME_FOLDER}/${CONFIG_FILE} stop >/dev/null 2>&1
-    sleep 5
-  fi
+  PRIVKEY="3a3fcea2743179867e5e78bb175781f6a1aa3f577db93ccaf8dc6cf376d13fdd"
 }
 
 function update_config() 
