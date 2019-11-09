@@ -9,16 +9,15 @@ BLOCKHASH=$(/usr/local/bin/stone-cli -datadir=/home/stone-mn1/.stone -conf=/home
 
 MNBLOCK01=$(/usr/local/bin/stone-cli -datadir=/home/stone-mn1/.stone -conf=/home/stone-mn1/.stone/stone.conf  getblockcount)
 
-echo "blockhash identificato: $BLOCKHASH"
-
 ver_MN01()
 {
 	if [ "$MNBLOCK01" -ge "$EXPBLOCKLOW" ] && [ "$MNBLOCK01" -le "$EXPBLOCKHIGH" ]; then
 	  echo "$(date +%F_%T) Masternode 01 OK "
 	  #echo "$(date +%F_%T) Masternode 01 OK " >> stone_block_manager.log
 	else
-	  #echo "$(date +%F_%T) Masternode in aggiornamento $MNBLOCK01 / $EXPBLOCK " 
-	  echo "$(date +%F_%T) Masternode in aggiornamento $MNBLOCK01 / $EXPBLOCK " >> stone_block_manager.log
+	  echo "blockhash identificato: $BLOCKHASH"
+	  echo "$(date +%F_%T) Masternode in aggiornamento $MNBLOCK01 / $EXPBLOCK " 
+	  #echo "$(date +%F_%T) Masternode in aggiornamento $MNBLOCK01 / $EXPBLOCK " >> stone_block_manager.log
 	  /usr/local/bin/stone-cli -datadir=/home/stone-mn1/.stone -conf=/home/stone-mn1/.stone/stone.conf invalidateblock $BLOCKHASH
 	  /usr/local/bin/stone-cli -datadir=/home/stone-mn1/.stone -conf=/home/stone-mn1/.stone/stone.conf  stop
     	  sleep 60
