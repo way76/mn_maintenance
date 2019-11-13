@@ -1,5 +1,5 @@
-mn1b=$(sudo -Hu doge-mn1 dogecash-cli getinfo | grep blocks)
-mn1s=$(sudo -Hu doge-mn1 dogecash-cli masternode status | grep message)
+mn1b=$(/usr/local/bin/dogecash-cli -conf=/home/doge_mn1/.dogecash/dogecash.conf -datadir=/home/doge_mn1/.dogecash/ getinfo | grep blocks)
+mn1s=$( /usr/local/bin/dogecash-cli -conf=/home/doge_mn1/.dogecash/dogecash.conf -datadir=/home/doge_mn1/.dogecash/ masternode status | grep message)
 mn2b=$(sudo -Hu doge-mn2 dogecash-cli getinfo | grep blocks)
 mn2s=$(sudo -Hu doge-mn2 dogecash-cli masternode status | grep message)
 mn3b=$(sudo -Hu doge-mn3 dogecash-cli getinfo | grep blocks)
