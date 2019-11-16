@@ -40,8 +40,8 @@ mn20b=$(/usr/local/bin/dogecash-cli -conf=/home/doge_mn20/.dogecash/dogecash.con
 mn20s=$(/usr/local/bin/dogecash-cli -conf=/home/doge_mn20/.dogecash/dogecash.conf -datadir=/home/doge_mn20/.dogecash/ getmasternodestatus | grep message)
 
 
-
-
+EXPBLOCK=$(curl -s4 "https://api.dogec.io/api/getblockcount")
+echo "Explorer:  $EXPBLOCK blocchi"
 echo "Masternode 1:  $mn1b - $mn1s "
 echo "Masternode 2:  $mn2b - $mn2s "
 echo "Masternode 3:  $mn3b - $mn3s "
