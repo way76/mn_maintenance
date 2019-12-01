@@ -1,7 +1,7 @@
 #!/bin/bash
+echo -e "Origine: \c "
+read  origine
+echo -e "Destinazione: \c "
+read  destinazione
 
-read -p "MN origine:" mn_origine
-read -p "MN destinazione:" mn_dest
-
-echo snodecoin-mn${mn_origine}
-
+echo "Orgine: $origine e Destinazione:$destinazione"
