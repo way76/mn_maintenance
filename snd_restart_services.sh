@@ -1,8 +1,13 @@
-
+echo "Fermo i servizi:"
+echo "1:"
 systemctl stop snodecoin-mn1.service
+echo "2:"
 systemctl stop snodecoin-mn2.service
+echo "3:"
 systemctl stop snodecoin-mn3.service
+echo "4:"
 systemctl stop snodecoin-mn4.service
+echo "5:"
 systemctl stop snodecoin-mn5.service
 systemctl stop snodecoin-mn6.service
 systemctl stop snodecoin-mn7.service
@@ -21,11 +26,14 @@ systemctl stop snodecoin-mn19.service
 systemctl stop snodecoin-mn20.service
 
 killall snodecoind
-
+echo "Avvio nuovamente i servizi:"
+echo "1:"
 systemctl start snodecoin-mn1.service
 sleep 180
+echo "2:"
 systemctl start snodecoin-mn2.service
 sleep 180
+echo "3:"
 systemctl start snodecoin-mn3.service
 sleep 180
 systemctl start snodecoin-mn4.service
