@@ -7,8 +7,8 @@ sudo -Hu snodecoin-mn$1 snodecoin-cli addnode $2 add
 ip1="188.32.113.218:18988"
 ip2="[2001:19f0:6c01:1b97:5400:1ff:0:6]:18988"
 
-addnodes "1", $ip1
-addnodes "2", $ip1
+addnodes "1" $ip1
+addnodes "2" $ip1
 #addnodes "3", $ip1
 #addnodes "4", $ip1
 #addnodes "5", $ip1
