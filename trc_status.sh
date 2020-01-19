@@ -9,10 +9,8 @@ sudo -Hu terracoin-mn4 /usr/local/bin/terracoin-cli  -datadir=/home/terracoin-mn
 sudo -Hu terracoin-mn4 /usr/local/bin/terracoin-cli  -datadir=/home/terracoin-mn4/.terracoincore -conf=/home/terracoin-mn4/.terracoincore/terracoin.conf masternode status
 
 
-mn1b=$(sudo -Hu terracoin-mn1 /usr/local/bin/terracoin-cli  -datadir=/home/terracoin-mn1/.terracoincore -conf=/home/terracoin-mn1/.terracoincore/terracoin.conf getinfo
- | grep blocks)
-mn1s=$(sudo -Hu terracoin-mn1 /usr/local/bin/terracoin-cli  -datadir=/home/terracoin-mn1/.terracoincore -conf=/home/terracoin-mn1/.terracoincore/terracoin.conf masternode status
- | grep message)
+mn1b=$(sudo -Hu terracoin-mn1 /usr/local/bin/terracoin-cli  -datadir=/home/terracoin-mn1/.terracoincore -conf=/home/terracoin-mn1/.terracoincore/terracoin.conf getinfo | grep blocks)
+mn1s=$(sudo -Hu terracoin-mn1 /usr/local/bin/terracoin-cli  -datadir=/home/terracoin-mn1/.terracoincore -conf=/home/terracoin-mn1/.terracoincore/terracoin.conf masternode status | grep status)
 
 echo "Masternode 1:  $mn1b - $mn1s "
 echo "Masternode 2:  $mn2b - $mn2s "
