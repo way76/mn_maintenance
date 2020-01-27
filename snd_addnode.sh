@@ -1,4 +1,4 @@
-addnodes() {
+ddnodes() {
 echo "aggiungo ip $1 alla configurazione "
 echo " "
 sudo -Hu snodecoin-mn1 snodecoin-cli addnode $1 add
@@ -24,4 +24,7 @@ sudo -Hu snodecoin-mn20 snodecoin-cli addnode $1 add
 }
 
 addnodes "173.212.247.119:18988"
+addnodes "109.111.118.167:18988"
+addnodes "71.19.148.96:18988"
+addnodes "173.249.63.116:18988"
 
