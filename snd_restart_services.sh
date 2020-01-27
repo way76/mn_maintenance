@@ -41,6 +41,8 @@ echo "20:"
 systemctl stop snodecoin-mn20.service
 
 killall snodecoind
+echo "Attesa riavvio servizi:"
+sleep 60
 echo "Avvio nuovamente i servizi:"
 echo "1:"
 systemctl start snodecoin-mn1.service
