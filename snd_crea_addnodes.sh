@@ -20,8 +20,10 @@ sudo -Hu snodecoin-mn18 snodecoin-cli getpeerinfo | grep  addr -w >> /root/snd_n
 sudo -Hu snodecoin-mn19 snodecoin-cli getpeerinfo | grep  addr -w >> /root/snd_nodes.txt
 sudo -Hu snodecoin-mn20 snodecoin-cli getpeerinfo | grep  addr -w >> /root/snd_nodes.txt
 }
-rm snd_nodes1.txt
-rm snd_nodes.txt
+
+cd /root
+rm /root/snd_nodes1.txt
+rm /root/snd_nodes.txt
 addnodes
 sed -e 's/\s\+//g' snd_nodes.txt > snd_nodes1.txt
 sed -e 's/\"addr\":\+/addnode=/g' snd_nodes1.txt > snd_nodes.txt
@@ -29,4 +31,4 @@ sed -e 's/\s\+//g' snd_nodes.txt > snd_nodes1.txt
 sed -e 's/\,\+//g' snd_nodes1.txt > snd_nodes.txt	
 awk '!seen[$0]++' snd_nodes.txt > snd_nodes1.txt
 sed -e 's/\"\+/addnode=/g' snd_nodes1.txt > snd_nodes.txt
-rm snd_nodes1.txt
+rm /root/snd_nodes1.txt
