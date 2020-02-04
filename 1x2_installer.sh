@@ -343,7 +343,7 @@ function create_key()
 
   if [[ -z "${privkey}" ]] || [[ "${privkey^^}" = *"ERROR"* ]]; 
   then
-    local retry=10
+    local retry=20
     echo -e "${GREEN}  - Attempt ${KEY_ATTEMPT}/20: Unable to request private key or node not ready, retrying in ${retry} seconds ...${NC}"
     sleep ${retry}
     
