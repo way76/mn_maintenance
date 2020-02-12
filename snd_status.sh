@@ -49,8 +49,10 @@ max=$2
 n=$3
 mns=$4
 
- if [ $mnb -gt $max-$margine ]; then echo -e "Masternode $n:  ${RED}$mnb${NOCOLOR} - $mns" else
-echo -e "Masternode n:  ${GREEN}$mnb${NOCOLOR} - $mns "
+ if [ $mnb -gt $max-$margine ]; then 
+   echo "Masternode $n:  ${RED}$mnb${NOCOLOR} - $mns" 
+ else
+   echo "Masternode $n:  ${GREEN}$mnb${NOCOLOR} - $mns "
     fi
 }
 
@@ -71,7 +73,7 @@ echo "$max"
 
 
 max=0
-echo "versione 9"
+echo "versione 10"
 max=$(calcola_max "$mn1b" "$max")
 max=$(calcola_max "$mn2b" "$max")
 max=$(calcola_max "$mn3b" "$max")
