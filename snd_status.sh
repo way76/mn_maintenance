@@ -55,7 +55,8 @@ mn1b=${mnb##*:}
 mn1b=${mn1b%,} 
 
 if [["$pos" lt 9]]; then
- mnb=" "+$mnb
+ mnb1=" ${mnb}"
+ mnb=$mnb1
 fi
 
 
