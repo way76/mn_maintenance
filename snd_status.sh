@@ -44,11 +44,10 @@ calcola_max() {
 mnb=$1
 max=$2
 
-echo "Ricevuto $mnb, max"
+echo "Ricevuto $mnb $max"
 
 mnb=${$mnb%,}
 mnb=${$mnb##*:}
-
   if (( $mnb > $max )); then max=$mnb; fi; 
 
 echo "$max"
@@ -57,7 +56,7 @@ echo "$max"
 
 
 max=0
-echo "versione 1"
+echo "versione 2"
 echo "Valore m1 rilevato: " $(calcola_max "$mn1b" "$max")
 echo "Valore m2 rilevato: " $(calcola_max "$mn2b" "$max")
 echo "Valore m3 rilevato: " $(calcola_max "$mn3b" "$max")
