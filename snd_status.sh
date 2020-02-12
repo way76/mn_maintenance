@@ -39,7 +39,9 @@ mn19s=$(sudo -Hu snodecoin-mn19 snodecoin-cli masternode status | grep message)
 mn20b=$(sudo -Hu snodecoin-mn20 snodecoin-cli getinfo | grep blocks)
 mn20s=$(sudo -Hu snodecoin-mn20 snodecoin-cli masternode status | grep message)
 
-mn1b=${mn1b##:*}
+mn1b=${mn1b%,}
+mn1b=${mn1b##*:}
+mn2b=${mn2b%,}
 mn2b=${mn2b##:*}
 
 echo "Valore m1 rilevato: $mn1b"
