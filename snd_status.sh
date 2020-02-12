@@ -86,7 +86,7 @@ echo "$max"
 
 pos=0
 max=0
-echo "versione a"
+echo "versione 1"
 max=$(calcola_max "$mn1b" "$max")
 max=$(calcola_max "$mn2b" "$max")
 max=$(calcola_max "$mn3b" "$max")
