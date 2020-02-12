@@ -50,9 +50,9 @@ mnb=$1
 max=$2
 mns=$3
 min=$max-$margine
-pos++
+pos=$4
  if [ $mnb -gt $min ]; then 
-   echo "Masternode $pos:  ${RED}$mnb${NC} - $mns" 
+   echo "Masternode $pos:  " ${RED} "$mnb$ " {NC} "- $mns" 
  else
    echo "Masternode $pos:  ${GREEN}$mnb${NC} - $mns "
     fi
@@ -75,7 +75,7 @@ echo "$max"
 
 pos=0
 max=0
-echo "versione 11"
+echo "versione 0"
 max=$(calcola_max "$mn1b" "$max")
 max=$(calcola_max "$mn2b" "$max")
 max=$(calcola_max "$mn3b" "$max")
@@ -97,25 +97,25 @@ max=$(calcola_max "$mn18b" "$max")
 max=$(calcola_max "$mn19b" "$max")
 max=$(calcola_max "$mn20b" "$max")
 
-stampa_out "$mn1b" "$max" "$mn1s"
-stampa_out "$mn2b" "$max" "$mn2s"
-stampa_out "$mn3b" "$max" "$mn3s"
-stampa_out "$mn4b" "$max" "$mn4s"
-stampa_out "$mn5b" "$max" "$mn5s"
-stampa_out "$mn6b" "$max" "$mn6s"
-stampa_out "$mn7b" "$max" "$mn7s"
-stampa_out "$mn8b" "$max" "$mn8s"
-stampa_out "$mn9b" "$max" "$mn9s"
-stampa_out "$mn10b" "$max" "$mn10s"
-stampa_out "$mn11b" "$max" "$mn11s"
-stampa_out "$mn12b" "$max" "$mn12s"
-stampa_out "$mn13b" "$max" "$mn13s"
-stampa_out "$mn14b" "$max" "$mn14s"
-stampa_out "$mn15b" "$max" "$mn15s"
-stampa_out "$mn16b" "$max" "$mn16s"
-stampa_out "$mn17b" "$max" "$mn17s"
-stampa_out "$mn18b" "$max" "$mn18s"
-stampa_out "$mn19b" "$max" "$mn19s"
-stampa_out "$mn20b" "$max" "$mn20s"
+stampa_out "$mn1b" "$max" "$mn1s" 1
+stampa_out "$mn2b" "$max" "$mn2s" 2
+stampa_out "$mn3b" "$max" "$mn3s" 3
+stampa_out "$mn4b" "$max" "$mn4s" 4
+stampa_out "$mn5b" "$max" "$mn5s" 5
+stampa_out "$mn6b" "$max" "$mn6s" 6
+stampa_out "$mn7b" "$max" "$mn7s" 7
+stampa_out "$mn8b" "$max" "$mn8s" 8
+stampa_out "$mn9b" "$max" "$mn9s" 9
+stampa_out "$mn10b" "$max" "$mn10s" 10
+stampa_out "$mn11b" "$max" "$mn11s" 11
+stampa_out "$mn12b" "$max" "$mn12s" 12
+stampa_out "$mn13b" "$max" "$mn13s" 13
+stampa_out "$mn14b" "$max" "$mn14s" 14
+stampa_out "$mn15b" "$max" "$mn15s" 15
+stampa_out "$mn16b" "$max" "$mn16s" 16
+stampa_out "$mn17b" "$max" "$mn17s" 17
+stampa_out "$mn18b" "$max" "$mn18s" 18
+stampa_out "$mn19b" "$max" "$mn19s" 19
+stampa_out "$mn20b" "$max" "$mn20s" 20
 
 
