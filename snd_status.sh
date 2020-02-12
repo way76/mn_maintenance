@@ -42,6 +42,10 @@ mn20s=$(sudo -Hu snodecoin-mn20 snodecoin-cli masternode status | grep message)
 mn1b=${mn1b##:*}
 mn2b=${mn2b##:*}
 
+echo "Valore m1 rilevato: $mn1b"
+echo "Valore m2 rilevato: $mn2b"
+
+
 
 max=0
    if (( $mn1b > $max )); then max=$mn1b; fi; 
