@@ -52,7 +52,7 @@ mns=$3
 min=$max-$margine
 pos=$4
 
- if [[ $mnb -gt $min ]]; then 
+ if [[ "$mnb" -gt "$min" ]]; then 
    echo "Masternode $pos: $mnb$ - $mns" 
  else
    echo "Masternode $pos: $mnb - $mns" 
@@ -76,7 +76,7 @@ echo "$max"
 
 pos=0
 max=0
-echo "versione 2"
+echo "versione 3"
 max=$(calcola_max "$mn1b" "$max")
 max=$(calcola_max "$mn2b" "$max")
 max=$(calcola_max "$mn3b" "$max")
