@@ -45,7 +45,7 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
 
-margine=50
+margine=5
 mnb=$1
 max=$2
 mns=$3
@@ -78,7 +78,7 @@ echo "$max"
 
 pos=0
 max=0
-echo "versione 4"
+echo "versione 5"
 max=$(calcola_max "$mn1b" "$max")
 max=$(calcola_max "$mn2b" "$max")
 max=$(calcola_max "$mn3b" "$max")
