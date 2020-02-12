@@ -40,9 +40,11 @@ mn20b=$(sudo -Hu snodecoin-mn20 snodecoin-cli getinfo | grep blocks)
 mn20s=$(sudo -Hu snodecoin-mn20 snodecoin-cli masternode status | grep message)
 
 stampa_out(){
-RED="\033[1;31m"
-GREEN="\033[1;32m"
-NOCOLOR="\033[0m"
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
 margine=50
 mnb=$1
 max=$2
@@ -50,9 +52,9 @@ n=$3
 mns=$4
 
  if [ $mnb -gt $max-$margine ]; then 
-   echo "Masternode $n:  ${RED}$mnb${NOCOLOR} - $mns" 
+   echo "Masternode $n:  ${RED}$mnb${NC} - $mns" 
  else
-   echo "Masternode $n:  ${GREEN}$mnb${NOCOLOR} - $mns "
+   echo "Masternode $n:  ${GREEN}$mnb${NC} - $mns "
     fi
 }
 
