@@ -39,6 +39,20 @@ mn19s=$(sudo -Hu snodecoin-mn19 snodecoin-cli masternode status | grep message)
 mn20b=$(sudo -Hu snodecoin-mn20 snodecoin-cli getinfo | grep blocks)
 mn20s=$(sudo -Hu snodecoin-mn20 snodecoin-cli masternode status | grep message)
 
+stampa_out(){
+RED="\033[1;31m"
+GREEN="\033[1;32m"
+NOCOLOR="\033[0m"
+margine=50
+mnb=$1
+max=$2
+n=$3
+mns=$4
+
+ if [ $mnb -gt $max-$margine ]; then echo -e "Masternode $n:  ${RED}$mnb${NOCOLOR} - $mns" else
+echo -e "Masternode n:  ${GREEN}$mnb${NOCOLOR} - $mns "
+    fi
+}
 
 calcola_max() {
 mnb=$1
@@ -57,34 +71,47 @@ echo "$max"
 
 
 max=0
-echo "versione 6"
+echo "versione 8"
 max=$(calcola_max "$mn1b" "$max")
 max=$(calcola_max "$mn2b" "$max")
 max=$(calcola_max "$mn3b" "$max")
+max=$(calcola_max "$mn4b" "$max")
+max=$(calcola_max "$mn5b" "$max")
+max=$(calcola_max "$mn6b" "$max")
+max=$(calcola_max "$mn7b" "$max")
+max=$(calcola_max "$mn8b" "$max")
+max=$(calcola_max "$mn9b" "$max")
+max=$(calcola_max "$mn10b" "$max")
+max=$(calcola_max "$mn11b" "$max")
+max=$(calcola_max "$mn12b" "$max")
+max=$(calcola_max "$mn13b" "$max")
+max=$(calcola_max "$mn14b" "$max")
+max=$(calcola_max "$mn15b" "$max")
+max=$(calcola_max "$mn16b" "$max")
+max=$(calcola_max "$mn17b" "$max")
+max=$(calcola_max "$mn18b" "$max")
+max=$(calcola_max "$mn19b" "$max")
+max=$(calcola_max "$mn20b" "$max")
 
-
-echo "Valore massimo rilevato: $max"
-
-
-echo "Masternode 1:  $mn1b - $mn1s "
-echo "Masternode 2:  $mn2b - $mn2s "
-echo "Masternode 3:  $mn3b - $mn3s "
-echo "Masternode 4:  $mn4b - $mn4s "
-echo "Masternode 5:  $mn5b - $mn5s "
-echo "Masternode 6:  $mn6b - $mn6s "
-echo "Masternode 7:  $mn7b - $mn7s "
-echo "Masternode 8:  $mn8b - $mn8s "
-echo "Masternode 9:  $mn9b - $mn9s "
-echo "Masternode 10: $mn10b - $mn10s "
-echo "Masternode 11: $mn11b - $mn11s "
-echo "Masternode 12: $mn12b - $mn12s "
-echo "Masternode 13: $mn13b - $mn13s "
-echo "Masternode 14: $mn14b - $mn14s "
-echo "Masternode 15: $mn15b - $mn15s "
-echo "Masternode 16: $mn16b - $mn16s "
-echo "Masternode 17: $mn17b - $mn17s "
-echo "Masternode 18: $mn18b - $mn18s "
-echo "Masternode 19: $mn19b - $mn19s "
-echo "Masternode 20: $mn20b - $mn20s "
+stampa_out("$mn1b" "$max" "1" "$mn1s")
+stampa_out("$mn2b" "$max" "2" "$mn2s")
+stampa_out("$mn3b" "$max" "3" "$mn3s")
+stampa_out("$mn4b" "$max" "4" "$mn4s")
+stampa_out("$mn5b" "$max" "5" "$mn5s")
+stampa_out("$mn6b" "$max" "6" "$mn6s")
+stampa_out("$mn7b" "$max" "7" "$mn7s")
+stampa_out("$mn8b" "$max" "8" "$mn8s")
+stampa_out("$mn9b" "$max" "9" "$mn9s")
+stampa_out("$mn10b" "$max" "10" "$mn10s")
+stampa_out("$mn11b" "$max" "11" "$mn11s")
+stampa_out("$mn12b" "$max" "12" "$mn12s")
+stampa_out("$mn13b" "$max" "13" "$mn13s")
+stampa_out("$mn14b" "$max" "14" "$mn14s")
+stampa_out("$mn15b" "$max" "15" "$mn15s")
+stampa_out("$mn16b" "$max" "16" "$mn16s")
+stampa_out("$mn17b" "$max" "17" "$mn17s")
+stampa_out("$mn18b" "$max" "18" "$mn18s")
+stampa_out("$mn19b" "$max" "19" "$mn19s")
+stampa_out("$mn20b" "$max" "20" "$mn20s")
 
 
