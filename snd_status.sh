@@ -57,10 +57,10 @@ echo "$max"
 
 
 max=0
-echo "versione 5"
-echo "Valore m1 rilevato: " $(calcola_max "$mn1b" "$max")
-echo "Valore m2 rilevato: " $(calcola_max "$mn2b" "$max")
-echo "Valore m3 rilevato: " $(calcola_max "$mn3b" "$max")
+echo "versione 6"
+max= $(calcola_max "$mn1b" "$max")
+max= $(calcola_max "$mn2b" "$max")
+max= $(calcola_max "$mn3b" "$max")
 
 
 echo "Valore massimo rilevato: $max"
