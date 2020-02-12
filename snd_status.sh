@@ -39,7 +39,31 @@ mn19s=$(sudo -Hu snodecoin-mn19 snodecoin-cli masternode status | grep message)
 mn20b=$(sudo -Hu snodecoin-mn20 snodecoin-cli getinfo | grep blocks)
 mn20s=$(sudo -Hu snodecoin-mn20 snodecoin-cli masternode status | grep message)
 
+max=0
+   if (( $mn1b > $max )); then max=$mn1b; fi; 
+   if (( $mn2b > $max )); then max=$mn2b; fi; 
+   if (( $mn3b > $max )); then max=$mn3b; fi; 
+   if (( $mn4b > $max )); then max=$mn4b; fi; 
+   if (( $mn5b > $max )); then max=$mn5b; fi; 
+   if (( $mn6b > $max )); then max=$mn6b; fi; 
+   if (( $mn7b > $max )); then max=$mn7b; fi; 
+   if (( $mn8b > $max )); then max=$mn8b; fi; 
+   if (( $mn9b > $max )); then max=$mn9b; fi; 
+   if (( $mn10b > $max )); then max=$mn10b; fi; 
+   if (( $mn11b > $max )); then max=$mn11b; fi; 
+   if (( $mn12b > $max )); then max=$mn12b; fi; 
+   if (( $mn13b > $max )); then max=$mn13b; fi; 
+   if (( $mn14b > $max )); then max=$mn14b; fi; 
+   if (( $mn15b > $max )); then max=$mn15b; fi; 
+   if (( $mn16b > $max )); then max=$mn16b; fi; 
+   if (( $mn17b > $max )); then max=$mn17b; fi; 
+   if (( $mn18b > $max )); then max=$mn18b; fi; 
+   if (( $mn19b > $max )); then max=$mn19b; fi; 
+   if (( $mn20b > $max )); then max=$mn20b; fi; 
 
+
+
+echo "Valore massimo rilevato: $max"
 
 
 echo "Masternode 1:  $mn1b - $mn1s "
