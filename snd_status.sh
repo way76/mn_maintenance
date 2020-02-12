@@ -55,7 +55,7 @@ mn1b=${mnb##*:}
 mn1b=${mn1b%,} 
 
  if [[ "$mn1b" -gt "$min" ]]; then 
-   echo "Masternode $pos: $mnb$ - $mns" 
+   echo "Masternode $pos: ${RED}$mnb$ - $mns ${NC}" 
  else
    echo "Masternode $pos: $mnb - $mns" 
     fi
