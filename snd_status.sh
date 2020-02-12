@@ -47,6 +47,8 @@ mnb=${$1##*:}
 
   if (( $mnb > $2 )); then max=$1; fi; 
 
+echo $max
+
 }
 
 
