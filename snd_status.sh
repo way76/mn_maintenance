@@ -51,10 +51,11 @@ max=$2
 mns=$3
 min=$max-$margine
 pos=$4
- if [ $mnb -gt $min ]; then 
-   echo Masternode $pos: $mnb$ - $mns 
+
+ if [[ $mnb -gt $min ]]; then 
+   echo "Masternode $pos: $mnb$ - $mns" 
  else
-   echo Masternode $pos: $mnb - $mns 
+   echo "Masternode $pos: $mnb - $mns" 
     fi
 }
 
