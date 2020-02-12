@@ -54,7 +54,7 @@ pos=$4
 mn1b=${mnb##*:}
 mn1b=${mn1b%,} 
 
- if [[ "$mn1b" -gt "$min" ]]; then 
+ if [[ "$mn1b" -lt "$min" ]]; then 
    echo -e "Masternode $pos: $mnb - $mns - ATTENZIONE" 
  else
    echo -e "Masternode $pos: $mnb - $mns" 
