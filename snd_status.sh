@@ -41,13 +41,17 @@ mn20s=$(sudo -Hu snodecoin-mn20 snodecoin-cli masternode status | grep message)
 
 
 calcola_max() {
+mnb=$1
+max=$2
 
-mnb=${$1%,}
-mnb=${$1##*:}
+echo "Ricevuto $mnb, max"
 
-  if (( $mnb > $2 )); then max=$1; fi; 
+mnb=${$mnb%,}
+mnb=${$mnb##*:}
 
-echo $max
+  if (( $mnb > $max )); then max=$mnb; fi; 
+
+echo "$max"
 
 }
 
