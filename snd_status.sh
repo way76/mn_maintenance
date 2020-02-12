@@ -55,10 +55,11 @@ pos=$4
 mn1b=${mnb##*:}
 mn1b=${mn1b%,} 
 
-if [["$pos" -le $n]]; then
- mnb1=" $mnb"
- mnb=$mnb1
-fi
+
+#if [["$pos" -le $n]]; then
+# mnb1=" $mnb"
+# mnb=$mnb1
+#fi
 
 
  if [[ "$mn1b" -lt "$min" ]]; then 
