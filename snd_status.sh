@@ -58,9 +58,9 @@ echo "$max"
 
 max=0
 echo "versione 6"
-max= $(calcola_max "$mn1b" "$max")
-max= $(calcola_max "$mn2b" "$max")
-max= $(calcola_max "$mn3b" "$max")
+max=$(calcola_max "$mn1b" "$max")
+max=$(calcola_max "$mn2b" "$max")
+max=$(calcola_max "$mn3b" "$max")
 
 
 echo "Valore massimo rilevato: $max"
