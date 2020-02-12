@@ -45,6 +45,7 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
 
+n=9
 margine=2115
 mnb=$1
 max=$2
@@ -54,8 +55,8 @@ pos=$4
 mn1b=${mnb##*:}
 mn1b=${mn1b%,} 
 
-if [["$pos" -lt 9]]; then
- mnb1=" ${mnb}"
+if [["$pos" -le $n]]; then
+ mnb1=" $mnb"
  mnb=$mnb1
 fi
 
@@ -84,7 +85,7 @@ echo "$max"
 
 pos=0
 max=0
-echo "versione 1"
+echo "versione a"
 max=$(calcola_max "$mn1b" "$max")
 max=$(calcola_max "$mn2b" "$max")
 max=$(calcola_max "$mn3b" "$max")
