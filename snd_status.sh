@@ -39,13 +39,17 @@ mn19s=$(sudo -Hu snodecoin-mn19 snodecoin-cli masternode status | grep message)
 mn20b=$(sudo -Hu snodecoin-mn20 snodecoin-cli getinfo | grep blocks)
 mn20s=$(sudo -Hu snodecoin-mn20 snodecoin-cli masternode status | grep message)
 
+mn1b=${mn1b##:*}
+mn2b=${mn2b##:*}
+
+
 max=0
    if (( $mn1b > $max )); then max=$mn1b; fi; 
    if (( $mn2b > $max )); then max=$mn2b; fi; 
    if (( $mn3b > $max )); then max=$mn3b; fi; 
    if (( $mn4b > $max )); then max=$mn4b; fi; 
    if (( $mn5b > $max )); then max=$mn5b; fi; 
-   if (( $mn6b > $max )); then max=$mn6b; fi; 
+   if (( $mn6b > $max )); then max=$mn6b; fi;
    if (( $mn7b > $max )); then max=$mn7b; fi; 
    if (( $mn8b > $max )); then max=$mn8b; fi; 
    if (( $mn9b > $max )); then max=$mn9b; fi; 
