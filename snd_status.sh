@@ -56,7 +56,7 @@ mn1b=${mnb##*:}
 mn1b=${mn1b%,} 
 
  if [[ "$mn1b" -lt "$min" ]]; then 
-   echo -e "Masternode $pos: $mnb - $mns - ATTENZIONE mn$pos per $mnlb" 
+   echo -e "Masternode $pos: $mnb - $mns - ATTENZIONE mn$pos per $mn1b blocchi" 
  else
    echo -e "Masternode $pos: $mnb - $mns" 
     fi
