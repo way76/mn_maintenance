@@ -7,7 +7,7 @@ ripr_mn()
 
 }
  
-read  -p "Copiare:" mno
-read  -p "In:" mnd
+read -n 2 -p "Copiare:" mno
+read -n 2 -p "In:" mnd
 
 ripr_mn "$mnd" "$mno"
