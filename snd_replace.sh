@@ -25,11 +25,24 @@ rm /home/snodecoin-mn$mnr/.snodecoin/peers.dat
 rm /home/snodecoin-mn$mnr/.snodecoin/sporks.dat
 cd /home/snodecoin-mn$mnr/.snodecoin/
 rm debug*.*
-#systemctl start snodecoin-mn4.service
-#cd /root
-#sleep 30
-#./snd_addnodes.sh
-#./snd_status.sh
+systemctl stop snodecoin-mn$mno.service
+cp -a /home/snodecoin-mn$mno/.snodecoin/blocks /home/snodecoin-mn$mnr/.snodecoin/blocks
+chown -R snodecoin-mn$mnr:snodecoin-mn$mnr blocks
+cp -a /home/snodecoin-mn$mno/.snodecoin/chainstate /home/snodecoin-mn$mnr/.snodecoin/chainstate
+chown -R snodecoin-mn$mnr:snodecoin-mn$mnr chainstate
+cp -a /home/snodecoin-mn$mno/.snodecoin/sporks /home/snodecoin-mn$mnr/.snodecoin/sporks
+chown -R snodecoin-mn$mnr:snodecoin-mn$mnr sporks
+cp -a /home/snodecoin-mn$mno/.snodecoin/zerocoin /home/snodecoin-mn$mnr/.snodecoin/zerocoin
+chown -R snodecoin-mn$mnr:snodecoin-mn$mnr zerocoin
+cp -a /home/snodecoin-mn$mno/.snodecoin/database /home/snodecoin-mn$mnr/.snodecoin/database
+chown -R snodecoin-mn$mnr:snodecoin-mn$mnr database
+systemctl start snodecoin-mn$mno.service
+sleep 30
+systemctl start snodecoin-mn$mnr.service
+cd /root
+sleep 30
+./snd_addnodes.sh
+./snd_status.sh
  
 
 }
