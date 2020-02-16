@@ -8,8 +8,8 @@ ripr_mn()
 }
  
 echo "Masternode da rimuovere:"
-read  mnr
+read -p mnr
 echo "Masternode di origine:"
-read  mno
+read -p mno
 
 ripr_mn "$mnr" "$mno"
