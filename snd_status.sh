@@ -54,9 +54,11 @@ min=$max-$margine
 pos=$4
 mn1b=${mnb##*:}
 mn1b=${mn1b%,} 
+diff=$mn1b .$max
+
 
  if [[ "$mn1b" -lt "$min" ]]; then 
-   echo -e "Masternode $pos: $mnb - $mns - ATTENZIONE mn$pos per $mn1b blocchi" 
+   echo -e "Masternode $pos: $mnb - $mns - ATTENZIONE mn$pos per $diff blocchi" 
  else
    echo -e "Masternode $pos: $mnb - $mns" 
     fi
