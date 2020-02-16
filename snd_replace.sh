@@ -3,13 +3,11 @@
 
 ripr_mn()
 {
- echo "MN da rimuovere: $mnr, con oigine $mno"
+ echo "MN da rimuovere: $1, con origine $2"
 
 }
  
-echo "Masternode da rimuovere:"
-read -p mnr
-echo "Masternode di origine:"
-read -p mno
+read  -p "Copiare:" mno
+read  -p "In:" mnd
 
-ripr_mn "$mnr" "$mno"
+ripr_mn "$mnd" "$mno"
