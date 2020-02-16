@@ -79,7 +79,6 @@ echo "$max"
 
 pos=0
 max=0
-echo "versione 1, max $max"
 max=$(calcola_max "$mn1b" "$max")
 max=$(calcola_max "$mn2b" "$max")
 max=$(calcola_max "$mn3b" "$max")
@@ -101,6 +100,7 @@ max=$(calcola_max "$mn18b" "$max")
 max=$(calcola_max "$mn19b" "$max")
 max=$(calcola_max "$mn20b" "$max")
 
+echo "versione 1, max $max"
 stampa_out "$mn1b" "$max" "$mn1s" 1
 stampa_out "$mn2b" "$max" "$mn2s" 2
 stampa_out "$mn3b" "$max" "$mn3s" 3
