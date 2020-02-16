@@ -1,4 +1,4 @@
-#!/bin/bash
+
 
 
 ripr_mn()
