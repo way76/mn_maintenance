@@ -41,8 +41,7 @@ sleep 30
 systemctl start 1x2coin-mn$mnr.service
 cd /root
 sleep 30
-./snd_addnodes.sh
-./snd_status.sh
+./1x2coin_status.sh
  
 
 }
