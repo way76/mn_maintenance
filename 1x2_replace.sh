@@ -36,6 +36,8 @@ cp -a /home/1x2coin-mn$mno/.1x2coin/zerocoin /home/1x2coin-mn$mnr/.1x2coin/zeroc
 chown -R 1x2coin-mn$mnr:1x2coin-mn$mnr zerocoin
 cp -a /home/1x2coin-mn$mno/.1x2coin/database /home/1x2coin-mn$mnr/.1x2coin/database
 chown -R 1x2coin-mn$mnr:1x2coin-mn$mnr database
+cp /home/1x2coin-mn$mno/.1x2coin/peers.dat /home/1x2coin-mn$mnr/.1x2coin/peers.dat
+chown -R 1x2coin-mn$mnr:1x2coin-mn$mnr peers.dat
 systemctl start 1x2coin-mn$mno.service
 sleep 30
 systemctl start 1x2coin-mn$mnr.service
