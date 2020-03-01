@@ -33,7 +33,7 @@ break
 
 
 # Sub-menu items here declared here
-select snd_sub in Snodecoin
+select snd_sub in Snodecoin Exit
 do
 # case statement for sun-menu items
 case $snd_sub in
