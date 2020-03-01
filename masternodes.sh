@@ -40,7 +40,10 @@ esac
 
 snd_status()
 {
- echo "mostro lo stato snd"
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/snd_status.sh > /root/mn_scripts/snd_status.sh
+ chmod +755 /root/mn_scripts/snd_status.sh
+ chmod +x /root/mn_scripts/snd_status.sh
+ /root/mn_scripts/snd_status.sh
 }
 snd_restart()
 {
