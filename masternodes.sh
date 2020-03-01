@@ -2,18 +2,39 @@
 while true
 do
 # Parent menu items declared here
-select item in Snodecoin 1x2coin Marcoin Pacglobal Dogecash Terracoin Exit
+select coin in Snodecoin 1x2coin Marcoin Pacglobal Dogecash Terracoin Exit
 do
 # case statement to compare the first menu items
-case $item in
+case $coin in
 Snodecoin)
 echo "scelto snodecoin"
 ;;
 1x2coin)
-# Sub-menu items here declared here
-select sub_item in Snodecoin 1x2coin Marcoin PacGlobal Dogecash Terracoin
-do
+echo "scelto 1x2coin"
+;;
+Marcoin)
+echo "scelto marcoin"
+;;
+Pacglobal)
+echo "scelto pacglobal"
+;;
+Dogecash)
+echo "scelto dogecash"
+;;
+Terracoin)
+echo "scelto terracoin"
+;;
+Exit)
+echo "scelto uscita"
+break
+;;
 
+
+
+
+# Sub-menu items here declared here
+select snd_sub in Snodecoin
+do
 # case statement for sun-menu items
 case $sub_item in
 Snodecoin)
