@@ -141,7 +141,7 @@ marc_copia()
 ####################################################### VIVOCOIN
 vivo_status()
 {
- wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/marc_status.sh > /root/mn_scripts/vivo_stats.sh
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/vivo_stats.sh > /root/mn_scripts/vivo_stats.sh
  chmod +755 /root/mn_scripts/vivo_stats.sh
  chmod +x /root/mn_scripts/vivo_stats.sh
  /root/mn_scripts/vivo_stats.sh
