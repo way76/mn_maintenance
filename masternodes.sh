@@ -150,14 +150,14 @@ vivo_restart()
  #wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/marc_restart_services.sh > /root/mn_scripts/marc_restart_services.sh
  #chmod +755 /root/mn_scripts/marc_restart_services.sh
  #chmod +x /root/mn_scripts/marc_restart_services.sh
- #/root/mn_scripts/marc_restart_services.sh
+ /root/mn_scripts/vivo_stats.sh
 }
 vivo_copia()
 {
  #wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/marc_replace.sh > /root/mn_scripts/marc_replace.sh
  #chmod +755 /root/mn_scripts/marc_replace.sh
  #chmod +x /root/mn_scripts/marc_replace.sh
- #/root/mn_scripts/marc_replace.sh
+ /root/mn_scripts/vivo_stats.sh
 }
 
 
