@@ -13,7 +13,6 @@ case $coin in
   1) menu_snd;;
   2) menu_marc;;
   3) menu_vivo;;
-  4) echo "You chose Option 4";;
   9) exit;;
   *) echo "invalid option";;
 esac
@@ -38,6 +37,7 @@ case $snd_azione in
   *) menu_snd;;
 esac
 }
+
 menu_marc()
 {
 echo "                                                    MARCOIN "
@@ -56,6 +56,7 @@ case $marc_azione in
   *) menu_marc;;
 esac
 }
+
 menu_vivo()
 {
 echo "                                                     VIVOCOIN "
