@@ -5,6 +5,11 @@ scelta_coin()
   then
     snodecoin
   fi
+  if [ $coin -e 9 ]; 
+  then
+    break
+  fi
+
 }
 snodecoin()
 {
@@ -59,9 +64,10 @@ sleep 30
 }
 echo "Scegliere coin: "
 echo "1. Snodecoin"
+echo "9. exit"
+
 read -n 1 -p "-" coin
 
 
 
-
-ripr_mn "$mnd" "$mno"
+scelta_coin "$coin"
