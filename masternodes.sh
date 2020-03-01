@@ -2,7 +2,7 @@
 while true
 do
 # Parent menu items declared here
-select item in Snodecoin 1x2coin Marcoin PacGlobal Dogecash Terracoin Exit
+select item in Snodecoin 1x2coin Marcoin Pacglobal Dogecash Terracoin Exit
 do
 # case statement to compare the first menu items
 case $item in
