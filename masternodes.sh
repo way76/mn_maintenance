@@ -1,73 +1,125 @@
-scelta_coin()
-{
-  coin=$1
-  if [ $coin -e 1 ]; 
-  then
-    snodecoin
-  fi
-  if [ $coin -e 9 ]; 
-  then
-    break
-  fi
 
+Skip to content
+All gists
+Back to GitHub
+@way76
+@nwaywood nwaywood/bash-menu.sh
+Created 3 years ago • Report abuse
+
+3
+
+    3
+
+Code
+Revisions 1
+Stars 3
+Forks 3
+Template structure for a bash script with simple menu and command line args
+bash-menu.sh
+#! /bin/bash
+
+# ===================
+# Script funtionality
+# ===================
+
+# do something
+doSomething() {
+    echo 'doing something'
 }
-snodecoin()
-{
-  echo "scelto snodecoin"
+
+
+# ================
+# Script structure
+# ================
+
+# Show usage via commandline arguments
+usage() {
+  echo "~~~~~~~~~~~"
+  echo " U S A G E"
+  echo "~~~~~~~~~~~"
+  echo "Usage: ./example.sh [option]"
+  echo "  options:"
+  echo "    -d : do something"
+  echo "    -m : Show interactive menu"
+  echo "    -h : Show this help"
+  echo ""
+  exit
 }
 
-ripr_mn()
-{
-mnr=$1
-mno=$2
-
-systemctl stop 1x2coin-mn$mnr.service
-rm /home/1x2coin-mn$mnr/.1x2coin/blocks -r
-rm /home/1x2coin-mn$mnr/.1x2coin/chainstate -r
-rm /home/1x2coin-mn$mnr/.1x2coin/sporks -r
-rm /home/1x2coin-mn$mnr/.1x2coin/zerocoin -r
-rm /home/1x2coin-mn$mnr/.1x2coin/backups -r
-rm /home/1x2coin-mn$mnr/.1x2coin/database -r
-rm /home/1x2coin-mn$mnr/.1x2coin/banlist.dat
-rm /home/1x2coin-mn$mnr/.1x2coin/db.log
-rm /home/1x2coin-mn$mnr/.1x2coin/fee_estimates.dat
-rm /home/1x2coin-mn$mnr/.1x2coin/governance.dat
-rm /home/1x2coin-mn$mnr/.1x2coin/instantsend.dat
-rm /home/1x2coin-mn$mnr/.1x2coin/mempool.dat
-rm /home/1x2coin-mn$mnr/.1x2coin/mncache.dat
-rm /home/1x2coin-mn$mnr/.1x2coin/netfulfilled.dat 
-rm /home/1x2coin-mn$mnr/.1x2coin/peers.dat
-rm /home/1x2coin-mn$mnr/.1x2coin/sporks.dat
-cd /home/1x2coin-mn$mnr/.1x2coin/
-rm debug*.*
-systemctl stop 1x2coin-mn$mno.service
-cp -a /home/1x2coin-mn$mno/.1x2coin/blocks /home/1x2coin-mn$mnr/.1x2coin/blocks
-chown -R 1x2coin-mn$mnr:1x2coin-mn$mnr blocks
-cp -a /home/1x2coin-mn$mno/.1x2coin/chainstate /home/1x2coin-mn$mnr/.1x2coin/chainstate
-chown -R 1x2coin-mn$mnr:1x2coin-mn$mnr chainstate
-cp -a /home/1x2coin-mn$mno/.1x2coin/sporks /home/1x2coin-mn$mnr/.1x2coin/sporks
-chown -R 1x2coin-mn$mnr:1x2coin-mn$mnr sporks
-cp -a /home/1x2coin-mn$mno/.1x2coin/zerocoin /home/1x2coin-mn$mnr/.1x2coin/zerocoin
-chown -R 1x2coin-mn$mnr:1x2coin-mn$mnr zerocoin
-cp -a /home/1x2coin-mn$mno/.1x2coin/database /home/1x2coin-mn$mnr/.1x2coin/database
-chown -R 1x2coin-mn$mnr:1x2coin-mn$mnr database
-cp /home/1x2coin-mn$mno/.1x2coin/peers.dat /home/1x2coin-mn$mnr/.1x2coin/peers.dat
-chown -R 1x2coin-mn$mnr:1x2coin-mn$mnr peers.dat
-systemctl start 1x2coin-mn$mno.service
-sleep 30
-systemctl start 1x2coin-mn$mnr.service
-cd /root
-sleep 30
-./1x2coin_status.sh
- 
-
+# Function to display menu options
+show_menus() {
+    clear
+    echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    echo " Example Main Menu"
+    echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    echo "  1. Do something"
+    echo "  ---"
+    echo "  2. Exit"
+    echo ""
 }
-echo "Scegliere coin: "
-echo "1. Snodecoin"
-echo "9. exit"
 
-read -n 1 -p "-" coin
+# Function to read menu input selection and take a action
+read_options(){
+    local choice
+    read -p "Enter choice [ 1 - 2 ] " choice
+    case $choice in
+    1) doSomething;;
+    2) exit 0;;
+    *) echo -e "${RED}Error...${STD}" && sleep 2
+    esac
+}
 
+# Use menu...
+do_menu() {
+  # Main menu handler loop
+  while true
+  do
+    show_menus
+    read_options
+  done
+}
 
+# If no arguments provided, display usage information
+[[ $# -eq 0 ]] && usage
 
-scelta_coin "$coin"
+# Process command line arguments
+if [[ $@ ]]; then
+  while getopts "dmh" opt; do
+    case $opt in
+      d)
+        doSomething
+        shift
+        ;;
+      m)
+      	do_menu
+        shift
+        ;;
+      h)
+        usage
+        exit 0
+        ;;
+      \?)
+        ;;
+    esac
+  done
+else
+  usage
+  exit 0
+fi
+@way76
+Attach files by dragging & dropping, selecting or pasting them.
+
+    © 2020 GitHub, Inc.
+    Terms
+    Privacy
+    Security
+    Status
+    Help
+
+    Contact GitHub
+    Pricing
+    API
+    Training
+    Blog
+    About
+
