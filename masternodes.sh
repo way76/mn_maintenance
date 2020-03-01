@@ -1,21 +1,3 @@
-
-Skip to content
-All gists
-Back to GitHub
-@way76
-@nwaywood nwaywood/bash-menu.sh
-Created 3 years ago • Report abuse
-
-3
-
-    3
-
-Code
-Revisions 1
-Stars 3
-Forks 3
-Template structure for a bash script with simple menu and command line args
-bash-menu.sh
 #! /bin/bash
 
 # ===================
@@ -106,20 +88,3 @@ else
   usage
   exit 0
 fi
-@way76
-Attach files by dragging & dropping, selecting or pasting them.
-
-    © 2020 GitHub, Inc.
-    Terms
-    Privacy
-    Security
-    Status
-    Help
-
-    Contact GitHub
-    Pricing
-    API
-    Training
-    Blog
-    About
-
