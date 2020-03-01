@@ -24,7 +24,7 @@ menu_snd()
 echo "  1) status masternodes  "
 echo "  2) restart masternodes "
 echo "  3) copia masternode    "
-echo "  4) torna indietro      "
+echo "  9) torna indietro      "
 
 
 read snd_azione
@@ -32,7 +32,7 @@ case $snd_azione in
   1) snd_status;menu_snd;;
   2) snd_restart;menu_snd;;
   3) snd_copia;menu_snd;;
-  4) menu_coin;;
+  9) menu_coin;;
   *) menu_snd;;
 esac
 }
@@ -47,11 +47,21 @@ snd_status()
 }
 snd_restart()
 {
- echo "riavvio i servizi snd"
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/snd_restart_services.sh > /root/mn_scripts/snd_restart_services.sh
+ chmod +755 /root/mn_scripts/snd_restart_services.sh
+ chmod +x /root/mn_scripts/snd_restart_services.sh
+ /root/mn_scripts/snd_restart_services.sh
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/snd_addnode.sh > /root/mn_scripts/snd_addnode.sh
+ chmod +755 /root/mn_scripts/snd_addnode.sh
+ chmod +x /root/mn_scripts/snd_addnode.sh
+ /root/mn_scripts/snd_addnode.sh
 }
 snd_copia()
 {
- echo "copia snode masternode"
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/snd_replace.sh > /root/mn_scripts/snd_replace.sh
+ chmod +755 /root/mn_scripts/snd_replace.sh
+ chmod +x /root/mn_scripts/snd_replace.sh
+ /root/mn_scripts/snd_replace.sh
 }
 
 
