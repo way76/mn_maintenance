@@ -36,7 +36,7 @@ break
 select snd_sub in Snodecoin
 do
 # case statement for sun-menu items
-case $sub_item in
+case $snd_sub in
 Snodecoin)
 echo "scelto snodecoin sub1"
 break
