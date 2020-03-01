@@ -12,7 +12,7 @@ echo "  9) Exit      "
 read coin
 case $coin in
   1) menu_snd;;
-  2) echo "You chose Option 2";;
+  2) menu_marc;;
   3) echo "You chose Option 3";;
   4) echo "You chose Option 4";;
   9) exit;;
