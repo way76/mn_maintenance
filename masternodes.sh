@@ -1,68 +1,55 @@
 #!/bin/bash
-while true
-do
-# Parent menu items declared here
-select coin in Snodecoin 1x2coin Marcoin Pacglobal Dogecash Terracoin Exit
-do
-# case statement to compare the first menu items
+
+menu_coin()
+{
+echo "Scegliere il menu del coin"
+echo "  1) Snodecoin "
+echo "  2) Marcoin   "
+echo "  3) PacGlobal "
+echo "  4) Dogecash  "
+echo "  9) Exit      "
+
+read coin
 case $coin in
-Snodecoin)
-echo "scelto snodecoin"
-;;
-1x2coin)
-echo "scelto 1x2coin"
-;;
-Marcoin)
-echo "scelto marcoin"
-;;
-Pacglobal)
-echo "scelto pacglobal"
-;;
-Dogecash)
-echo "scelto dogecash"
-;;
-Terracoin)
-echo "scelto terracoin"
-;;
-Exit)
-echo "scelto uscita"
-break
-;;
-
-
-
-
-# Sub-menu items here declared here
-select snd_sub in Snodecoin Exit
-do
-# case statement for sun-menu items
-case $snd_sub in
-Snodecoin)
-echo "scelto snodecoin sub1"
-break
-;;
-1x2coin)
-echo "scelto 1x2coin sub"
-# return to parent menu
-break
-;;
-Marcoin)
-echo "scelto marcoin sub"
-# return to the parent menu
-break 2
-;;
+  1) menu_snd;;
+  2) echo "You chose Option 2";;
+  3) echo "You chose Option 3";;
+  4) echo "You chose Option 4";;
+  9) exit;;
+  *) echo "invalid option";;
 esac
-done
-break
-;;
-PacGlobal)
-echo "scelto pacglobal sub"
-break # return to current (main) menu
-;;
-Dogecash)
-echo "scelto dogecash submenu"
-# return from the script
-break 2
+}
+menu_snd()
+{
+echo "  1) status masternodes  "
+echo "  2) restart masternodes "
+echo "  3) copia masternode    "
+echo "  4) torna indietro      "
+
+
+read snd_azione
+case $snd_azione in
+  1) snd_status;menu_snd;;
+  2) snd_restart;menu_snd;;
+  3) snd_copia;menu_snd;;
+  4) menu_coin;;
+  *) menu_snd;;
 esac
-done
-done
+}
+
+
+snd_status()
+{
+ echo "mostro lo stato snd"
+}
+snd_restart()
+{
+ echo "riavvio i servizi snd"
+}
+snd_copia()
+{
+ echo "copia snode masternode"
+}
+
+
+menu_coin
