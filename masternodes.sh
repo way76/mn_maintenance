@@ -2,31 +2,31 @@
 while true
 do
 # Parent menu items declared here
-select item in Mouse Printer Monitor HDD
+select item in Snodecoin 1x2coin Marcoin PacGlobal Dogecash Terracoin Exit
 do
-
 # case statement to compare the first menu items
 case $item in
-Mouse)
-echo "Which type of monitor you like?"
+Snodecoin)
+echo "scelto snodecoin"
 ;;
-Printer)
+1x2coin)
 # Sub-menu items here declared here
-select sub_item in Samsung HP Dell
+select sub_item in Snodecoin 1x2coin Marcoin PacGlobal Dogecash Terracoin
 do
+
 # case statement for sun-menu items
 case $sub_item in
-Samsung)
-echo "The price of samsung printer is $100"
+Snodecoin)
+echo "scelto snodecoin sub1"
 break
 ;;
-HP)
-echo "New HP 880 printer price printer is $450"
+1x2coin)
+echo "scelto 1x2coin sub"
 # return to parent menu
 break
 ;;
-Dell)
-echo "No Dell printer is available now"
+Marcoin)
+echo "scelto marcoin sub"
 # return to the parent menu
 break 2
 ;;
@@ -34,12 +34,12 @@ esac
 done
 break
 ;;
-Monitor)
-echo "Buy our new Samsung Monitor at low cost"
+PacGlobal)
+echo "scelto pacglobal sub"
 break # return to current (main) menu
 ;;
-HDD)
-echo "Good quality HDD are available in the stock"
+Dogecash)
+echo "scelto dogecash submenu"
 # return from the script
 break 2
 esac
