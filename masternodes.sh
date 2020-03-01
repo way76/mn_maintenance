@@ -5,15 +5,14 @@ menu_coin()
 echo "Scegliere il menu del coin"
 echo "  1) Snodecoin "
 echo "  2) Marcoin   "
-echo "  3) PacGlobal "
-echo "  4) Dogecash  "
+echo "  3) Vivocoin  "
 echo "  9) Exit      "
 
 read coin
 case $coin in
   1) menu_snd;;
   2) menu_marc;;
-  3) echo "You chose Option 3";;
+  3) menu_vivo;;
   4) echo "You chose Option 4";;
   9) exit;;
   *) echo "invalid option";;
@@ -57,6 +56,28 @@ case $marc_azione in
   *) menu_marc;;
 esac
 }
+menu_vivo()
+{
+echo "                                                     VIVOCOIN "
+echo "  1) status masternodes  "
+echo "  2) restart masternodes "
+echo "  3) copia masternode    "
+echo "  9) torna indietro      "
+
+
+read vivo_azione
+case $vivo_azione in
+  1) vivo_status;menu_vivo;;
+  2) vivo_restart;menu_vivo;;
+  3) vivo_copia;menu_vivo;;
+  9) menu_coin;;
+  *) menu_vivo;;
+esac
+}
+
+
+
+
 
 ############################################# SNODECOIN
 snd_status()
@@ -115,6 +136,31 @@ marc_copia()
  chmod +x /root/mn_scripts/marc_replace.sh
  /root/mn_scripts/marc_replace.sh
 }
+
+####################################################### VIVOCOIN
+vivo_status()
+{
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/marc_status.sh > /root/mn_scripts/vivo_stats.sh
+ chmod +755 /root/mn_scripts/vivo_stats.sh
+ chmod +x /root/mn_scripts/vivo_stats.sh
+ /root/mn_scripts/vivo_stats.sh
+}
+vivo_restart()
+{
+ #wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/marc_restart_services.sh > /root/mn_scripts/marc_restart_services.sh
+ #chmod +755 /root/mn_scripts/marc_restart_services.sh
+ #chmod +x /root/mn_scripts/marc_restart_services.sh
+ #/root/mn_scripts/marc_restart_services.sh
+}
+vivo_copia()
+{
+ #wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/marc_replace.sh > /root/mn_scripts/marc_replace.sh
+ #chmod +755 /root/mn_scripts/marc_replace.sh
+ #chmod +x /root/mn_scripts/marc_replace.sh
+ #/root/mn_scripts/marc_replace.sh
+}
+
+
 
 
 menu_coin
