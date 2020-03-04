@@ -4,11 +4,11 @@ riavvio_servizio()
 {
   mn=$1
   echo "disattivazione servizio $mn ..."
-  /root/mnTroubleshoot/vivo/vivo$mn_stopService.sh
+  service vivo_n$mn stop
   sleep 10
   echo "attivazione servizio $mn ..."
-  /root/mnTroubleshoot/vivo/vivo$mn_startService.sh
-  sleep 10
+  service vivo_n$mn start
+  sleep 110
 }
 
 riavvio_servizio "1";
