@@ -165,7 +165,7 @@ vivo_status()
 }
 vivo_restart()
 {
- wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/vivo_restart_services.sh > /root/mn_scripts/vivo_restart_services.sh
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/vivo_restart_service.sh > /root/mn_scripts/vivo_restart_services.sh
  chmod +755 /root/mn_scripts/vivo_restart_services.sh
  chmod +x /root/mn_scripts/vivo_restart_services.sh
  /root/mn_scripts/vivo_restart_services.sh
