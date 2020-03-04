@@ -3,16 +3,14 @@
 menu_coin()
 {
 echo "Scegliere il menu del coin"
-echo "  1) Snodecoin "
-echo "  2) Marcoin   "
-echo "  3) Vivocoin  "
-echo "  9) Exit      "
+echo "  1) Snodecoin  2) Marcoin  3) 1x2Coin 4) Vivocoin  9) Exit"
 
 read coin
 case $coin in
   1) menu_snd;;
   2) menu_marc;;
-  3) menu_vivo;;
+  3) menu_1x2;;
+  4) menu_vivo;;
   9) exit;;
   *) echo "invalid option";;
 esac
