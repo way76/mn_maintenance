@@ -83,11 +83,10 @@ echo "  2) restart masternodes "
 echo "  9) torna indietro      "
 
 
-read 1x2_azione
-case $1x2_azione in
-  1) 1x2_status;menu_1x2;;
-  2) 1x2_restart;menu_1x2;;
-  #3) 1x2_copia;menu_1x2;;
+read a1a2_azione
+case $a1a2_azione in
+  1) a12_status;menu_1x2;;
+  2) a12_restart;menu_1x2;;
   9) menu_coin;;
   *) menu_1x2;;
 esac
@@ -178,21 +177,21 @@ vivo_copia()
  /root/mn_scripts/vivo_stats.sh
 }
 ####################################################### 1x2COIN
-1x2_status()
+a12_status()
 {
  wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/1x2_status.sh > /root/mn_scripts/1x2_status.sh
  chmod +755 /root/mn_scripts/1x2_status.sh
  chmod +x /root/mn_scripts/1x2_status.sh
  /root/mn_scripts/1x2_status.sh
 }
-1x2_restart()
+a12_restart()
 {
  wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/1x2_restart_service.sh > /root/mn_scripts/1x2_restart_services.sh
  chmod +755 /root/mn_scripts/1x2_restart_services.sh
  chmod +x /root/mn_scripts/1x2_restart_services.sh
  /root/mn_scripts/1x2_restart_services.sh
 }
-1x2_copia()
+a12_copia()
 {
  wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/1x2_replace.sh > /root/mn_scripts/1x2_replace.sh
  chmod +755 /root/mn_scripts/1x2_replace.sh
