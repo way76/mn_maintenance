@@ -142,7 +142,7 @@ marc_status()
 }
 marc_restart()
 {
- wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/marc_restart_services.sh > /root/mn_scripts/marc_restart_services.sh
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/marc_restart_service.sh > /root/mn_scripts/marc_restart_services.sh
  chmod +755 /root/mn_scripts/marc_restart_services.sh
  chmod +x /root/mn_scripts/marc_restart_services.sh
  /root/mn_scripts/marc_restart_services.sh
