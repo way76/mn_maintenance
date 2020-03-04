@@ -79,7 +79,7 @@ menu_1x2()
 echo "                                                    1x2COIN "
 echo "  1) status masternodes  "
 echo "  2) restart masternodes "
-#echo "  3) copia masternode    "
+echo "  3) copia masternode    "
 echo "  9) torna indietro      "
 
 
@@ -87,6 +87,7 @@ read a1a2_azione
 case $a1a2_azione in
   1) a12_status;menu_1x2;;
   2) a12_restart;menu_1x2;;
+  3) a12_copia;menu_1x2;;
   9) menu_coin;;
   *) menu_1x2;;
 esac
