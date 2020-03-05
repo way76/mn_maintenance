@@ -80,7 +80,7 @@ mn19s=$(sudo -Hu 1x2coin-mn19 1x2coin-cli getmasternodestatus | grep message)
 mn20b=$(sudo -Hu 1x2coin-mn20 1x2coin-cli getinfo | grep blocks)
 mn20s=$(sudo -Hu 1x2coin-mn20 1x2coin-cli getmasternodestatus | grep message)
 
-
+declare -i totdiff
 pos=0
 max=0
 totdiff=0
