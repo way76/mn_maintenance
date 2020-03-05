@@ -28,7 +28,7 @@ min=$max-$margine
 pos=$4
 mn1b=${mnb##*:}
 mn1b=${mn1b%,} 
-#diff=$(mn1b-max)
+diff=$($max-$mn1b)
 
 
  if [[ "$mn1b" -lt "$min" ]]; then 
