@@ -30,7 +30,7 @@ mn1b=${mnb##*:}
 mn1b=${mn1b%,} 
 declare -i diff
 diff=$max-$mn1b
-
+totdiff=$totdiff+$diff
 
  if [[ "$mn1b" -lt "$min" ]]; then 
    echo -e "Masternode $pos: $mnb - $mns - ATTENZIONE mn$pos per $diff blocchi" 
@@ -83,6 +83,7 @@ mn20s=$(sudo -Hu 1x2coin-mn20 1x2coin-cli getmasternodestatus | grep message)
 
 pos=0
 max=0
+totdiff=0
 max=$(calcola_max "$mn1b" "$max")
 max=$(calcola_max "$mn2b" "$max")
 max=$(calcola_max "$mn3b" "$max")
@@ -104,7 +105,7 @@ max=$(calcola_max "$mn18b" "$max")
 max=$(calcola_max "$mn19b" "$max")
 max=$(calcola_max "$mn20b" "$max")
 
-echo "versione 1, max $max"
+echo "versione 1, max $max, differenze totali $totdiff"
 stampa_out "$mn1b" "$max" "$mn1s" 1
 stampa_out "$mn2b" "$max" "$mn2s" 2
 stampa_out "$mn3b" "$max" "$mn3s" 3
