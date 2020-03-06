@@ -18,19 +18,19 @@ esac
 menu_snd()
 {
 echo "                                                     SNODECOIN "
-echo "  1) status masternodes  "
-echo "  2) restart masternodes "
-echo "  3) copia masternode    "
-echo "  4) recupero nodi       "
+echo "  1) status (getinfo)    "
+echo "  2) status (sync)       "
+echo "  3) status (peer)       "
+echo "  3) status (staking)    "
 echo "  9) torna indietro      "
 
 
 read snd_azione
 case $snd_azione in
-  1) snd_status;menu_snd;;
-  2) snd_restart;menu_snd;;
-  3) snd_copia;menu_snd;;
-  4) snd_addnode;menu_snd;;
+  1) snd_status_getinfo;menu_snd;;
+  2) snd_status_sync;menu_snd;;
+  3) snd_status_peer;menu_snd;;
+  4) snd_status_staking;menu_snd;;
   9) menu_coin;;
   *) menu_snd;;
 esac
@@ -98,39 +98,22 @@ esac
 
 
 ############################################# SNODECOIN
-snd_status()
+snd_status_getinfo()
 {
- wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/snd_status.sh > /root/mn_scripts/snd_status.sh
- chmod +755 /root/mn_scripts/snd_status.sh
- chmod +x /root/mn_scripts/snd_status.sh
- /root/mn_scripts/snd_status.sh
+/usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn1/.snodecoin -conf=/home/snodecoin-mn1/.snodecoin/snodecoin.conf getinfo
 }
-snd_restart()
+snd_status_sync()
 {
- wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/snd_restart_services.sh > /root/mn_scripts/snd_restart_services.sh
- chmod +755 /root/mn_scripts/snd_restart_services.sh
- chmod +x /root/mn_scripts/snd_restart_services.sh
- /root/mn_scripts/snd_restart_services.sh
- wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/snd_addnode.sh > /root/mn_scripts/snd_addnode.sh
- chmod +755 /root/mn_scripts/snd_addnode.sh
- chmod +x /root/mn_scripts/snd_addnode.sh
- /root/mn_scripts/snd_addnode.sh
+/usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn1/.snodecoin -conf=/home/snodecoin-mn1/.snodecoin/snodecoin.conf mnsync status
 }
-snd_copia()
+snd_status_peer()
 {
- wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/snd_replace.sh > /root/mn_scripts/snd_replace.sh
- chmod +755 /root/mn_scripts/snd_replace.sh
- chmod +x /root/mn_scripts/snd_replace.sh
- /root/mn_scripts/snd_replace.sh
+/usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn1/.snodecoin -conf=/home/snodecoin-mn1/.snodecoin/snodecoin.conf getpeerinfo
 }
-snd_addnode()
+snd_status_staking()
 {
- wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/snd_addnode.sh > /root/mn_scripts/snd_addnode.sh
- chmod +755 /root/mn_scripts/snd_addnode.sh
- chmod +x /root/mn_scripts/snd_addnode.sh
- /root/mn_scripts/snd_addnode.sh
+/usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn1/.snodecoin -conf=/home/snodecoin-mn1/.snodecoin/snodecoin.conf getstakingstatus
 }
-
 
 ####################################################### MARCOIN
 marc_status()
