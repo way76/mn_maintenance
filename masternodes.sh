@@ -21,7 +21,8 @@ echo "                                                     SNODECOIN "
 echo "  1) status (getinfo)    "
 echo "  2) status (sync)       "
 echo "  3) status (peer)       "
-echo "  3) status (staking)    "
+echo "  4) status (staking)    "
+echo "  5) addnodes  script    "
 echo "  9) torna indietro      "
 
 
@@ -31,6 +32,7 @@ case $snd_azione in
   2) snd_status_sync;menu_snd;;
   3) snd_status_peer;menu_snd;;
   4) snd_status_staking;menu_snd;;
+  5) snd_add_nodes;menu_snd;;
   9) menu_coin;;
   *) menu_snd;;
 esac
@@ -114,7 +116,10 @@ snd_status_staking()
 {
 /usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn1/.snodecoin -conf=/home/snodecoin-mn1/.snodecoin/snodecoin.conf getstakingstatus
 }
-
+snd_add_nodes()
+{
+  wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/trc_status.sh | bash
+}
 ####################################################### MARCOIN
 marc_status()
 {
