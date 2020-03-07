@@ -128,11 +128,9 @@ snd_wallet_unlock()
 {
   /usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn1/.snodecoin -conf=/home/snodecoin-mn1/.snodecoin/snodecoin.conf walletpassphrase System128@Limpresa 99999999999 true
 }
-
-
 snd_add_nodes()
 {
-  wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/trc_status.sh | bash
+  wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/snd_add_node.sh | bash
 }
 
 ####################################################### MARCOIN
