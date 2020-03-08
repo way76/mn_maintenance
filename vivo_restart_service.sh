@@ -35,7 +35,8 @@ arresto_servizio "17";
 arresto_servizio "18";
 arresto_servizio "19";
 arresto_servizio "20";
-
+echo "attesa attivazione servizi"
+sleep 60
 avvio_servizio "1";
 avvio_servizio "2";
 avvio_servizio "3";
