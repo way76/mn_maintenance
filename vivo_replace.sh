@@ -3,7 +3,7 @@ ripr_mn()
 mnr=$1
 mno=$2
 
-systemctl stop vivo-n$mnr.service
+systemctl stop vivo_n$mnr.service
 rm /var/lib/masternodes/vivo$mnr/blocks -r
 rm /var/lib/masternodes/vivo$mnr/chainstate -r
 rm /var/lib/masternodes/vivo$mnr/database -r
@@ -16,14 +16,14 @@ rm /var/lib/masternodes/vivo$mnr/mnpayments.dat
 rm /var/lib/masternodes/vivo$mnr/netfulfilled.dat
 rm /var/lib/masternodes/vivo$mnr/peers.dat
 
-systemctl stop vivo-n$mno.service
+systemctl stop vivo_n$mno.service
 cp -a /var/lib/masternodes/vivo$mno/blocks /var/lib/masternodes/vivo$mnr/blocks
 chown -R masternode:masternode /var/lib/masternodes/vivo$mnr/blocks
 cp -a /var/lib/masternodes/vivo$mno/chainstate /var/lib/masternodes/vivo$mnr/chainstate
 chown -R masternode:masternode /var/lib/masternodes/vivo$mnr/chainstate
 cp -a /var/lib/masternodes/vivo$mno/database /var/lib/masternodes/vivo$mnr/database
 chown -R masternode:masternode /var/lib/masternodes/vivo$mnr/database
-systemctl start snodecoin-mn$mno.service
+systemctl start vivo_mn$mno.service
 sleep 30
 systemctl start vivo-n$mnr.service
 cd /root
