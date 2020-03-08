@@ -173,10 +173,10 @@ vivo_restart()
 }
 vivo_copia()
 {
- #wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/marc_replace.sh > /root/mn_scripts/marc_replace.sh
- #chmod +755 /root/mn_scripts/marc_replace.sh
- #chmod +x /root/mn_scripts/marc_replace.sh
- /root/mn_scripts/vivo_stats.sh
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/vivo_replace.sh > /root/mn_scripts/vivo_replace.sh
+ chmod +755 /root/mn_scripts/vivo_replace.sh
+ chmod +x /root/mn_scripts/vivo_replace.sh
+ /root/mn_scripts/vivo_replace.sh
 }
 ####################################################### 1x2COIN
 a12_status()
