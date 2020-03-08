@@ -25,7 +25,7 @@ cp -a /var/lib/masternodes/vivo$mno/database /var/lib/masternodes/vivo$mnr/datab
 chown -R masternode:masternode /var/lib/masternodes/vivo$mnr/database
 systemctl start vivo_n$mno.service
 sleep 30
-systemctl start vivo-n$mnr.service
+systemctl start vivo_n$mnr.service
 cd /root
 }
  
