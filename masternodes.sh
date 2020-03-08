@@ -25,6 +25,7 @@ echo "  4) status (staking)    "
 echo "  5) wallet lock         "
 echo "  6) wallet unlock       "
 echo "  7) addnodes  script    "
+echo "  8) log saldo conto     "
 echo "  9) torna indietro      "
 
 
@@ -37,6 +38,7 @@ case $snd_azione in
   5) snd_wallet_lock;menu_snd;;
   6) snd_wallet_unlock;menu_snd;;
   7) snd_add_nodes;menu_snd;;
+  8) snd_log_saldo;menu_snd;;
   9) menu_coin;;
   *) menu_snd;;
 esac
@@ -131,6 +133,10 @@ snd_wallet_unlock()
 snd_add_nodes()
 {
   wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/snd_add_node.sh | bash
+}
+snd_log_saldo()
+{
+  nano /root/mn_scripts/snd_balance.txt 
 }
 
 ####################################################### MARCOIN
