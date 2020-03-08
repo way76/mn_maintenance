@@ -23,7 +23,7 @@ cp -a /var/lib/masternodes/vivo$mno/chainstate /var/lib/masternodes/vivo$mnr/cha
 chown -R masternode:masternode /var/lib/masternodes/vivo$mnr/chainstate
 cp -a /var/lib/masternodes/vivo$mno/database /var/lib/masternodes/vivo$mnr/database
 chown -R masternode:masternode /var/lib/masternodes/vivo$mnr/database
-systemctl start vivo_mn$mno.service
+systemctl start vivo_n$mno.service
 sleep 30
 systemctl start vivo-n$mnr.service
 cd /root
