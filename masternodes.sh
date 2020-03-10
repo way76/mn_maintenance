@@ -128,7 +128,7 @@ snd_wallet_lock()
 }
 snd_wallet_unlock()
 {
-  /usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn1/.snodecoin -conf=/home/snodecoin-mn1/.snodecoin/snodecoin.conf walletpassphrase System128@Limpresa 99999999999 true
+  /usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn1/.snodecoin -conf=/home/snodecoin-mn1/.snodecoin/snodecoin.conf walletpassphrase System128@Limpresa 9999999999999 true
 }
 snd_add_nodes()
 {
