@@ -132,8 +132,8 @@ snd_wallet_unlock()
 }
 snd_add_nodes()
 {
- rm  /root/mn_scripts/snd_add_node.sh
- wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/snd_add_node.sh > /root/mn_scripts/snd_add_node.sh
+ rm  /root/mn_scripts/snd_addnode.sh
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/snd_addnode.sh > /root/mn_scripts/snd_add_node.sh
  chmod +755 /root/mn_scripts/snd_add_node.sh
  chmod +x /root/mn_scripts/snd_add_node.sh
  /root/mn_scripts/snd_add_node.sh
