@@ -116,7 +116,7 @@ snd_status_sync()
 }
 snd_status_peer()
 {
-/usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn1/.snodecoin -conf=/home/snodecoin-mn1/.snodecoin/snodecoin.conf getpeerinfo | grep addrlocal
+/usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn1/.snodecoin -conf=/home/snodecoin-mn1/.snodecoin/snodecoin.conf getpeerinfo | grep -nw addrlocal 
 }
 snd_status_staking()
 {
