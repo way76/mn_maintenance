@@ -104,7 +104,7 @@ esac
 
 menu_dogec()
 {
-echo "                                                    1x2COIN "
+echo "                                                    DOGECOIN "
 echo "  1) status masternodes  "
 echo "  2) restart masternodes "
 echo "  9) torna indietro      "
