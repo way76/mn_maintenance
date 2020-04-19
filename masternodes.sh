@@ -3,7 +3,7 @@
 menu_coin()
 {
 echo "Scegliere il menu del coin"
-echo "  1) Snodecoin  2) Marcoin  3) 1x2Coin 4) Vivocoin  9) Exit"
+echo "  1) Snodecoin  2) Marcoin  3) 1x2Coin 4) Vivocoin 5) DogeCoin 9) Exit"
 
 read coin
 case $coin in
@@ -11,6 +11,7 @@ case $coin in
   2) menu_marc;;
   3) menu_1x2;;
   4) menu_vivo;;
+  5) menu_dogec;;
   9) exit;;
   *) echo "invalid option";;
 esac
@@ -101,8 +102,24 @@ case $a1a2_azione in
 esac
 }
 
+menu_dogec()
+{
+echo "                                                    1x2COIN "
+echo "  1) status masternodes  "
+echo "  2) restart masternodes "
+echo "  9) torna indietro      "
+
+read dogec_azione
+case $dogec_azione in
+  1) dogec_status;menu_dogec;;
+  2) dogec_restart;menu_dogec;;
+  9) menu_coin;;
+  *) menu_dogec;;
+esac
 
 
+
+}
 
 
 ############################################# SNODECOIN
@@ -210,8 +227,21 @@ a12_copia()
  chmod +x /root/mn_scripts/1x2_replace.sh
  /root/mn_scripts/1x2_replace.sh
 }
-
-
+####################################################### DOGECOIN
+dogec_status()
+{
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/dogec_status.sh > /root/mn_scripts/dogec_status.sh
+ chmod +755 /root/mn_scripts/dogec_status.sh
+ chmod +x /root/mn_scripts/dogec_status.sh
+ /root/mn_scripts/dogec_status.sh
+}
+dogec_restart()
+{
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/dogec_restart.sh > /root/mn_scripts/dogec_restart.sh
+ chmod +755 /root/mn_scripts/dogec_restart.sh
+ chmod +x /root/mn_scripts/dogec_restart.sh
+ /root/mn_scripts/dogec_restart.sh
+}
 
 
 menu_coin
