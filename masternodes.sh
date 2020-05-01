@@ -302,6 +302,7 @@ trc_copia()
  #chmod +755 /root/mn_scripts/marc_replace.sh
  #chmod +x /root/mn_scripts/marc_replace.sh
  #/root/mn_scripts/marc_replace.sh
+ echo " funzionalita non implementata"
 }
 
 ####################################################### PACCOIN
@@ -326,6 +327,7 @@ pac_copia()
  #chmod +755 /root/mn_scripts/marc_replace.sh
  #chmod +x /root/mn_scripts/marc_replace.sh
  #/root/mn_scripts/marc_replace.sh
+ echo " funzionalita non implementata"
 }
 
 menu_coin
