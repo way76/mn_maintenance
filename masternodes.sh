@@ -12,6 +12,8 @@ case $coin in
   3) menu_1x2;;
   4) menu_vivo;;
   5) menu_dogec;;
+  6) menu_trc;;
+  7) menu_pac;;
   9) exit;;
   *) echo "invalid option";;
 esac
@@ -120,8 +122,42 @@ esac
 
 
 }
+menu_trc()
+{
+echo "                                                    TERRACOIN   "
+echo "  1) status masternodes  "
+echo "  2) restart masternodes "
+#echo "  3) copia masternode    "
+echo "  9) torna indietro      "
 
 
+read trc_azione
+case $trc_azione in
+  1) trc_status;menu_trc;;
+  2) trc_restart;menu_trc;;
+  #3) trc_copia;menu_trc;;
+  9) menu_coin;;
+  *) menu_trc;;
+esac
+}
+menu_pac()
+{
+echo "                                                    PACCOIN "
+echo "  1) status masternodes  "
+echo "  2) restart masternodes "
+#echo "  3) copia masternode    "
+echo "  9) torna indietro      "
+
+
+read pac_azione
+case $pac_azione in
+  1) pac_status;menu_pac;;
+  2) pac_restart;menu_pac;;
+  #3) pac_copia;menu_pac;;
+  9) menu_coin;;
+  *) menu_marc;;
+esac
+}
 ############################################# SNODECOIN
 snd_status_getinfo()
 {
@@ -243,5 +279,53 @@ dogec_restart()
  /root/mn_scripts/dogec_restart.sh
 }
 
+
+####################################################### TERRACOIN
+trc_status()
+{
+ 
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/trc_status.sh > /root/mn_scripts/trc_status.sh
+ chmod +755 /root/mn_scripts/trc_status.sh
+ chmod +x /root/mn_scripts/trc_status.sh
+ /root/mn_scripts/trc_status.sh
+}
+trc_restart()
+{
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/trc_restart_service.sh > /root/mn_scripts/trc_restart_services.sh
+ chmod +755 /root/mn_scripts/trc_restart_services.sh
+ chmod +x /root/mn_scripts/trc_restart_services.sh
+ /root/mn_scripts/trc_restart_services.sh
+}
+trc_copia()
+{
+ #wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/marc_replace.sh > /root/mn_scripts/marc_replace.sh
+ #chmod +755 /root/mn_scripts/marc_replace.sh
+ #chmod +x /root/mn_scripts/marc_replace.sh
+ #/root/mn_scripts/marc_replace.sh
+}
+
+####################################################### PACCOIN
+pac_status()
+{
+ 
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/pac_status.sh > /root/mn_scripts/pac_status.sh
+ chmod +755 /root/mn_scripts/pac_status.sh
+ chmod +x /root/mn_scripts/pac_status.sh
+ /root/mn_scripts/pac_status.sh
+}
+pac_restart()
+{
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/pac_restart_service.sh > /root/mn_scripts/pac_restart_services.sh
+ chmod +755 /root/mn_scripts/pac_restart_services.sh
+ chmod +x /root/mn_scripts/pac_restart_services.sh
+ /root/mn_scripts/pac_restart_services.sh
+}
+pac_copia()
+{
+ #wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/marc_replace.sh > /root/mn_scripts/marc_replace.sh
+ #chmod +755 /root/mn_scripts/marc_replace.sh
+ #chmod +x /root/mn_scripts/marc_replace.sh
+ #/root/mn_scripts/marc_replace.sh
+}
 
 menu_coin
