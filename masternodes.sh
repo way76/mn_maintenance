@@ -3,7 +3,7 @@
 menu_coin()
 {
 echo "Scegliere il menu del coin"
-echo "  1) Snodecoin  2) Marcoin  3) 1x2Coin 4) Vivocoin 5) DogeCoin 9) Exit"
+echo "  1) Snodecoin  2) Marcoin  3) 1x2Coin 4) Vivocoin 5) DogeCoin 6) TerraCoin 7) Paccoin   9) Exit"
 
 read coin
 case $coin in
