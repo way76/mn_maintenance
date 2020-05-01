@@ -329,5 +329,4 @@ pac_copia()
  #/root/mn_scripts/marc_replace.sh
  echo " funzionalita non implementata"
 }
-
 menu_coin
