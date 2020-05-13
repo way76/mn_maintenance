@@ -22,8 +22,19 @@ sudo -Hu snodecoin-mn18 snodecoin-cli addnode $1 add
 sudo -Hu snodecoin-mn19 snodecoin-cli addnode $1 add
 sudo -Hu snodecoin-mn20 snodecoin-cli addnode $1 add
 }
-
-addnodes "149.255.0.145:18988"
-addnodes "85.25.119.74:18988"
-addnodes "3.211.80.4:18988"
-addnodes "24.196.46.9:18988"
+addnode "82.165.23.144:20001"
+addnode "82.165.23.144:20002"
+addnode "82.165.158.250:20001"
+addnode "82.165.158.250:20002"
+addnode "217.160.172.48:20001"
+addnode "217.160.172.48:20002"
+addnode "217.160.142.80:20001"
+addnode "217.160.142.80:20002"
+addnode "212.227.192.172:20001"
+addnode "212.227.192.172:20002"
+addnode "93.90.194.235:20001"
+addnode "93.90.194.235:20002"
+addnode "217.160.246.137:20001"
+addnode "217.160.246.137:20002"
+addnode "217.160.244.245:20001"
+addnode "217.160.244.245:20002"
