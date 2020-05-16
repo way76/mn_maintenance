@@ -34,8 +34,6 @@ sleep 30
 systemctl start doge_mn$mnr.service
 cd /root
 sleep 30
-./dogec_status.sh
- 
 
 }
  
