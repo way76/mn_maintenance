@@ -1,3 +1,46 @@
+
+calcola_max() {
+mnb=$1
+max=$2
+
+#echo "Ricevuto $mnb $max"
+
+mn1b=${mnb##*:}
+mn1b=${mn1b%,} 
+
+  if (( $mn1b > $max )); then max=$mn1b; fi; 
+
+echo "$max"
+
+}
+
+stampa_out(){
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+
+margine=50
+mnb=$1
+max=$2
+mns=$3
+min=$max-$margine
+pos=$4
+mn1b=${mnb##*:}
+mn1b=${mn1b%,} 
+#diff=$(mn1b-max)
+
+
+ if [[ "$mn1b" -lt "$min" ]]; then 
+   echo -e "Masternode $pos: $mnb - $mns - ATTENZIONE mn$pos per $diff blocchi" 
+ else
+   echo -e "Masternode $pos: $mnb - $mns" 
+    fi
+}
+
+
+
 mn1b=$(/usr/local/bin/dogecash-cli -conf=/home/doge_mn1/.dogecash/dogecash.conf -datadir=/home/doge_mn1/.dogecash/ getinfo | grep blocks)
 mn1s=$(/usr/local/bin/dogecash-cli -conf=/home/doge_mn1/.dogecash/dogecash.conf -datadir=/home/doge_mn1/.dogecash/ getmasternodestatus | grep message)
 mn2b=$(/usr/local/bin/dogecash-cli -conf=/home/doge_mn2/.dogecash/dogecash.conf -datadir=/home/doge_mn2/.dogecash/ getinfo | grep blocks)
@@ -42,23 +85,48 @@ mn20s=$(/usr/local/bin/dogecash-cli -conf=/home/doge_mn20/.dogecash/dogecash.con
 
 EXPBLOCK=$(curl -s4 "https://api.dogec.io/api/getblockcount")
 echo "Explorer:__________________$EXPBLOCK blocchi"
-echo "Masternode 1:  $mn1b - $mn1s "
-echo "Masternode 2:  $mn2b - $mn2s "
-echo "Masternode 3:  $mn3b - $mn3s "
-echo "Masternode 4:  $mn4b - $mn4s "
-echo "Masternode 5:  $mn5b - $mn5s "
-echo "Masternode 6:  $mn6b - $mn6s "
-echo "Masternode 7:  $mn7b - $mn7s "
-echo "Masternode 8:  $mn8b - $mn8s "
-echo "Masternode 9:  $mn9b - $mn9s "
-echo "Masternode 10: $mn10b - $mn10s "
-echo "Masternode 11: $mn11b - $mn11s "
-echo "Masternode 12: $mn12b - $mn12s "
-echo "Masternode 13: $mn13b - $mn13s "
-echo "Masternode 14: $mn14b - $mn14s "
-echo "Masternode 15: $mn15b - $mn15s "
-echo "Masternode 16: $mn16b - $mn16s "
-echo "Masternode 17: $mn17b - $mn17s "
-echo "Masternode 18: $mn18b - $mn18s "
-echo "Masternode 19: $mn19b - $mn19s "
-echo "Masternode 20: $mn20b - $mn20s "
+
+max=0
+max=$(calcola_max "$mn1b" "$max")
+max=$(calcola_max "$mn2b" "$max")
+max=$(calcola_max "$mn3b" "$max")
+max=$(calcola_max "$mn4b" "$max")
+max=$(calcola_max "$mn5b" "$max")
+max=$(calcola_max "$mn6b" "$max")
+max=$(calcola_max "$mn7b" "$max")
+max=$(calcola_max "$mn8b" "$max")
+max=$(calcola_max "$mn9b" "$max")
+max=$(calcola_max "$mn10b" "$max")
+max=$(calcola_max "$mn11b" "$max")
+max=$(calcola_max "$mn12b" "$max")
+max=$(calcola_max "$mn13b" "$max")
+max=$(calcola_max "$mn14b" "$max")
+max=$(calcola_max "$mn15b" "$max")
+max=$(calcola_max "$mn16b" "$max")
+max=$(calcola_max "$mn17b" "$max")
+max=$(calcola_max "$mn18b" "$max")
+max=$(calcola_max "$mn19b" "$max")
+max=$(calcola_max "$mn20b" "$max")
+
+
+echo "versione 1, max $max"
+stampa_out "$mn1b" "$max" "$mn1s" 1
+stampa_out "$mn2b" "$max" "$mn2s" 2
+stampa_out "$mn3b" "$max" "$mn3s" 3
+stampa_out "$mn4b" "$max" "$mn4s" 4
+stampa_out "$mn5b" "$max" "$mn5s" 5
+stampa_out "$mn6b" "$max" "$mn6s" 6
+stampa_out "$mn7b" "$max" "$mn7s" 7
+stampa_out "$mn8b" "$max" "$mn8s" 8
+stampa_out "$mn9b" "$max" "$mn9s" 9
+stampa_out "$mn10b" "$max" "$mn10s" 10
+stampa_out "$mn11b" "$max" "$mn11s" 11
+stampa_out "$mn12b" "$max" "$mn12s" 12
+stampa_out "$mn13b" "$max" "$mn13s" 13
+stampa_out "$mn14b" "$max" "$mn14s" 14
+stampa_out "$mn15b" "$max" "$mn15s" 15
+stampa_out "$mn16b" "$max" "$mn16s" 16
+stampa_out "$mn17b" "$max" "$mn17s" 17
+stampa_out "$mn18b" "$max" "$mn18s" 18
+stampa_out "$mn19b" "$max" "$mn19s" 19
+stampa_out "$mn20b" "$max" "$mn20s" 20
