@@ -29,7 +29,8 @@ pos=$4
 mn1b=${mnb##*:}
 mn1b=${mn1b%,} 
 declare -i diff
-diff=$max-$mn1b
+#diff=$max-$mn1b
+diff=$((mn1b - max))
 totdiff=$totdiff+$diff
 
  if [[ "$mn1b" -lt "$min" ]]; then 
