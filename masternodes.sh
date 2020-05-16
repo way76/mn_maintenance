@@ -109,12 +109,14 @@ menu_dogec()
 echo "                                                    DOGECOIN "
 echo "  1) status masternodes  "
 echo "  2) restart masternodes "
+echo "  3) copia masternode "
 echo "  9) torna indietro      "
 
 read dogec_azione
 case $dogec_azione in
   1) dogec_status;menu_dogec;;
   2) dogec_restart;menu_dogec;;
+  3) dogec_copia;menu_dogec;;
   9) menu_coin;;
   *) menu_dogec;;
 esac
@@ -278,7 +280,13 @@ dogec_restart()
  chmod +x /root/mn_scripts/dogec_restart_services.sh
  /root/mn_scripts/dogec_restart_services.sh
 }
-
+dogec_copia()
+{
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/dogec_replace.sh > /root/mn_scripts/dogec_replace.sh
+ chmod +755 /root/mn_scripts/dogec_replace.sh
+ chmod +x /root/mn_scripts/dogec_replace.sh
+ /root/mn_scripts/dogec_replace.sh
+}
 
 ####################################################### TERRACOIN
 trc_status()
