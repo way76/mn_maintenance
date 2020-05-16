@@ -30,6 +30,7 @@ pos=$4
 mn1b=${mnb##*:}
 mn1b=${mn1b%,} 
 #diff=$(mn1b-max)
+diff=$((mn1b - max))
 
 
  if [[ "$mn1b" -lt "$min" ]]; then 
