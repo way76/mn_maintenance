@@ -3,7 +3,7 @@
 menu_coin()
 {
 echo "Scegliere il menu del coin"
-echo "  1) Snodecoin  2) Marcoin  3) 1x2Coin 4) Vivocoin 5) DogeCoin 6) TerraCoin 7) Paccoin   9) Exit"
+echo "  1) Snodecoin  2) Marcoin  3) 1x2Coin 4) Vivocoin 5) DogeCoin 6) TerraCoin 7) Paccoin   9) Exit 11) Installer"
 
 read coin
 case $coin in
@@ -15,6 +15,7 @@ case $coin in
   6) menu_trc;;
   7) menu_pac;;
   9) exit;;
+ 11) menu_installer;; 
   *) echo "invalid option";;
 esac
 }
@@ -197,6 +198,84 @@ snd_log_saldo()
 {
   nano /root/mn_scripts/snd_balance.txt 
 }
+
+menu_installer()
+{
+echo "                                                    INSTALLER COIN "
+echo "  1) marcoin       installer "
+echo "  2) 1x2coin       installer "
+echo "  3) vivo          installer "
+echo "  4) dogec         installer "
+echo "  5) terracoin     installer "
+echo "  6) paccoin       installer "
+echo "  9) torna indietro      "
+
+read installer_azione
+case $installer_azione in
+  1) marc_installer;menu_installer;;
+  2) a1x2_installer;menu_installer;;
+  3) vivo_installer;menu_installer;;
+  4) dogec_installer;menu_installer;;
+  5) terracoin_installer;menu_installer;;
+  6) pac_installer;menu_installer;;
+  9) menu_coin;;
+  *) menu_installer;;
+esac
+}
+
+marc_installer()
+{
+ rm  /root/mn_scripts/marc_installer.sh
+ wget -O - https://raw.githubusercontent.com/way76/mn_maintenance/master/marc_installer.sh > /root/mn_scripts/marc_installer.sh
+ chmod +755 /root/mn_scripts/marc_installer.sh
+ chmod +x /root/mn_scripts/marc_installer.sh
+ /root/mn_scripts/marc_installer.sh
+}
+
+a1x2_installer()
+{
+ rm  /root/mn_scripts/1x2_installer.sh
+ wget -O - https://raw.githubusercontent.com/way76/mn_maintenance/master/1x2_installer.sh > /root/mn_scripts/1x2_installer.sh
+ chmod +755 /root/mn_scripts/1x2_installer.sh
+ chmod +x /root/mn_scripts/1x2_installer.sh
+ /root/mn_scripts/1x2_installer.sh
+}
+
+vivo_installer()
+{
+ rm  /root/mn_scripts/1vivobinMulti.sh
+ wget https://raw.githubusercontent.com/coolblock/vpsVivo/master/utils/vivo/1vivobinMulti.sh > /root/mn_scripts/1vivobinMulti.sh
+ chmod +755 /root/mn_scripts/1vivobinMulti.sh
+ chmod +x /root/mn_scripts/1vivobinMulti.sh
+ /root/mn_scripts/1vivobinMulti.sh
+}
+dogec_installer()
+{
+ #rm  /root/mn_scripts/1vivobinMulti.sh
+ bash -ic "$(wget -4qO- -o- raw.githubusercontent.com/matsuro-hadouken/multi-mn-installation/master/multi-nodes-installer.sh)" ; source ~/.bashrc
+ #chmod +755 /root/mn_scripts/1vivobinMulti.sh
+ #chmod +x /root/mn_scripts/1vivobinMulti.sh
+ #/root/mn_scripts/1vivobinMulti.sh
+}
+terracoin_installer()
+{
+ #rm  /root/mn_scripts/1vivobinMulti.sh
+ apt-get install -y python ; rm trc.py; wget https://raw.githubusercontent.com/way76/terracoin/master/trc.py && python trc.py
+ #chmod +755 /root/mn_scripts/1vivobinMulti.sh
+ #chmod +x /root/mn_scripts/1vivobinMulti.sh
+ #/root/mn_scripts/1vivobinMulti.sh
+}
+pac_installer()
+{
+ #rm  /root/mn_scripts/1vivobinMulti.sh
+ #apt-get install -y python ; rm trc.py; wget https://raw.githubusercontent.com/way76/terracoin/master/trc.py && python trc.py
+ #chmod +755 /root/mn_scripts/1vivobinMulti.sh
+ #chmod +x /root/mn_scripts/1vivobinMulti.sh
+ #/root/mn_scripts/1vivobinMulti.sh
+ echo " funzionalita non implementata "
+}
+
+
 
 ####################################################### MARCOIN
 marc_status()
