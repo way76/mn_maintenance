@@ -304,9 +304,11 @@ function create_user()
     cp -r /home/marcoin-mn1/.marcoin/blocks /home/${USER_NAME}/.marcoin/blocks
     cp -r /home/marcoin-mn1/.marcoin/chainstate /home/${USER_NAME}/.marcoin/chainstate
     cp -r /home/marcoin-mn1/.marcoin/database /home/${USER_NAME}/.marcoin/database
+    cp -r /home/marcoin-mn1/.marcoin/peers.dat /home/${USER_NAME}/.marcoin/peers.dat
     chmod a+rwx /home/${USER_NAME}/.marcoin/blocks
     chmod a+rwx /home/${USER_NAME}/.marcoin/chainstate
     chmod a+rwx /home/${USER_NAME}/.marcoin/database
+    chmod a+rwx /home/${USER_NAME}/.marcoin/peers.dat
   fi
   
   
