@@ -208,6 +208,7 @@ echo "  3) vivo          installer "
 echo "  4) dogec         installer "
 echo "  5) terracoin     installer "
 echo "  6) paccoin       installer "
+echo "  7) snodecoin     installer "
 echo "  9) torna indietro      "
 
 read installer_azione
@@ -218,6 +219,7 @@ case $installer_azione in
   4) dogec_installer;menu_installer;;
   5) terracoin_installer;menu_installer;;
   6) pac_installer;menu_installer;;
+  7) snd_installer;menu_installer;;
   9) menu_coin;;
   *) menu_installer;;
 esac
@@ -274,7 +276,14 @@ pac_installer()
  #/root/mn_scripts/1vivobinMulti.sh
  echo " funzionalita non implementata "
 }
-
+snd_installer()
+{
+ rm  /root/mn_scripts/snode_installer18.sh
+ wget -O - https://raw.githubusercontent.com/way76/mn_maintenance/master/snode_installer18.sh > /root/mn_scripts/snode_installer18.sh
+ chmod +755 /root/mn_scripts/snode_installer18.sh
+ chmod +x /root/mn_scripts/snode_installer18.sh
+ /root/mn_scripts/snode_installer18.sh
+}
 
 
 ####################################################### MARCOIN
