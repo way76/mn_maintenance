@@ -35,7 +35,7 @@ echo "  9) torna indietro      "
 
 read snd_azione
 case $snd_azione in
-  1) snd_status_getinfo;menu_snd;;
+  1) snd_status;menu_snd;;
   2) snd_status_sync;menu_snd;;
   3) snd_status_peer;menu_snd;;
   4) snd_status_staking;menu_snd;;
@@ -166,6 +166,16 @@ snd_status_getinfo()
 {
 /usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn1/.snodecoin -conf=/home/snodecoin-mn1/.snodecoin/snodecoin.conf getinfo
 }
+snd_status()
+{
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/snd_status.sh > /root/mn_scripts/snd_status.sh
+ chmod +755 /root/mn_scripts/snd_status.sh
+ chmod +x /root/mn_scripts/snd_status.sh
+ /root/mn_scripts/snd_status.sh
+}
+
+
+
 snd_status_sync()
 {
 /usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn1/.snodecoin -conf=/home/snodecoin-mn1/.snodecoin/snodecoin.conf mnsync status
