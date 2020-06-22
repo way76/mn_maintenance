@@ -36,6 +36,8 @@ cp -a /home/snodecoin-mn$mno/.snodecoin/zerocoin /home/snodecoin-mn$mnr/.snodeco
 chown -R snodecoin-mn$mnr:snodecoin-mn$mnr zerocoin
 cp -a /home/snodecoin-mn$mno/.snodecoin/database /home/snodecoin-mn$mnr/.snodecoin/database
 chown -R snodecoin-mn$mnr:snodecoin-mn$mnr database
+cp /home/snodecoin-mn$mno/.snodecoin/peers.dat /home/snodecoin-mn$mnr/.snodecoin/peers.dat
+chown -R snodecoin-mn$mnr:snodecoin-mn$mnr peers.dat
 systemctl start snodecoin-mn$mno.service
 sleep 30
 systemctl start snodecoin-mn$mnr.service
