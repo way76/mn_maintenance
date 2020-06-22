@@ -22,27 +22,16 @@ esac
 menu_snd()
 {
 echo "                                                     SNODECOIN "
-echo "  1) status (getinfo)    "
-echo "  2) status (sync)       "
-echo "  3) status (peer)       "
-echo "  4) status (staking)    "
-echo "  5) wallet lock         "
-echo "  6) wallet unlock       "
-echo "  7) addnodes  script    "
-echo "  8) log saldo conto     "
+echo "  1) status masternodes  "
+echo "  2) restart masternodes "
+echo "  3) copia masternode    "
 echo "  9) torna indietro      "
-
 
 read snd_azione
 case $snd_azione in
   1) snd_status;menu_snd;;
-  2) snd_status_sync;menu_snd;;
-  3) snd_status_peer;menu_snd;;
-  4) snd_status_staking;menu_snd;;
-  5) snd_wallet_lock;menu_snd;;
-  6) snd_wallet_unlock;menu_snd;;
-  7) snd_add_nodes;menu_snd;;
-  8) snd_log_saldo;menu_snd;;
+  2) snd_restart;menu_snd;;
+  3) snd_copia;menu_snd;;
   9) menu_coin;;
   *) menu_snd;;
 esac
@@ -173,7 +162,24 @@ snd_status()
  chmod +x /root/mn_scripts/snd_status.sh
  /root/mn_scripts/snd_status.sh
 }
+snd_restart()
+{
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/snd_restart_services.sh > /root/mn_scripts/snd_restart_services.sh
+ chmod +755 /root/mn_scripts/snd_restart_services.sh
+ chmod +x /root/mn_scripts/snd_restart_services.sh
+ /root/mn_scripts/snd_restart_services.sh
+}
+snd_copia()
+{
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/snd_replace.sh > /root/mn_scripts/snd_replace.sh
+ chmod +755 /root/mn_scripts/snd_replace.sh
+ chmod +x /root/mn_scripts/snd_replace.sh
+ /root/mn_scripts/snd_replace.sh
+}
 
+
+
+snd_restart_services.sh
 
 
 snd_status_sync()
