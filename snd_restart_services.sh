@@ -1,6 +1,6 @@
 attesa()
 {
-sleep 300
+sleep 120
 
 }
 
