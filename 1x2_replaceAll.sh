@@ -3,6 +3,7 @@ ripr_mn()
 {
 mnr=$1
 mno=$2
+echo "Copio il nodo $1 in $2..."
 
 systemctl stop 1x2coin-mn$mnr.service
 rm /home/1x2coin-mn$mnr/.1x2coin/blocks -r
