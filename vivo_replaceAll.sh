@@ -2,6 +2,7 @@ ripr_mn()
 {
 mnr=$1
 mno=$2
+echo "Copio il nodo $2 in $1..."
 
 systemctl stop vivo_n$mnr.service
 rm /var/lib/masternodes/vivo$mnr/blocks -r
