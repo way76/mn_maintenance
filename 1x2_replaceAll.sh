@@ -43,7 +43,9 @@ systemctl start 1x2coin-mn$mnr.service
 
 
 }
- 
+
+copia_mn()
+{
 ripr_mn "1" "2"
 ripr_mn "1" "3"
 ripr_mn "1" "4"
@@ -63,3 +65,13 @@ ripr_mn "1" "17"
 ripr_mn "1" "18"
 ripr_mn "1" "19"
 ripr_mn "1" "20"
+
+}
+ 
+read azione
+case $azione in
+  1) copia_mn;;
+  *) menu_snd;;
+esac
+} 
+ 
