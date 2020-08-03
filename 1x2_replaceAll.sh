@@ -40,7 +40,7 @@ chown -R 1x2coin-mn$mnr:1x2coin-mn$mnr peers.dat
 --systemctl start 1x2coin-mn$mno.service
 --sleep 30
 systemctl start 1x2coin-mn$mnr.service
-
+sleep 90
 
 }
 
