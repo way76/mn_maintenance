@@ -44,28 +44,28 @@ sleep 90
 
 copia_mn()
 {
-ripr_mn "1" "2"
-ripr_mn "1" "3"
-ripr_mn "1" "4"
-ripr_mn "1" "5"
-ripr_mn "1" "6"
-ripr_mn "1" "7"
-ripr_mn "1" "8"
-ripr_mn "1" "9"
-ripr_mn "1" "10"
-ripr_mn "1" "11"
-ripr_mn "1" "12"
-ripr_mn "1" "13"
-ripr_mn "1" "14"
-ripr_mn "1" "15"
-ripr_mn "1" "16"
-ripr_mn "1" "17"
-ripr_mn "1" "18"
-ripr_mn "1" "19"
-ripr_mn "1" "20"
+ripr_mn "2" "1"
+ripr_mn "3" "1"
+ripr_mn "4" "1"
+ripr_mn "5" "1"
+ripr_mn "6" "1"
+ripr_mn "7" "1"
+ripr_mn "8" "1"
+ripr_mn "9" "1"
+ripr_mn "10" "1"
+ripr_mn "11" "1"
+ripr_mn "12" "1"
+ripr_mn "13" "1"
+ripr_mn "14" "1"
+ripr_mn "15" "1"
+ripr_mn "16" "1"
+ripr_mn "17" "1"
+ripr_mn "18" "1"
+ripr_mn "19" "1"
+ripr_mn "20" "1"
 systemctl start 1x2coin-mn1.service
 }
- 
+echo "scegliere 1 per confermare" 
 read azione
 case $azione in
   1) copia_mn;;
