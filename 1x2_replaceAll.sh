@@ -37,8 +37,6 @@ cp -a /home/1x2coin-mn$mno/.1x2coin/database /home/1x2coin-mn$mnr/.1x2coin/datab
 chown -R 1x2coin-mn$mnr:1x2coin-mn$mnr database
 cp /home/1x2coin-mn$mno/.1x2coin/peers.dat /home/1x2coin-mn$mnr/.1x2coin/peers.dat
 chown -R 1x2coin-mn$mnr:1x2coin-mn$mnr peers.dat
---systemctl start 1x2coin-mn$mno.service
---sleep 30
 systemctl start 1x2coin-mn$mnr.service
 sleep 90
 
@@ -65,7 +63,7 @@ ripr_mn "1" "17"
 ripr_mn "1" "18"
 ripr_mn "1" "19"
 ripr_mn "1" "20"
-
+systemctl start 1x2coin-mn1.service
 }
  
 read azione
