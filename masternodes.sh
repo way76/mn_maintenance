@@ -62,6 +62,7 @@ echo "                                                     VIVOCOIN "
 echo "  1) status masternodes  "
 echo "  2) restart masternodes "
 echo "  3) copia masternode    "
+echo "  4) copia masternode  1 in tutti  "
 echo "  9) torna indietro      "
 
 
@@ -70,6 +71,7 @@ case $vivo_azione in
   1) vivo_status;menu_vivo;;
   2) vivo_restart;menu_vivo;;
   3) vivo_copia;menu_vivo;;
+  4) vivo_copiaAll;menu_vivo;;
   9) menu_coin;;
   *) menu_vivo;;
 esac
@@ -348,6 +350,13 @@ vivo_copia()
  chmod +755 /root/mn_scripts/vivo_replace.sh
  chmod +x /root/mn_scripts/vivo_replace.sh
  /root/mn_scripts/vivo_replace.sh
+}
+vivo_copiaAll()
+{
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/vivo_replaceAll.sh > /root/mn_scripts/vivo_replaceAll.sh
+ chmod +755 /root/mn_scripts/vivo_replaceAll.sh
+ chmod +x /root/mn_scripts/vivo_replaceAll.sh
+ /root/mn_scripts/vivo_replaceAll.sh
 }
 ####################################################### 1x2COIN
 a12_status()
