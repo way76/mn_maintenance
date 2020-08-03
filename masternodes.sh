@@ -81,6 +81,7 @@ echo "                                                    1x2COIN "
 echo "  1) status masternodes  "
 echo "  2) restart masternodes "
 echo "  3) copia masternode    "
+echo "  4) copia mn1 su tutti  "
 echo "  9) torna indietro      "
 
 
@@ -89,6 +90,7 @@ case $a1a2_azione in
   1) a12_status;menu_1x2;;
   2) a12_restart;menu_1x2;;
   3) a12_copia;menu_1x2;;
+  4) a12_copiatutti;menu_1x2;;
   9) menu_coin;;
   *) menu_1x2;;
 esac
@@ -368,6 +370,13 @@ a12_copia()
  chmod +755 /root/mn_scripts/1x2_replace.sh
  chmod +x /root/mn_scripts/1x2_replace.sh
  /root/mn_scripts/1x2_replace.sh
+}
+a12_copiatutti()
+{
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/1x2_replaceAll.sh > /root/mn_scripts/1x2_replaceAll.sh
+ chmod +755 /root/mn_scripts/1x2_replaceAll.sh
+ chmod +x /root/mn_scripts/1x2_replaceAll.sh
+ /root/mn_scripts/1x2_replaceAll.sh
 }
 ####################################################### DOGECOIN
 dogec_status()
