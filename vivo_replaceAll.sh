@@ -26,10 +26,8 @@ chown -R masternode:masternode /var/lib/masternodes/vivo$mnr/database
 cp -a /var/lib/masternodes/vivo$mno/peers.dat /var/lib/masternodes/vivo$mnr/peers.dat
 chown -R masternode:masternode /var/lib/masternodes/vivo$mnr/peers.dat
 
-systemctl start vivo_n$mno.service
-sleep 30
 systemctl start vivo_n$mnr.service
-cd /root
+sleep 90
 }
  
 copia_mn()
