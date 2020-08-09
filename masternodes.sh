@@ -229,6 +229,7 @@ echo "  4) dogec         installer "
 echo "  5) terracoin     installer "
 echo "  6) paccoin       installer "
 echo "  7) snodecoin     installer "
+echo "  12) scarica      eseguibili"
 echo "  9) torna indietro      "
 
 read installer_azione
@@ -240,6 +241,7 @@ case $installer_azione in
   5) terracoin_installer;menu_installer;;
   6) pac_installer;menu_installer;;
   7) snd_installer;menu_installer;;
+  12) scarica_eseguibili;menu_installer;;
   9) menu_coin;;
   *) menu_installer;;
 esac
@@ -304,7 +306,15 @@ snd_installer()
  chmod +x /root/mn_scripts/snode_installer18.sh
  /root/mn_scripts/snode_installer18.sh
 }
-
+scarica_eseguibili()
+{
+ wget -O - http://zaim.it/linux_sw/1x2coin-cli > /usr/local/bin/1x2coin-cli
+ chmod +755 /usr/local/bin/1x2coin-cli
+ chmod +x /usr/local/bin/1x2coin-cli
+ wget -O - http://zaim.it/linux_sw/1x2coind > /usr/local/bin/1x2coind
+ chmod +755 /usr/local/bin/1x2coind
+ chmod +x /usr/local/bin/1x2coind
+}
 
 ####################################################### MARCOIN
 marc_status()
