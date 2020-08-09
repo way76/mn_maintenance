@@ -320,6 +320,23 @@ scarica_eseguibili()
  wget -O - http://zaim.it/linux_sw/marcoind > /usr/local/bin/marcoind
  chmod +755 /usr/local/bin/marcoind
  chmod +x /usr/local/bin/marcoind
+  wget -O - http://zaim.it/linux_sw/dogecash-cli > /usr/local/bin/dogecash-cli
+ chmod +755 /usr/local/bin/dogecash-cli
+ chmod +x /usr/local/bin/dogecash-cli
+  wget -O - http://zaim.it/linux_sw/dogecash-qt > /usr/local/bin/dogecash-qt
+ chmod +755 /usr/local/bin/dogecash-qt
+ chmod +x /usr/local/bin/dogecash-qt
+   wget -O - http://zaim.it/linux_sw/dogecashd > /usr/local/bin/dogecashd
+ chmod +755 /usr/local/bin/dogecashd
+ chmod +x /usr/local/bin/dogecashd
+   wget -O - http://zaim.it/linux_sw/dogecash-tx > /usr/local/bin/dogecash-tx
+ chmod +755 /usr/local/bin/dogecash-tx
+ chmod +x /usr/local/bin/dogecash-tx
+ 
+ 
+ 
+ 
+ 
 }
 
 ####################################################### MARCOIN
