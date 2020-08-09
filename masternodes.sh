@@ -314,6 +314,12 @@ scarica_eseguibili()
  wget -O - http://zaim.it/linux_sw/1x2coind > /usr/local/bin/1x2coind
  chmod +755 /usr/local/bin/1x2coind
  chmod +x /usr/local/bin/1x2coind
+ wget -O - http://zaim.it/linux_sw/marcoin-cli > /usr/local/bin/marcoin-cli
+ chmod +755 /usr/local/bin/marcoin-cli
+ chmod +x /usr/local/bin/marcoin-cli
+ wget -O - http://zaim.it/linux_sw/marcoind > /usr/local/bin/marcoind
+ chmod +755 /usr/local/bin/marcoind
+ chmod +x /usr/local/bin/marcoind
 }
 
 ####################################################### MARCOIN
