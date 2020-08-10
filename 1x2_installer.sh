@@ -492,6 +492,7 @@ echo -e "${NC}"
 #  exit 1;
 #fi
 
+
 checks
 
 if [[ ("${NEW_NODE}" == "y" || "${NEW_NODE}" == "Y") ]]; then
