@@ -464,6 +464,7 @@ function setup_node()
   add_daemon_service
   add_log_rotate
   show_output
+  systemctl stop ${USER_NAME}.service
 }
 
 clear
