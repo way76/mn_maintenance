@@ -254,6 +254,10 @@ marc_installer()
  chmod +755 /root/mn_scripts/marc_installer.sh
  chmod +x /root/mn_scripts/marc_installer.sh
  /root/mn_scripts/marc_installer.sh
+ /root/mn_scripts/marc_installer.sh
+ /root/mn_scripts/marc_installer.sh
+ /root/mn_scripts/marc_installer.sh
+ /root/mn_scripts/marc_installer.sh
 }
 
 a1x2_installer()
@@ -262,6 +266,10 @@ a1x2_installer()
  wget -O - https://raw.githubusercontent.com/way76/mn_maintenance/master/1x2_installer.sh > /root/mn_scripts/1x2_installer.sh
  chmod +755 /root/mn_scripts/1x2_installer.sh
  chmod +x /root/mn_scripts/1x2_installer.sh
+ /root/mn_scripts/1x2_installer.sh
+ /root/mn_scripts/1x2_installer.sh
+ /root/mn_scripts/1x2_installer.sh
+ /root/mn_scripts/1x2_installer.sh
  /root/mn_scripts/1x2_installer.sh
 }
 
