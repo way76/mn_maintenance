@@ -25,10 +25,10 @@ NC='\033[0m'
 
 function checks() 
 {
-  if [[ $(lsb_release -d) != *16.04* ]]; then
-    echo -e " ${RED}You are not running Ubuntu 16.04. Installation is cancelled.${NC}"
-    exit 1
-  fi
+  #if [[ $(lsb_release -d) != *16.04* ]]; then
+  #  echo -e " ${RED}You are not running Ubuntu 16.04. Installation is cancelled.${NC}"
+  #  exit 1
+  #fi
 
   if [[ $EUID -ne 0 ]]; then
      echo -e " ${RED}$0 must be run as root so it can update your system and create the required masternode users.${NC}"
@@ -486,11 +486,11 @@ echo -e "  -  BTC: 1DJdhFp6CiVZSBSsXcecp1FnuHXDcsYQPu"
 echo -e "${GREEN}"
 echo -e "============================================================================================================="              
 echo -e "${NC}"
-read -e -p "$(echo -e ${YELLOW} Do you want to continue? [Y/N] ${NC})" CHOICE
+#read -e -p "$(echo -e ${YELLOW} Do you want to continue? [Y/N] ${NC})" CHOICE
 
-if [[ ("${CHOICE}" == "n" || "${CHOICE}" == "N") ]]; then
-  exit 1;
-fi
+#if [[ ("${CHOICE}" == "n" || "${CHOICE}" == "N") ]]; then
+#  exit 1;
+#fi
 
 checks
 
