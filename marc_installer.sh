@@ -504,11 +504,11 @@ echo -e "  -  BTC: 1DJdhFp6CiVZSBSsXcecp1FnuHXDcsYQPu"
 echo -e "${GREEN}"
 echo -e "============================================================================================================="              
 echo -e "${NC}"
-read -e -p "$(echo -e ${YELLOW} Do you want to continue? [Y/N] ${NC})" CHOICE
+#read -e -p "$(echo -e ${YELLOW} Do you want to continue? [Y/N] ${NC})" CHOICE
 
-if [[ ("${CHOICE}" == "n" || "${CHOICE}" == "N") ]]; then
-  exit 1;
-fi
+#if [[ ("${CHOICE}" == "n" || "${CHOICE}" == "N") ]]; then
+#  exit 1;
+#fi
 
 checks
 
