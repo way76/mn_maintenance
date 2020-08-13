@@ -5,6 +5,8 @@ sleep 180
 }
 
 
+killall marcoind -8
+killall marcoind -8
 echo "Fermo i servizi:"
 echo "1:"
 systemctl stop marcoin-mn1.service
