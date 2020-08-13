@@ -1,5 +1,6 @@
 killall 1x2coind -8
 killall 1x2coind -8
+
 echo "Fermo i servizi:"
 echo "1:"
 systemctl stop 1x2coin-mn1.service
