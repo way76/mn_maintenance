@@ -358,6 +358,12 @@ function create_key()
 {
   echo -e "${GREEN} Creating masternode private key${NC}"
   local privkey=$(sudo -u ${USER_NAME} ${CLI_PATH} -datadir=${HOME_FOLDER} -conf=${HOME_FOLDER}/${CONFIG_FILE} masternode genkey 2>&1)
+  
+   
+  if [[ -z "${privkey}" ]] || [[ "${privkey^^}" = *"ERROR"* ]]; 
+  then
+  local privkey=$(sudo -u marcoin-mn1 /usr/local/bin/marcoin-cli -datadir=/home/marcoin-mn1/.marcoin -conf=/home/marcoin-mn1/.marcoin/1x2coin.conf masternode genkey 2>&1)
+  fi
 
   if [[ -z "${privkey}" ]] || [[ "${privkey^^}" = *"ERROR"* ]]; 
   then
