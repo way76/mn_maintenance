@@ -345,6 +345,7 @@ function create_key()
   then
     local retry=20
     echo -e "${GREEN}  - Attempt ${KEY_ATTEMPT}/20: Unable to request private key or node not ready, retrying in ${retry} seconds ...${NC}"
+    echo ${privkey}
     sleep ${retry}
     
     KEY_ATTEMPT=$[KEY_ATTEMPT+1]
