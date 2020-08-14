@@ -340,11 +340,17 @@ function create_key()
 {
   echo -e "${GREEN} Creating masternode private key${NC}"
   local privkey=$(sudo -u ${USER_NAME} ${CLI_PATH} -datadir=${HOME_FOLDER} -conf=${HOME_FOLDER}/${CONFIG_FILE} masternode genkey 2>&1)
+  
+  if [[ -z "${privkey}" ]] || [[ "${privkey^^}" = *"ERROR"* ]]; 
+  then
+  local privkey=$(sudo -u 1x2coin-mn1 /usr/local/bin/1x2coin-cli -datadir=/home/1x2coin-mn1/.1x2coin -conf=/home/1x2coin-mn1/.1x2coin/1x2coin.conf masternode genkey 2>&1)
+  fi
 
   if [[ -z "${privkey}" ]] || [[ "${privkey^^}" = *"ERROR"* ]]; 
   then
     local retry=20
     echo -e "${GREEN}  - Attempt ${KEY_ATTEMPT}/20: Unable to request private key or node not ready, retrying in ${retry} seconds ...${NC}"
+    
     echo ${privkey}
     sleep ${retry}
     
