@@ -352,7 +352,12 @@ scarica_eseguibili()
    wget -O - http://zaim.it/linux_sw/dogecash-tx > /usr/local/bin/dogecash-tx
  chmod +755 /usr/local/bin/dogecash-tx
  chmod +x /usr/local/bin/dogecash-tx
- 
+    wget -O - http://zaim.it/linux_sw/snodecoind > /usr/local/bin/snodecoind
+ chmod +755 /usr/local/bin/snodecoind
+ chmod +x /usr/local/bin/snodecoind
+    wget -O - http://zaim.it/linux_sw/snodecoin-cli > /usr/local/bin/snodecoind-cli
+ chmod +755 /usr/local/bin/snodecoind-cli
+ chmod +x /usr/local/bin/snodecoind-cli
  
  
  
