@@ -355,9 +355,9 @@ scarica_eseguibili()
     wget -O - http://zaim.it/linux_sw/snodecoind > /usr/local/bin/snodecoind
  chmod +755 /usr/local/bin/snodecoind
  chmod +x /usr/local/bin/snodecoind
-    wget -O - http://zaim.it/linux_sw/snodecoin-cli > /usr/local/bin/snodecoind-cli
- chmod +755 /usr/local/bin/snodecoind-cli
- chmod +x /usr/local/bin/snodecoind-cli
+    wget -O - http://zaim.it/linux_sw/snodecoin-cli > /usr/local/bin/snodecoin-cli
+ chmod +755 /usr/local/bin/snodecoin-cli
+ chmod +x /usr/local/bin/snodecoin-cli
  
  
  
