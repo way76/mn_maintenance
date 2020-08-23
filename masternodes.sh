@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 menu_coin()
 {
 echo "Scegliere il menu del coin"
@@ -485,6 +486,7 @@ dogec_addnodes()
  chmod +x /root/mn_scripts/dogec_addnode.sh
  /root/mn_scripts/dogec_addnode.sh
 }
+
 ####################################################### TERRACOIN
 trc_status()
 {
