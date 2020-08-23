@@ -114,7 +114,7 @@ case $dogec_azione in
   1) dogec_status;menu_dogec;;
   2) dogec_restart;menu_dogec;;
   3) dogec_copia;menu_dogec;;
-  3) dogec_addnodes;menu_dogec;;
+  4) dogec_addnodes;menu_dogec;;
   9) menu_coin;;
   *) menu_dogec;;
 esac
