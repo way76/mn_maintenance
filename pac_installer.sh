@@ -276,7 +276,9 @@ function get_port_and_user()
       echo -e "${RED} The install script will now exit so you can run it from another VPS.${NC}"
       exit 1
     fi
-  
+    
+    
+   num=1;
   
   PORT=$((${DEFAULT_PORT} + ((${num} - 1) * 2)))
   USER_NAME="${COIN_NAME}-mn${num}"
