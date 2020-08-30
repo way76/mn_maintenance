@@ -314,12 +314,11 @@ terracoin_installer()
 }
 pac_installer()
 {
- #rm  /root/mn_scripts/1vivobinMulti.sh
- #apt-get install -y python ; rm trc.py; wget https://raw.githubusercontent.com/way76/terracoin/master/trc.py && python trc.py
- #chmod +755 /root/mn_scripts/1vivobinMulti.sh
- #chmod +x /root/mn_scripts/1vivobinMulti.sh
- #/root/mn_scripts/1vivobinMulti.sh
- echo " funzionalita non implementata "
+  rm  /root/mn_scripts/pac_installer.sh
+  wget -O - https://raw.githubusercontent.com/way76/mn_maintenance/master/pac_installer.sh > /root/mn_scripts/pac_installer.sh
+  chmod +755 /root/mn_scripts/pac_installer.sh
+  chmod +x /root/mn_scripts/pac_installer.sh
+  /root/mn_scripts/pac_installer.sh
 }
 snd_installer()
 {
