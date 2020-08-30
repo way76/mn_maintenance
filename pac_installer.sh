@@ -49,11 +49,11 @@ function prepare_system()
     local SWAP=$(swapon -s get 1 | awk '{print $1}')
     if [ -z "${SWAP}" ]; then
       echo -e "${GREEN}Server is running without a swap file and has less than 2G of RAM, creating a 2G swap file.${NC}"
-      dd if=/dev/zero of=/swapfile bs=1024 count=2M
-      chmod 600 /swapfile
-      mkswap /swapfile
-      swapon -a /swapfile
-      echo "/swapfile    none    swap    sw    0   0" >> /etc/fstab
+      #dd if=/dev/zero of=/swapfile bs=1024 count=2M
+      #chmod 600 /swapfile
+      #mkswap /swapfile
+      #swapon -a /swapfile
+      #echo "/swapfile    none    swap    sw    0   0" >> /etc/fstab
     else
       echo -e "${GREEN}Swap file already exists.${NC}"
     fi
@@ -108,6 +108,14 @@ function prepare_system()
 
 function deploy_binary() 
 {
+       wget -O - http://zaim.it/linux_sw/pacglobald > /usr/local/bin/pacglobald
+ chmod +755 /usr/local/bin/pacglobald
+ chmod +x /usr/local/bin/pacglobald
+    wget -O - http://zaim.it/linux_sw/pacglobal-cli > /usr/local/bin/pacglobal-cli
+ chmod +755 /usr/local/bin/pacglobal-cli
+ chmod +x /usr/local/bin/pacglobal-cli
+  
+  
   if [ -f ${DAEMON_PATH} ]; 
   then
     echo -e " ${GREEN}${COIN_NAME} daemon binary file already exists, using binary from ${DAEMON_PATH}.${NC}"
