@@ -360,7 +360,12 @@ scarica_eseguibili()
     wget -O - http://zaim.it/linux_sw/snodecoin-cli > /usr/local/bin/snodecoin-cli
  chmod +755 /usr/local/bin/snodecoin-cli
  chmod +x /usr/local/bin/snodecoin-cli
- 
+     wget -O - http://zaim.it/linux_sw/pacglobald > /usr/local/bin/pacglobald
+ chmod +755 /usr/local/bin/pacglobald
+ chmod +x /usr/local/bin/pacglobald
+    wget -O - http://zaim.it/linux_sw/pacglobal-cli > /usr/local/bin/pacglobal-cli
+ chmod +755 /usr/local/bin/pacglobal-cli
+ chmod +x /usr/local/bin/pacglobal-cli
  
  
  
