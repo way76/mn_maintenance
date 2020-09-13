@@ -29,6 +29,7 @@ echo "  3) copia masternode    "
 echo "  4) staking status      "
 echo "  5) unlock wallet       "
 echo "  6)   lock wallet       "
+echo "  7) status (getinfo)    "
 echo "  9) torna indietro      "
 
 read snd_azione
@@ -39,6 +40,7 @@ case $snd_azione in
   4) snd_status_staking;menu_snd;;
   5) snd_wallet_unlock;menu_snd;;
   6) snd_wallet_lock;menu_snd;;
+  7) snd_status_getinfo;menu_snd;;
   9) menu_coin;;
   *) menu_snd;;
 esac
