@@ -32,6 +32,7 @@ echo "  6)   lock wallet       "
 echo "  7) status (getinfo)    "
 echo "  9) torna indietro      "
 
+
 read snd_azione
 case $snd_azione in
   1) snd_status;menu_snd;;
