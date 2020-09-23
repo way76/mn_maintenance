@@ -234,7 +234,13 @@ snd_log_saldo()
 {
   nano /root/mn_scripts/snd_balance.txt 
 }
-
+snd_restart_periodico()
+{
+ rm  /root/mn_scripts/snd_restart_periodico.sh
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/snd_restart_periodico.sh > /root/mn_scripts/snd_restart_periodico.sh
+ chmod +755 /root/mn_scripts/snd_restart_periodico.sh
+ chmod +x /root/mn_scripts/snd_restart_periodico.sh
+}
 menu_installer()
 {
 echo "                                                    INSTALLER COIN "
