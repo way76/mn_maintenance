@@ -30,6 +30,7 @@ echo "  4) staking status      "
 echo "  5) unlock wallet       "
 echo "  6)   lock wallet       "
 echo "  7) status (getinfo)    "
+echo "  8) restart periodico   "
 echo "  9) torna indietro      "
 
 
@@ -42,6 +43,7 @@ case $snd_azione in
   5) snd_wallet_unlock;menu_snd;;
   6) snd_wallet_lock;menu_snd;;
   7) snd_status_getinfo;menu_snd;;
+  8) snd_restart_periodico;menu_snd;;
   9) menu_coin;;
   *) menu_snd;;
 esac
