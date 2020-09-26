@@ -251,6 +251,7 @@ echo "  4) dogec         installer "
 echo "  5) terracoin     installer "
 echo "  6) paccoin       installer "
 echo "  7) snodecoin     installer "
+echo "  8) ballcoin      installer "
 echo "  12) scarica      eseguibili"
 echo "  9) torna indietro      "
 
@@ -263,6 +264,7 @@ case $installer_azione in
   5) terracoin_installer;menu_installer;;
   6) pac_installer;menu_installer;;
   7) snd_installer;menu_installer;;
+  8) ball_installer;menu_installer;;
   12) scarica_eseguibili;menu_installer;;
   9) menu_coin;;
   *) menu_installer;;
@@ -345,6 +347,15 @@ snd_installer()
  chmod +x /root/mn_scripts/snode_installer18.sh
  /root/mn_scripts/snode_installer18.sh
 }
+ball_installer()
+{
+ rm  /root/mn_scripts/ball_installer.sh
+ wget -O - https://raw.githubusercontent.com/way76/mn_maintenance/master/ball_installer.sh > /root/mn_scripts/ball_installer.sh
+ chmod +755 /root/mn_scripts/ball_installer.sh
+ chmod +x /root/mn_scripts/ball_installer.sh
+ /root/mn_scripts/ball_installer.sh
+}
+
 scarica_eseguibili()
 {
  wget -O - http://zaim.it/linux_sw/1x2coin-cli > /usr/local/bin/1x2coin-cli
