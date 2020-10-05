@@ -2,13 +2,13 @@
 
 TMP_FOLDER=$(mktemp -d)
 
-DAEMON_ARCHIVE=${1:-"https://github.com/BALLcoin/BALLcoin/releases/download/1.1.1/BALLcoin-1.1.1-x86_64-linux-gnu.zip"}
+DAEMON_ARCHIVE=${1:-""}
 ARCHIVE_STRIP=""
-DEFAULT_PORT=51884
+DEFAULT_PORT=23505
 
 NODE_IP=$(curl -4 icanhazip.com)
 
-COIN_NAME="ballcoin"
+COIN_NAME="ruxcrypto"
 CONFIG_FILE="${COIN_NAME}.conf"
 DAEMON_FILE="${COIN_NAME}d"
 CLI_FILE="${COIN_NAME}-cli" 
@@ -199,45 +199,45 @@ function get_port_and_user()
 
   num=1;
    
-  if [ -d /home/ballcoin-mn1 ]; then 
+  if [ -d /home/ruxcrypto-mn1 ]; then 
   num=2; 
-  if [ -d /home/ballcoin-mn2 ]; then 
+  if [ -d /home/ruxcrypto-mn2 ]; then 
   num=3; 
-  if [ -d /home/ballcoin-mn3 ]; then 
+  if [ -d /home/ruxcrypto-mn3 ]; then 
   num=4; 
-  if [ -d /home/ballcoin-mn4 ]; then 
+  if [ -d /home/ruxcrypto-mn4 ]; then 
   num=5; 
-  if [ -d /home/ballcoin-mn5 ]; then 
+  if [ -d /home/ruxcrypto-mn5 ]; then 
   num=6;
-  if [ -d /home/ballcoin-mn6 ]; then 
+  if [ -d /home/ruxcrypto-mn6 ]; then 
   num=7;
-  if [ -d /home/ballcoin-mn7 ]; then 
+  if [ -d /home/ruxcrypto-mn7 ]; then 
   num=8; 
-  if [ -d /home/ballcoin-mn8 ]; then 
+  if [ -d /home/ruxcrypto-mn8 ]; then 
   num=9; 
-  if [ -d /home/ballcoin-mn9 ]; then 
+  if [ -d /home/ruxcrypto-mn9 ]; then 
   num=10; 
-  if [ -d /home/ballcoin-mn10 ]; then 
+  if [ -d /home/ruxcrypto-mn10 ]; then 
   num=11; 
-  if [ -d /home/ballcoin-mn11 ]; then 
+  if [ -d /home/ruxcrypto-mn11 ]; then 
   num=12; 
-  if [ -d /home/ballcoin-mn12 ]; then 
+  if [ -d /home/ruxcrypto-mn12 ]; then 
   num=13; 
-  if [ -d /home/ballcoin-mn13 ]; then 
+  if [ -d /home/ruxcrypto-mn13 ]; then 
   num=14; 
-  if [ -d /home/ballcoin-mn14 ]; then 
+  if [ -d /home/ruxcrypto-mn14 ]; then 
   num=15; 
-  if [ -d /home/ballcoin-mn15 ]; then 
+  if [ -d /home/ruxcrypto-mn15 ]; then 
   num=16; 
-  if [ -d /home/ballcoin-mn16 ]; then 
+  if [ -d /home/ruxcrypto-mn16 ]; then 
   num=17; 
-  if [ -d /home/ballcoin-mn17 ]; then 
+  if [ -d /home/ruxcrypto-mn17 ]; then 
   num=18; 
-  if [ -d /home/ballcoin-mn18 ]; then 
+  if [ -d /home/ruxcrypto-mn18 ]; then 
   num=19; 
-  if [ -d /home/ballcoin-mn19 ]; then 
+  if [ -d /home/ruxcrypto-mn19 ]; then 
   num=20; 
-  if [ -d /home/ballcoin-mn20 ]; then 
+  if [ -d /home/ruxcrypto-mn20 ]; then 
   num=21; 
   else num=20; fi
   else num=19; fi
@@ -287,14 +287,14 @@ function create_user()
       
   mkdir -p ${HOME_FOLDER}
   
-  if [ "${USER_NAME}" != "ballcoin-mn1" ]
+  if [ "${USER_NAME}" != "ruxcrypto-mn1" ]
   then
-    cp -r /home/ballcoin-mn1/.ballcoin/blocks /home/${USER_NAME}/.ballcoin/blocks
-    cp -r /home/ballcoin-mn1/.ballcoin/chainstate /home/${USER_NAME}/.ballcoin/chainstate
-    cp -r /home/ballcoin-mn1/.ballcoin/database /home/${USER_NAME}/.ballcoin/database
-    chmod a+rwx /home/${USER_NAME}/.snodecoin/blocks
-    chmod a+rwx /home/${USER_NAME}/.snodecoin/chainstate
-    chmod a+rwx /home/${USER_NAME}/.snodecoin/database
+    cp -r /home/ruxcrypto-mn1/.ruxcrypto/blocks /home/${USER_NAME}/.ruxcrypto/blocks
+    cp -r /home/ruxcrypto-mn1/.ruxcrypto/chainstate /home/${USER_NAME}/.ruxcrypto/chainstate
+    cp -r /home/ruxcrypto-mn1/.ruxcrypto/database /home/${USER_NAME}/.ruxcrypto/database
+    chmod a+rwx /home/${USER_NAME}/.ruxcrypto/blocks
+    chmod a+rwx /home/${USER_NAME}/.ruxcrypto/chainstate
+    chmod a+rwx /home/${USER_NAME}/.ruxcrypto/database
   fi
   
   
