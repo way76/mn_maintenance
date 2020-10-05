@@ -4,13 +4,13 @@
 menu_coin()
 {
 echo "Scegliere il menu del coin"
-echo "  1) Snodecoin  2) Marcoin  3) 1x2Coin 4) Vivocoin 5) DogeCoin 6) TerraCoin 7) Paccoin   9) Exit 11) Installer"
+echo "  1) Snodecoin  2) Marcoin  3) BallCoin 4) Vivocoin 5) DogeCoin 6) TerraCoin 7) Paccoin   9) Exit 11) Installer"
 
 read coin
 case $coin in
   1) menu_snd;;
   2) menu_marc;;
-  3) menu_1x2;;
+  3) menu_ball;;
   4) menu_vivo;;
   5) menu_dogec;;
   6) menu_trc;;
@@ -89,7 +89,7 @@ case $vivo_azione in
 esac
 }
 
-menu_1x2()
+menu_ball()
 {
 echo "                                                    1x2COIN "
 echo "  1) status masternodes  "
@@ -100,15 +100,15 @@ echo "  5) esegui addnodes     "
 echo "  9) torna indietro      "
 
 
-read a1a2_azione
-case $a1a2_azione in
-  1) a12_status;menu_1x2;;
-  2) a12_restart;menu_1x2;;
-  3) a12_copia;menu_1x2;;
-  4) a12_copiatutti;menu_1x2;;
-  5) a12_addnodes;menu_1x2;;
+read ball_azione
+case $ball_azione in
+  1) ball_status;menu_ball;;
+  2) ball_restart;menu_ball;;
+  3) ball_copia;menu_ball;;
+  4) ball_copiatutti;menu_ball;;
+  5) ball_addnodes;menu_ball;;
   9) menu_coin;;
-  *) menu_1x2;;
+  *) menu_ball;;
 esac
 }
 
@@ -245,7 +245,7 @@ menu_installer()
 {
 echo "                                                    INSTALLER COIN "
 echo "  1) marcoin       installer "
-echo "  2) 1x2coin       installer "
+
 echo "  3) vivo          installer "
 echo "  4) dogec         installer "
 echo "  5) terracoin     installer "
@@ -258,7 +258,7 @@ echo "  9) torna indietro      "
 read installer_azione
 case $installer_azione in
   1) marc_installer;menu_installer;;
-  2) a1x2_installer;menu_installer;;
+
   3) vivo_installer;menu_installer;;
   4) dogec_installer;menu_installer;;
   5) terracoin_installer;menu_installer;;
@@ -287,24 +287,6 @@ marc_installer()
  /root/mn_scripts/marc_installer.sh
  /root/mn_scripts/marc_installer.sh
  /root/mn_scripts/marc_installer.sh
-}
-
-a1x2_installer()
-{
- rm  /root/mn_scripts/1x2_installer.sh
- wget -O - https://raw.githubusercontent.com/way76/mn_maintenance/master/1x2_installer.sh > /root/mn_scripts/1x2_installer.sh
- chmod +755 /root/mn_scripts/1x2_installer.sh
- chmod +x /root/mn_scripts/1x2_installer.sh
- /root/mn_scripts/1x2_installer.sh
- /root/mn_scripts/1x2_installer.sh
- /root/mn_scripts/1x2_installer.sh
- /root/mn_scripts/1x2_installer.sh
- /root/mn_scripts/1x2_installer.sh
- /root/mn_scripts/1x2_installer.sh
- /root/mn_scripts/1x2_installer.sh
- /root/mn_scripts/1x2_installer.sh
- /root/mn_scripts/1x2_installer.sh
- /root/mn_scripts/1x2_installer.sh
 }
 
 vivo_installer()
@@ -358,12 +340,6 @@ ball_installer()
 
 scarica_eseguibili()
 {
- wget -O - http://zaim.it/linux_sw/1x2coin-cli > /usr/local/bin/1x2coin-cli
- chmod +755 /usr/local/bin/1x2coin-cli
- chmod +x /usr/local/bin/1x2coin-cli
- wget -O - http://zaim.it/linux_sw/1x2coind > /usr/local/bin/1x2coind
- chmod +755 /usr/local/bin/1x2coind
- chmod +x /usr/local/bin/1x2coind
  wget -O - http://zaim.it/linux_sw/marcoin-cli > /usr/local/bin/marcoin-cli
  chmod +755 /usr/local/bin/marcoin-cli
  chmod +x /usr/local/bin/marcoin-cli
@@ -451,41 +427,41 @@ vivo_copiaAll()
  chmod +x /root/mn_scripts/vivo_replaceAll.sh
  /root/mn_scripts/vivo_replaceAll.sh
 }
-####################################################### 1x2COIN
-a12_status()
+####################################################### BALLCOIN
+ball_status()
 {
- wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/1x2_status.sh > /root/mn_scripts/1x2_status.sh
- chmod +755 /root/mn_scripts/1x2_status.sh
- chmod +x /root/mn_scripts/1x2_status.sh
- /root/mn_scripts/1x2_status.sh
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/ball_status.sh > /root/mn_scripts/ball_status.sh
+ chmod +755 /root/mn_scripts/ball_status.sh
+ chmod +x /root/mn_scripts/ball_status.sh
+ /root/mn_scripts/ball_status.sh
 }
-a12_restart()
+ball_restart()
 {
- wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/1x2_restart_service.sh > /root/mn_scripts/1x2_restart_services.sh
- chmod +755 /root/mn_scripts/1x2_restart_services.sh
- chmod +x /root/mn_scripts/1x2_restart_services.sh
- /root/mn_scripts/1x2_restart_services.sh
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/ball_restart_service.sh > /root/mn_scripts/ball_restart_services.sh
+ chmod +755 /root/mn_scripts/ball_restart_services.sh
+ chmod +x /root/mn_scripts/ball_restart_services.sh
+ /root/mn_scripts/ball_restart_services.sh
 }
-a12_copia()
+ball_copia()
 {
- wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/1x2_replace.sh > /root/mn_scripts/1x2_replace.sh
- chmod +755 /root/mn_scripts/1x2_replace.sh
- chmod +x /root/mn_scripts/1x2_replace.sh
- /root/mn_scripts/1x2_replace.sh
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/ball_replace.sh > /root/mn_scripts/ball_replace.sh
+ chmod +755 /root/mn_scripts/ball_replace.sh
+ chmod +x /root/mn_scripts/ball_replace.sh
+ /root/mn_scripts/ball_replace.sh
 }
-a12_copiatutti()
+ball_copiatutti()
 {
- wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/1x2_replaceAll.sh > /root/mn_scripts/1x2_replaceAll.sh
- chmod +755 /root/mn_scripts/1x2_replaceAll.sh
- chmod +x /root/mn_scripts/1x2_replaceAll.sh
- /root/mn_scripts/1x2_replaceAll.sh
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/ball_replaceAll.sh > /root/mn_scripts/ball_replaceAll.sh
+ chmod +755 /root/mn_scripts/ball_replaceAll.sh
+ chmod +x /root/mn_scripts/ball_replaceAll.sh
+ /root/mn_scripts/ball_replaceAll.sh
 }
-a12_addnodes()
+ball_addnodes()
 {
- wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/1x2_addnode.sh > /root/mn_scripts/1x2_addnode.sh
- chmod +755 /root/mn_scripts/1x2_addnode.sh
- chmod +x /root/mn_scripts/1x2_addnode.sh
- /root/mn_scripts/1x2_addnode.sh
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/ball_addnode.sh > /root/mn_scripts/ball_addnode.sh
+ chmod +755 /root/mn_scripts/ball_addnode.sh
+ chmod +x /root/mn_scripts/ball_addnode.sh
+ /root/mn_scripts/ball_addnode.sh
 }
 
 
