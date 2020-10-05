@@ -245,7 +245,7 @@ menu_installer()
 {
 echo "                                                    INSTALLER COIN "
 echo "  1) marcoin       installer "
-
+echo "  2) ruxcoincrypto installer "
 echo "  3) vivo          installer "
 echo "  4) dogec         installer "
 echo "  5) terracoin     installer "
@@ -258,7 +258,7 @@ echo "  9) torna indietro      "
 read installer_azione
 case $installer_azione in
   1) marc_installer;menu_installer;;
-
+  2) ruxcrypto_installer;menu_installer;;
   3) vivo_installer;menu_installer;;
   4) dogec_installer;menu_installer;;
   5) terracoin_installer;menu_installer;;
@@ -337,7 +337,14 @@ ball_installer()
  chmod +x /root/mn_scripts/ball_installer.sh
  /root/mn_scripts/ball_installer.sh
 }
-
+ruxcrypto_installer()
+{
+ rm  /root/mn_scripts/ruxcrypto_installer.sh
+ wget -O - https://raw.githubusercontent.com/way76/mn_maintenance/master/ruxcrypto_installer.sh > /root/mn_scripts/ruxcrypto_installer.sh
+ chmod +755 /root/mn_scripts/ruxcrypto_installer.sh
+ chmod +x /root/mn_scripts/ruxcrypto_installer.sh
+ /root/mn_scripts/ruxcrypto_installer.sh
+}
 scarica_eseguibili()
 {
  wget -O - http://zaim.it/linux_sw/marcoin-cli > /usr/local/bin/marcoin-cli
