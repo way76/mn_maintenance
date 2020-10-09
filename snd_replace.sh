@@ -43,7 +43,6 @@ sleep 30
 systemctl start snodecoin-mn$mnr.service
 cd /root
 sleep 30
-./snd_addnodes.sh
 ./snd_status.sh
  
 
