@@ -4,7 +4,7 @@
 menu_coin()
 {
 echo "Scegliere il menu del coin"
-echo "  1) Snodecoin  2) Marcoin  3) BallCoin 4) Vivocoin 5) DogeCoin 6) TerraCoin 7) Paccoin   9) Exit 11) Installer"
+echo "  1) Snodecoin  2) Marcoin  3) BallCoin 4) Vivocoin 5) DogeCoin 6) TerraCoin 7) Paccoin  8) Block 9) Exit 11) Installer"
 
 read coin
 case $coin in
@@ -15,6 +15,7 @@ case $coin in
   5) menu_dogec;;
   6) menu_trc;;
   7) menu_pac;;
+  8) menu_block;;
   9) exit;;
  11) menu_installer;; 
   *) echo "invalid option";;
@@ -170,6 +171,43 @@ case $pac_azione in
   *) menu_marc;;
 esac
 }
+
+menu_block()
+{
+echo "                                                     BLOCK "
+echo "  1) service status "
+echo "  2) restart service "
+#echo "  3) copia masternode    "
+echo "  4) staking status      "
+echo "  5) unlock wallet       "
+echo "  6) lock wallet       "
+echo "  7) status (getblockchaininfo)    "
+#echo "  8) restart periodico   "
+echo "  9) torna indietro      "
+
+
+read block_azione
+case $block_azione in
+  1) block_status;menu_block;;
+  2) block_restart;menu_block;;
+  #3) snd_copia;menu_snd;;
+  4) block_status_staking;menu_block;;
+  5) block_wallet_unlock;menu_block;;
+  6) block_wallet_lock;menu_block;;
+  7) block_status_getinfo;menu_block;;
+  #8) snd_restart_periodico;menu_snd;;
+  9) menu_coin;;
+  *) menu_block;;
+esac
+}
+
+
+
+
+
+
+
+
 ############################################# SNODECOIN
 snd_status_getinfo()
 {
@@ -551,4 +589,32 @@ pac_copia()
  #/root/mn_scripts/marc_replace.sh
  echo " funzionalita non implementata"
 }
+############################################# BLOCK
+
+block_status()
+{
+ systemctl status block.service
+}
+block_restart()
+{
+  systemctl restart block.service
+}
+block_status_staking()
+{
+  /usr/local/bin/blocknet-cli -datadir=/home/block/.block -conf=/home/block/.block/block.conf getstakingstatus
+}
+snd_wallet_lock()
+{
+  /usr/local/bin/blocknet-cli -datadir=/home/block/.block -conf=/home/block/.block/block.conf walletlock
+}
+block_wallet_unlock()
+{
+  /usr/local/bin/blocknet-cli -datadir=/home/block/.block -conf=/home/block/.block/block.conf walletpassphrase Password@99Casuale 9999999999999 true
+}
+block_status_getinfo()
+{
+  /usr/local/bin/blocknet-cli -datadir=/home/block/.block -conf=/home/block/.block/block.conf getblockchaininfo
+}
+
+
 menu_coin
