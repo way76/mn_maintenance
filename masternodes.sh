@@ -603,7 +603,7 @@ block_status_staking()
 {
   /usr/local/bin/blocknet-cli -datadir=/home/block/.block -conf=/home/block/.block/block.conf getstakingstatus
 }
-snd_wallet_lock()
+block_wallet_lock()
 {
   /usr/local/bin/blocknet-cli -datadir=/home/block/.block -conf=/home/block/.block/block.conf walletlock
 }
