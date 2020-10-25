@@ -207,7 +207,7 @@ function get_port_and_user()
   num=12; 
   if [ -d /home/ballcoin-mn12 ]; then 
   num=13; 
-  if [ -d /home/ruxcrypto-mn13 ]; then 
+  if [ -d /home/ballcoin-mn13 ]; then 
   num=14; 
   if [ -d /home/ballcoin-mn14 ]; then 
   num=15; 
