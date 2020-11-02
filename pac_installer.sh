@@ -271,6 +271,8 @@ function create_key()
 {
   echo -e "${GREEN} Creating masternode private key${NC}"
   local privkey=$(sudo -u ${USER_NAME} ${CLI_PATH} -datadir=${HOME_FOLDER} -conf=${HOME_FOLDER}/${CONFIG_FILE} masternode genkey 2>&1)
+  
+  privkey="vksdvosijcvoscvosvjsovnjosvjs"
 
   if [[ -z "${privkey}" ]] || [[ "${privkey^^}" = *"ERROR"* ]]; 
   then
