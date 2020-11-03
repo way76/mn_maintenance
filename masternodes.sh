@@ -584,7 +584,7 @@ pac_start_staking()
 }
 pac_unlock_wallet()
 {
-  /usr/local/bin/pacglobal-cli -datadir=/home/pacglobal-mn1/.pacglobal -conf=/home/pacglobal-mn1/.pacglobal/pacglobal.conf walletpassphrase Password@99Casuale
+  /usr/local/bin/pacglobal-cli -datadir=/home/pacglobal-mn1/.pacglobal -conf=/home/pacglobal-mn1/.pacglobal/pacglobal.conf walletpassphrase Password@99Casuale 999999999999
 }
 pac_restart()
 {
