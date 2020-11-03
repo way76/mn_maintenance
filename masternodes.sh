@@ -92,7 +92,7 @@ esac
 
 menu_ball()
 {
-echo "                                                    1x2COIN "
+echo "                                                    BALLCOIN "
 echo "  1) status masternodes  "
 echo "  2) restart masternodes "
 echo "  3) copia masternode    "
@@ -186,7 +186,7 @@ echo "  4) staking status      "
 echo "  5) unlock wallet       "
 echo "  6) lock wallet       "
 echo "  7) status (getblockchaininfo)    "
-#echo "  8) restart periodico   "
+echo "  8) account balance     "
 echo "  9) torna indietro      "
 
 
@@ -199,7 +199,7 @@ case $block_azione in
   5) block_wallet_unlock;menu_block;;
   6) block_wallet_lock;menu_block;;
   7) block_status_getinfo;menu_block;;
-  #8) snd_restart_periodico;menu_snd;;
+  8) block_status_getbalance;menu_block;;
   9) menu_coin;;
   *) menu_block;;
 esac
@@ -620,6 +620,9 @@ block_status_getinfo()
 {
   /usr/local/bin/blocknet-cli -datadir=/home/block/.block -conf=/home/block/.block/block.conf getblockchaininfo
 }
-
+block_status_getbalance()
+{
+  /usr/local/bin/blocknet-cli -datadir=/home/block/.block -conf=/home/block/.block/block.conf getbalance
+}
 
 menu_coin
