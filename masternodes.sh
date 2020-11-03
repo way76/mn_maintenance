@@ -156,17 +156,21 @@ esac
 menu_pac()
 {
 echo "                                                    PACCOIN "
-echo "  1) status masternodes  "
-echo "  2) restart masternodes "
-#echo "  3) copia masternode    "
+echo "  1) account status - getinfo  "
+echo "  2) staking status "
+echo "  3) start staking  "
+echo "  4) unlock wallet  "
+echo "  5) reboot service "
 echo "  9) torna indietro      "
 
 
 read pac_azione
 case $pac_azione in
   1) pac_status;menu_pac;;
-  2) pac_restart;menu_pac;;
-  #3) pac_copia;menu_pac;;
+  2) pac_status_staking;menu_pac;;
+  3) pac_start_staking;menu_pac;;
+  4) pac_unlock_wallet;menu_pac;;
+  5) pac_restart;menu_pac;;
   9) menu_coin;;
   *) menu_marc;;
 esac
@@ -568,27 +572,28 @@ trc_copia()
 ####################################################### PACCOIN
 pac_status()
 {
- 
- wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/pac_status.sh > /root/mn_scripts/pac_status.sh
- chmod +755 /root/mn_scripts/pac_status.sh
- chmod +x /root/mn_scripts/pac_status.sh
- /root/mn_scripts/pac_status.sh
+  /usr/local/bin/pacglobal-cli -datadir=/home/pacglobal-mn1/.pacglobal -conf=/home/pacglobal-mn1/.pacglobal/pacglobal.conf getinfo
+}
+pac_status_staking()
+{
+  /usr/local/bin/pacglobal-cli -datadir=/home/pacglobal-mn1/.pacglobal -conf=/home/pacglobal-mn1/.pacglobal/pacglobal.conf getstakingstatus
+}
+pac_start_staking()
+{
+  /usr/local/bin/pacglobal-cli -datadir=/home/pacglobal-mn1/.pacglobal -conf=/home/pacglobal-mn1/.pacglobal/pacglobal.conf setstaking true
+}
+pac_unlock_wallet()
+{
+  /usr/local/bin/pacglobal-cli -datadir=/home/pacglobal-mn1/.pacglobal -conf=/home/pacglobal-mn1/.pacglobal/pacglobal.conf walletpassphrase Password@99Casuale
 }
 pac_restart()
 {
- wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/pac_restart_service.sh > /root/mn_scripts/pac_restart.sh
- chmod +755 /root/mn_scripts/pac_restart_services.sh
- chmod +x /root/mn_scripts/pac_restart_services.sh
- /root/mn_scripts/pac_restart_services.sh
+  /usr/local/bin/pacglobal-cli -datadir=/home/pacglobal-mn1/.pacglobal -conf=/home/pacglobal-mn1/.pacglobal/pacglobal.conf systemctl restart pacglobal-mn1.service
 }
-pac_copia()
-{
- #wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/marc_replace.sh > /root/mn_scripts/marc_replace.sh
- #chmod +755 /root/mn_scripts/marc_replace.sh
- #chmod +x /root/mn_scripts/marc_replace.sh
- #/root/mn_scripts/marc_replace.sh
- echo " funzionalita non implementata"
-}
+
+
+
+
 ############################################# BLOCK
 
 block_status()
