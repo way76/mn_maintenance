@@ -588,7 +588,7 @@ pac_unlock_wallet()
 }
 pac_restart()
 {
-  /usr/local/bin/pacglobal-cli -datadir=/home/pacglobal-mn1/.pacglobal -conf=/home/pacglobal-mn1/.pacglobal/pacglobal.conf systemctl restart pacglobal-mn1.service
+ systemctl restart pacglobal-mn1.service
 }
 
 
