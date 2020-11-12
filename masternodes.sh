@@ -588,7 +588,11 @@ pac_unlock_wallet()
 }
 pac_restart()
 {
- systemctl restart pacglobal-mn1.service
+ rm  /root/mn_scripts/pac_restart.sh
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/pac_restart.sh > /root/mn_scripts/pac_restart.sh
+ chmod +755 /root/mn_scripts/pac_restart.sh
+ chmod +x /root/mn_scripts/pac_restart.sh
+ /root/mn_scripts/pac_restart.sh
 }
 
 
