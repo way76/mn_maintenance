@@ -536,6 +536,16 @@ dogec_copia()
  chmod +x /root/mn_scripts/dogec_replace.sh
  /root/mn_scripts/dogec_replace.sh
 }
+
+dogec_copia_tutti()
+{
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/dogec_replaceAll.sh > /root/mn_scripts/dogec_replaceAll.sh
+ chmod +755 /root/mn_scripts/dogec_replaceAll.sh
+ chmod +x /root/mn_scripts/dogec_replaceAll.sh
+ /root/mn_scripts/dogec_replaceAll.sh
+ 
+}
+
 dogec_addnodes()
 {
  wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/dogec_addnode.sh > /root/mn_scripts/dogec_addnode.sh
