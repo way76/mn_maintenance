@@ -18,19 +18,19 @@ rm /home/doge_mn$mnr/.dogecash/peers.dat
 rm /home/doge_mn$mnr/.dogecash/sporks -r
 rm /home/doge_mn$mnr/.dogecash/zerocoin -r
 
-systemctl stop dogec_mn$mno.service
-cp -a /home/dogec_mn$mno/.dogecash/blocks /home/dogec_mn$mnr/.dogecash/blocks
-chown -R dogec_mn$mnr:dogec_mn$mnr blocks
-cp -a /home/dogec_mn$mno/.dogecash/chainstate /home/dogec_mn$mnr/.dogecash/chainstate
-chown -R dogec_mn$mnr:dogec_mn$mnr chainstate
-cp -a /home/dogec_mn$mno/.dogecash/database /home/dogec_mn$mnr/.dogecash/database
-chown -R dogec_mn$mnr:dogec_mn$mnr database
-cp -a /home/dogec_mn$mno/.dogecash/sporks /home/dogec_mn$mnr/.dogecash/sporks
-chown -R dogec_mn$mnr:dogec_mn$mnr sporks
-cp -a /home/dogec_mn$mno/.dogecash/zerocoin /home/dogec_mn$mnr/.dogecash/zerocoin
-chown -R dogec_mn$mnr:dogec_mn$mnr zerocoin
+systemctl stop doge_mn$mno.service
+cp -a /home/doge_mn$mno/.dogecash/blocks /home/doge_mn$mnr/.dogecash/blocks
+chown -R doge_mn$mnr:doge_mn$mnr blocks
+cp -a /home/doge_mn$mno/.dogecash/chainstate /home/doge_mn$mnr/.dogecash/chainstate
+chown -R doge_mn$mnr:doge_mn$mnr chainstate
+cp -a /home/doge_mn$mno/.dogecash/database /home/doge_mn$mnr/.dogecash/database
+chown -R doge_mn$mnr:doge_mn$mnr database
+cp -a /home/doge_mn$mno/.dogecash/sporks /home/doge_mn$mnr/.dogecash/sporks
+chown -R doge_mn$mnr:doge_mn$mnr sporks
+cp -a /home/doge_mn$mno/.dogecash/zerocoin /home/doge_mn$mnr/.dogecash/zerocoin
+chown -R doge_mn$mnr:doge_mn$mnr zerocoin
 
-systemctl start dogec_mn$mnr.service
+systemctl start doge_mn$mnr.service
 sleep 90
 
 }
