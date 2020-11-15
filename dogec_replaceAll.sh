@@ -29,12 +29,9 @@ cp -a /home/doge_mn$mno/.dogecash/zerocoin /home/doge_mn$mnr/.dogecash/zerocoin
 chown -R doge_mn$mnr:doge_mn$mnr zerocoin
 cp /home/doge_mn$mno/.dogecash/peers.dat /home/doge_mn$mnr/.dogecash/peers.dat
 chown -R doge_mn$mnr:doge_mn$mnr peers.dat
-systemctl start doge_mn$mno.service
-sleep 30
 systemctl start doge_mn$mnr.service
 cd /root
-sleep 30
-
+sleep 120
 }
 
 copia_mn()
