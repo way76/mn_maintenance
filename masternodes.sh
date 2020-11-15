@@ -120,6 +120,7 @@ echo "  1) status masternodes  "
 echo "  2) restart masternodes "
 echo "  3) copia masternode "
 echo "  4) esegui addnodes  "
+echo "  5) copia masternode1 in TUTTI "
 echo "  9) torna indietro      "
 
 read dogec_azione
@@ -128,6 +129,7 @@ case $dogec_azione in
   2) dogec_restart;menu_dogec;;
   3) dogec_copia;menu_dogec;;
   4) dogec_addnodes;menu_dogec;;
+  5) dogec_copia_tutti;menu_dogec;;
   9) menu_coin;;
   *) menu_dogec;;
 esac
