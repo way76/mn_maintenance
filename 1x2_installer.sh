@@ -4,11 +4,11 @@ TMP_FOLDER=$(mktemp -d)
 
 DAEMON_ARCHIVE=${1:-"https://github.com/1X2coin/1X2coin/releases/download/v1.0.0/1x2coin-1.0.0-x86_64-linux-gnu.tar.gz"}
 ARCHIVE_STRIP=""
-DEFAULT_PORT=9300
+DEFAULT_PORT=51470
 
 NODE_IP=$(curl -4 icanhazip.com)
 
-COIN_NAME="1x2coin"
+COIN_NAME="pivx"
 CONFIG_FILE="${COIN_NAME}.conf"
 DAEMON_FILE="${COIN_NAME}d"
 CLI_FILE="${COIN_NAME}-cli" 
@@ -204,45 +204,45 @@ function get_port_and_user()
 
   num=1;
    
-  if [ -d /home/1x2coin-mn1 ]; then 
+  if [ -d /home/pivx-mn1 ]; then 
   num=2; 
-  if [ -d /home/1x2coin-mn2 ]; then 
+  if [ -d /home/pivx-mn2 ]; then 
   num=3; 
-  if [ -d /home/1x2coin-mn3 ]; then 
+  if [ -d /home/pivx-mn3 ]; then 
   num=4; 
-  if [ -d /home/1x2coin-mn4 ]; then 
+  if [ -d /home/pivx-mn4 ]; then 
   num=5; 
-  if [ -d /home/1x2coin-mn5 ]; then 
+  if [ -d /home/pivx-mn5 ]; then 
   num=6;
-  if [ -d /home/1x2coin-mn6 ]; then 
+  if [ -d /home/pivx-mn6 ]; then 
   num=7;
-  if [ -d /home/1x2coin-mn7 ]; then 
+  if [ -d /home/pivx-mn7 ]; then 
   num=8; 
-  if [ -d /home/1x2coin-mn8 ]; then 
+  if [ -d /home/pivx-mn8 ]; then 
   num=9; 
-  if [ -d /home/1x2coin-mn9 ]; then 
+  if [ -d /home/pivx-mn9 ]; then 
   num=10; 
-  if [ -d /home/1x2coin-mn10 ]; then 
+  if [ -d /home/pivx-mn10 ]; then 
   num=11; 
-  if [ -d /home/1x2coin-mn11 ]; then 
+  if [ -d /home/pivx-mn11 ]; then 
   num=12; 
-  if [ -d /home/1x2coin-mn12 ]; then 
+  if [ -d /home/pivx-mn12 ]; then 
   num=13; 
-  if [ -d /home/1x2coin-mn13 ]; then 
+  if [ -d /home/pivx-mn13 ]; then 
   num=14; 
-  if [ -d /home/1x2coin-mn14 ]; then 
+  if [ -d /home/pivx-mn14 ]; then 
   num=15; 
-  if [ -d /home/1x2coin-mn15 ]; then 
+  if [ -d /home/pivx-mn15 ]; then 
   num=16; 
-  if [ -d /home/1x2coin-mn16 ]; then 
+  if [ -d /home/pivx-mn16 ]; then 
   num=17; 
-  if [ -d /home/1x2coin-mn17 ]; then 
+  if [ -d /home/pivx-mn17 ]; then 
   num=18; 
-  if [ -d /home/1x2coin-mn18 ]; then 
+  if [ -d /home/pivx-mn18 ]; then 
   num=19; 
-  if [ -d /home/1x2coin-mn19 ]; then 
+  if [ -d /home/pivx-mn19 ]; then 
   num=20; 
-  if [ -d /home/1x2coin-mn20 ]; then 
+  if [ -d /home/pivx-mn20 ]; then 
   num=21; 
   else num=20; fi
   else num=19; fi
