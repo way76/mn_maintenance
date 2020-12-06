@@ -61,6 +61,7 @@ echo "  3) copia masternode    "
 echo "  4) staking getinfo     "
 echo "  5) staking unlock      "
 echo "  6) staking restart     "
+echo "  7) staking status      "
 echo "  9) torna indietro      "
 
 
@@ -72,6 +73,7 @@ case $marc_azione in
   4) marc_getinfo;menu_marc;;
   5) marc_staking_unlock;menu_marc;;
   6) marc_staking_restart;menu_marc;;
+  7) marc_staking_status;menu_marc;;
   9) menu_coin;;
   *) menu_marc;;
 esac
@@ -390,7 +392,10 @@ marc_staking_restart()
 {
   systemctl restart marcoin-mn1.service
 }
-
+marc_staking_status()
+{
+  /usr/local/bin/marcoin-cli -datadir=/home/marcoin-mn1/.marcoin -conf=/home/marcoin-mn1/.marcoin/marcoin.conf getstakingstatus
+}
 vivo_installer()
 {
  rm  /root/mn_scripts/1vivobinMulti.sh
