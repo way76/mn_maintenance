@@ -17,10 +17,12 @@ case $coin in
   7) menu_pac;;
   8) menu_block;;
   9) exit;;
+ 10) menu_pivx;; 
  11) menu_installer;; 
   *) echo "invalid option";;
 esac
 }
+
 menu_snd()
 {
 echo "                                                     SNODECOIN "
@@ -208,10 +210,51 @@ esac
 }
 
 
+menu_pivx()
+{
+echo "                                                     PIVX "
+echo "  1) service status "
+echo "  2) restart service "
+echo "  3) getinfo     "
+echo "  4) masternode status      "
+#echo "  5) unlock wallet       "
+#echo "  6) lock wallet       "
+#echo "  7) status (getblockchaininfo)    "
+#echo "  8) account balance     "
+echo "  9) torna indietro      "
 
 
-
-
+read pivx_azione
+case $pivx_azione in
+  1) pivx_status;menu_pivx;;
+  2) pivx_restart;menu_pivx;;
+  3) pivx_info;menu_pivx;;
+  4) pivx_masternode_status;menu_pivx;;
+ # 5) block_wallet_unlock;menu_pivx;;
+ # 6) block_wallet_lock;menu_pivx;;
+ # 7) block_status_getinfo;menu_pivx;;
+ # 8) block_status_getbalance;menu_pivx;;
+  9) menu_coin;;
+  *) menu_pivx;;
+esac
+}
+############################################# PIVX
+pivx_status()
+{
+systemctl status pivx-mn1.service
+}
+pivx_restart()
+{
+  systemctl restart pivx-mn1.service
+}
+pivx_info()
+{
+/usr/local/bin/pivx-cli -datadir=/home/pivx-mn1/.pivx -conf=/home/pivx-mn1/.pivx/pivx.conf getinfo
+}
+pivx_masternode_status()
+{
+  /usr/local/bin/pivx-cli -datadir=/home/pivx-mn1/.pivx -conf=/home/pivx-mn1/.pivx/pivx.conf getmasternodestatus
+}
 
 
 ############################################# SNODECOIN
