@@ -384,7 +384,7 @@ marc_getinfo()
 }
 marc_staking_unlock()
 {
-  /usr/local/bin/marcoin-cli -datadir=/home/marcoin-mn1/.marcoin -conf=/home/marcoin-mn1/.marcoin/marcoin.conf
+  "/usr/local/bin/marcoin-cli -datadir=/home/marcoin-mn1/.marcoin -conf=/home/marcoin-mn1/.marcoin/marcoin.conf"
 }
 marc_staking_restart()
 {
