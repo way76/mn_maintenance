@@ -4,7 +4,7 @@
 menu_coin()
 {
 echo "Scegliere il menu del coin"
-echo "  1) Snodecoin  2) Marcoin  3) BallCoin 4) Vivocoin 5) DogeCoin 6) TerraCoin 7) Paccoin  8) Block 9) Exit 11) Installer"
+echo "  1) Snodecoin  2) Marcoin  3) BallCoin 4) Vivocoin 5) DogeCoin 6) TerraCoin 7) Paccoin  8) Block 9) Exit 10) Pivx 11) Installer"
 
 read coin
 case $coin in
@@ -283,10 +283,6 @@ snd_copia()
  chmod +x /root/mn_scripts/snd_replace.sh
  /root/mn_scripts/snd_replace.sh
 }
-
-
-
-snd_restart_services.sh
 
 
 snd_status_sync()
