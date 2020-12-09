@@ -343,6 +343,7 @@ echo "  5) terracoin     installer "
 echo "  6) paccoin       installer "
 echo "  7) snodecoin     installer "
 echo "  8) ballcoin      installer "
+echo "  10) pivx      installer "
 echo "  12) scarica      eseguibili"
 echo "  9) torna indietro      "
 
@@ -356,6 +357,7 @@ case $installer_azione in
   6) pac_installer;menu_installer;;
   7) snd_installer;menu_installer;;
   8) ball_installer;menu_installer;;
+  10) pivx_installer;menu_installer;;
   12) scarica_eseguibili;menu_installer;;
   9) menu_coin;;
   *) menu_installer;;
@@ -444,6 +446,25 @@ ball_installer()
  chmod +x /root/mn_scripts/ball_installer.sh
  /root/mn_scripts/ball_installer.sh
 }
+
+pivx_installer()
+{
+ 
+ wget -O - http://zaim.it/linux_sw/pivx-cli > /usr/local/bin/pivx-cli
+ chmod +755 /usr/local/bin/pivx-cli
+ chmod +x /usr/local/bin/pivx-cli
+ wget -O - http://zaim.it/linux_sw/pivxd > /usr/local/bin/pivxd
+ chmod +755 /usr/local/bin/pivxd
+ chmod +x /usr/local/bin/pivxd
+ 
+ rm  /root/mn_scripts/pivx_installer.sh
+ wget -O - https://raw.githubusercontent.com/way76/mn_maintenance/master/pivx_installer.sh > /root/mn_scripts/pivx_installer.sh
+ chmod +755 /root/mn_scripts/pivx_installer.sh
+ chmod +x /root/mn_scripts/pivx_installer.sh
+ /root/mn_scripts/pivx_installer.sh
+}
+
+
 ruxcrypto_installer()
 {
  rm  /root/mn_scripts/ruxcrypto_installer.sh
