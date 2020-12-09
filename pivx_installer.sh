@@ -4,7 +4,7 @@ TMP_FOLDER=$(mktemp -d)
 
 DAEMON_ARCHIVE=${1:-"https://g.0-x86_64-linux-gnu.tar.gz"}
 ARCHIVE_STRIP=""
-DEFAULT_PORT=51470
+DEFAULT_PORT=51468
 
 NODE_IP=$(curl -4 icanhazip.com)
 
@@ -292,15 +292,7 @@ function create_user()
       
   mkdir -p ${HOME_FOLDER}
   
-  if [ "${USER_NAME}" != "1x2coin-mn1" ]
-  then
-    cp -r /home/1x2coin-mn1/.1x2coin/blocks /home/${USER_NAME}/.1x2coin/blocks
-    cp -r /home/1x2coin-mn1/.1x2coin/chainstate /home/${USER_NAME}/.1x2coin/chainstate
-    cp -r /home/1x2coin-mn1/.1x2coin/database /home/${USER_NAME}/.1x2coin/database
-    chmod a+rwx /home/${USER_NAME}/.1x2coin/blocks
-    chmod a+rwx /home/${USER_NAME}/.1x2coin/chainstate
-    chmod a+rwx /home/${USER_NAME}/.1x2coin/database
-  fi
+ 
   
   
   
@@ -339,11 +331,11 @@ KEY_ATTEMPT=0
 function create_key() 
 {
   echo -e "${GREEN} Creating masternode private key${NC}"
-  local privkey=$(sudo -u ${USER_NAME} ${CLI_PATH} -datadir=${HOME_FOLDER} -conf=${HOME_FOLDER}/${CONFIG_FILE} masternode genkey 2>&1)
+  local privkey=$(sudo -u ${USER_NAME} ${CLI_PATH} -datadir=${HOME_FOLDER} -conf=${HOME_FOLDER}/${CONFIG_FILE} createmasternodekey 2>&1)
   
   if [[ -z "${privkey}" ]] || [[ "${privkey^^}" = *"ERROR"* ]]; 
   then
-  local privkey=$(sudo -u 1x2coin-mn1 /usr/local/bin/1x2coin-cli -datadir=/home/1x2coin-mn1/.1x2coin -conf=/home/1x2coin-mn1/.1x2coin/1x2coin.conf masternode genkey 2>&1)
+  local privkey=$(sudo -u 1x2coin-mn1 /usr/local/bin/1x2coin-cli -datadir=/home/1x2coin-mn1/.1x2coin -conf=/home/1x2coin-mn1/.1x2coin/1x2coin.conf createmasternodekey 2>&1)
   fi
 
   if [[ -z "${privkey}" ]] || [[ "${privkey^^}" = *"ERROR"* ]]; 
