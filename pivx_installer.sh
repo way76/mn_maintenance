@@ -2,7 +2,7 @@
 
 TMP_FOLDER=$(mktemp -d)
 
-DAEMON_ARCHIVE=${1:-"https://g.0-x86_64-linux-gnu.tar.gz"}
+DAEMON_ARCHIVE=${1:-""}
 ARCHIVE_STRIP=""
 DEFAULT_PORT=51468
 
