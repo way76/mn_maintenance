@@ -257,11 +257,11 @@ pivx_restart()
 }
 pivx_info()
 {
-/usr/local/bin/pivx-cli -datadir=/home/pivx-mn1/.pivx -conf=/home/pivx-mn1/.pivx/pivx.conf getinfo
+/root/pivx-5.0.1/bin/pivx-cli getinfo
 }
 pivx_masternode_status()
 {
-  /usr/local/bin/pivx-cli -datadir=/home/pivx-mn1/.pivx -conf=/home/pivx-mn1/.pivx/pivx.conf getmasternodestatus
+  /root/pivx-5.0.1/bin/pivx-cli getmasternodestatus
 }
 
 
