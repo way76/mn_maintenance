@@ -79,7 +79,7 @@ max=$(calcola_max "$mn9b" "$max")
 max=$(calcola_max "$mn10b" "$max")
 
 
-echo "versione 1, max $max"
+echo "versione 2, max $max"
 stampa_out "$mn1b" "$max" "$mn1s" 1
 stampa_out "$mn2b" "$max" "$mn2s" 2
 stampa_out "$mn3b" "$max" "$mn3s" 2
