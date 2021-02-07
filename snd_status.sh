@@ -82,14 +82,14 @@ max=$(calcola_max "$mn10b" "$max")
 echo "versione 2, max $max"
 stampa_out "$mn1b" "$max" "$mn1s" 1
 stampa_out "$mn2b" "$max" "$mn2s" 2
-stampa_out "$mn3b" "$max" "$mn3s" 2
-stampa_out "$mn4b" "$max" "$mn4s" 2
-stampa_out "$mn5b" "$max" "$mn5s" 2
-stampa_out "$mn6b" "$max" "$mn6s" 2
-stampa_out "$mn7b" "$max" "$mn7s" 2
-stampa_out "$mn8b" "$max" "$mn8s" 2
-stampa_out "$mn9b" "$max" "$mn9s" 2
-stampa_out "$mn10b" "$max" "$mn10s" 2
+stampa_out "$mn3b" "$max" "$mn3s" 3
+stampa_out "$mn4b" "$max" "$mn4s" 4
+stampa_out "$mn5b" "$max" "$mn5s" 5
+stampa_out "$mn6b" "$max" "$mn6s" 6
+stampa_out "$mn7b" "$max" "$mn7s" 7
+stampa_out "$mn8b" "$max" "$mn8s" 8
+stampa_out "$mn9b" "$max" "$mn9s" 9
+stampa_out "$mn10b" "$max" "$mn10s" 10
 
 
 
