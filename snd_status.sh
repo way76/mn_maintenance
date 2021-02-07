@@ -19,7 +19,6 @@ mn9s=$(sudo -Hu snodecoin-mn9 snodecoin-cli masternode status | grep message)
 mn10b=$(sudo -Hu snodecoin-mn10 snodecoin-cli getinfo | grep blocks)
 mn10s=$(sudo -Hu snodecoin-mn10 snodecoin-cli masternode status | grep message)
 
-
 stampa_out(){
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -36,6 +35,7 @@ pos=$4
 mn1b=${mnb##*:}
 mn1b=${mn1b%,} 
 #diff=$(mn1b-max)
+diff=$((mn1b - max))
 
 
  if [[ "$mn1b" -lt "$min" ]]; then 
@@ -44,6 +44,11 @@ mn1b=${mn1b%,}
    echo -e "Masternode $pos: $mnb - $mns" 
     fi
 }
+
+
+
+
+
 
 calcola_max() {
 mnb=$1
