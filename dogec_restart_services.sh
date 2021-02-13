@@ -13,7 +13,7 @@ restart_service() {
 mnb=$1
 pos=$1
 #max=$2
-echo -e "systemctl stop doge_mn$pos.service"
+echo -e " eseguo systemctl stop doge_mn$pos.service"
 }
 
 
