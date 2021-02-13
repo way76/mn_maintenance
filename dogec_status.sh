@@ -81,6 +81,16 @@ mn19b=$(/usr/local/bin/dogecash-cli -conf=/home/doge_mn19/.dogecash/dogecash.con
 mn19s=$(/usr/local/bin/dogecash-cli -conf=/home/doge_mn19/.dogecash/dogecash.conf -datadir=/home/doge_mn19/.dogecash/ getmasternodestatus | grep message)
 mn20b=$(/usr/local/bin/dogecash-cli -conf=/home/doge_mn20/.dogecash/dogecash.conf -datadir=/home/doge_mn20/.dogecash/ getinfo | grep blocks)
 mn20s=$(/usr/local/bin/dogecash-cli -conf=/home/doge_mn20/.dogecash/dogecash.conf -datadir=/home/doge_mn20/.dogecash/ getmasternodestatus | grep message)
+mn21b=$(/usr/local/bin/dogecash-cli -conf=/home/doge_mn21/.dogecash/dogecash.conf -datadir=/home/doge_mn21/.dogecash/ getinfo | grep blocks)
+mn21s=$(/usr/local/bin/dogecash-cli -conf=/home/doge_mn21/.dogecash/dogecash.conf -datadir=/home/doge_mn21/.dogecash/ getmasternodestatus | grep message)
+mn22b=$(/usr/local/bin/dogecash-cli -conf=/home/doge_mn22/.dogecash/dogecash.conf -datadir=/home/doge_mn22/.dogecash/ getinfo | grep blocks)
+mn22s=$(/usr/local/bin/dogecash-cli -conf=/home/doge_mn22/.dogecash/dogecash.conf -datadir=/home/doge_mn22/.dogecash/ getmasternodestatus | grep message)
+mn23b=$(/usr/local/bin/dogecash-cli -conf=/home/doge_mn23/.dogecash/dogecash.conf -datadir=/home/doge_mn23/.dogecash/ getinfo | grep blocks)
+mn23s=$(/usr/local/bin/dogecash-cli -conf=/home/doge_mn23/.dogecash/dogecash.conf -datadir=/home/doge_mn23/.dogecash/ getmasternodestatus | grep message)
+mn24b=$(/usr/local/bin/dogecash-cli -conf=/home/doge_mn24/.dogecash/dogecash.conf -datadir=/home/doge_mn24/.dogecash/ getinfo | grep blocks)
+mn24s=$(/usr/local/bin/dogecash-cli -conf=/home/doge_mn24/.dogecash/dogecash.conf -datadir=/home/doge_mn24/.dogecash/ getmasternodestatus | grep message)
+mn25b=$(/usr/local/bin/dogecash-cli -conf=/home/doge_mn25/.dogecash/dogecash.conf -datadir=/home/doge_mn25/.dogecash/ getinfo | grep blocks)
+mn25s=$(/usr/local/bin/dogecash-cli -conf=/home/doge_mn25/.dogecash/dogecash.conf -datadir=/home/doge_mn25/.dogecash/ getmasternodestatus | grep message)
 
 
 EXPBLOCK=$(curl -s4 "https://api.dogec.io/api/getblockcount")
@@ -107,6 +117,11 @@ max=$(calcola_max "$mn17b" "$max")
 max=$(calcola_max "$mn18b" "$max")
 max=$(calcola_max "$mn19b" "$max")
 max=$(calcola_max "$mn20b" "$max")
+max=$(calcola_max "$mn21b" "$max")
+max=$(calcola_max "$mn22b" "$max")
+max=$(calcola_max "$mn23b" "$max")
+max=$(calcola_max "$mn24b" "$max")
+max=$(calcola_max "$mn25b" "$max")
 
 
 echo "versione 1, max $max"
@@ -130,3 +145,8 @@ stampa_out "$mn17b" "$max" "$mn17s" 17
 stampa_out "$mn18b" "$max" "$mn18s" 18
 stampa_out "$mn19b" "$max" "$mn19s" 19
 stampa_out "$mn20b" "$max" "$mn20s" 20
+stampa_out "$mn21b" "$max" "$mn21s" 21
+stampa_out "$mn22b" "$max" "$mn22s" 22
+stampa_out "$mn23b" "$max" "$mn23s" 23
+stampa_out "$mn24b" "$max" "$mn24s" 24
+stampa_out "$mn25b" "$max" "$mn25s" 25
