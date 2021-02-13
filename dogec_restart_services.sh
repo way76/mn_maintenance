@@ -12,7 +12,7 @@ ferma_tutti_dogec()
 restart_service() {
 mnb=$1
 #max=$2
-echo #systemctl stop doge_mn$pos.service
+echo systemctl stop doge_mn$pos.service
 }
 
 
