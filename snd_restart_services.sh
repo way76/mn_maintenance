@@ -2,6 +2,7 @@ attesa()
 {
   sleep 120
 }
+
 arresta_servizio()
 {
   id=$1
@@ -9,6 +10,7 @@ arresta_servizio()
   systemctl stop snodecoin-mn$id.service
   
 }
+
 avvia_servizio()
 {
   id=$1
