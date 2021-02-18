@@ -16,11 +16,16 @@ avvia_servizio()
   systemctl start snodecoin-mn$id.service
 }
 
-arresta_servizio 1
-arresta_servizio 2
+for (( c=1; c<=20; c++ ))
+do  
+   arresta_servizio c
+done
+
 killall snodecoind
 
-avvia_servizio 1; attesa
-avvia_servizio 2; attesa
+for (( c=1; c<=20; c++ ))
+do  
+   avvia_servizio c; attesa
+done
 
 echo "Riavvio completato"
