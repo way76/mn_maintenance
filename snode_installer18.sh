@@ -244,6 +244,9 @@ function get_port_and_user()
   num=20; 
   if [ -d /home/snodecoin-mn20 ]; then 
   num=21; 
+  if [ -d /home/snodecoin-mn21 ]; then 
+  num=22
+  else num=21; fi
   else num=20; fi
   else num=19; fi
   else num=18; fi
@@ -267,7 +270,7 @@ function get_port_and_user()
   
   
   
-  if [[ ${num} -gt 20 ]];
+  if [[ ${num} -gt 21]];
     then
       echo -e "${RED} To ensure your VPS and masternode run smoothly, you should not run more than 20 ${COIN_NAME} nodes (${num}) on the same VPS${NC}"
       echo -e "${RED} The install script will now exit so you can run it from another VPS.${NC}"
