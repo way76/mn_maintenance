@@ -18,14 +18,14 @@ avvia_servizio()
 
 for (( c=1; c<=20; c++ ))
 do  
-   arresta_servizio c
+   arresta_servizio $c
 done
 
 killall snodecoind
 
 for (( c=1; c<=20; c++ ))
 do  
-   avvia_servizio c; attesa
+   avvia_servizio $c; attesa
 done
 
 echo "Riavvio completato"
