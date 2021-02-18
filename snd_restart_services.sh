@@ -14,7 +14,6 @@ avvia_servizio()
   id=$1
   echo -e "Avvio il servizio $id"
   systemctl start snodecoin-mn$id.service
-    attesa
 }
 
 arresta_servizio 1
