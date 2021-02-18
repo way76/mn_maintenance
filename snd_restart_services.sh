@@ -18,6 +18,8 @@ avvia_servizio()
   systemctl start snodecoin-mn$id.service
 }
 
+echo "versione 2 dello script"
+
 for (( c=1; c<=20; c++ ))
 do  
    arresta_servizio $c
