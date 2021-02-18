@@ -20,7 +20,7 @@ arresta_servizio 1
 arresta_servizio 2
 killall snodecoind
 
-avvia_servizio 1
-avvia_servizio 2
+avvia_servizio 1; attesa
+avvia_servizio 2; attesa
 
 echo "Riavvio completato"
