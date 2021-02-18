@@ -19,6 +19,29 @@ mn9s=$(sudo -Hu snodecoin-mn9 snodecoin-cli masternode status | grep message)
 mn10b=$(sudo -Hu snodecoin-mn10 snodecoin-cli getinfo | grep blocks)
 mn10s=$(sudo -Hu snodecoin-mn10 snodecoin-cli masternode status | grep message)
 
+mn11b=$(sudo -Hu snodecoin-mn11 snodecoin-cli getinfo | grep blocks)
+mn11s=$(sudo -Hu snodecoin-mn11 snodecoin-cli masternode status | grep message)
+mn12b=$(sudo -Hu snodecoin-mn12 snodecoin-cli getinfo | grep blocks)
+mn12s=$(sudo -Hu snodecoin-mn12 snodecoin-cli masternode status | grep message)
+mn13b=$(sudo -Hu snodecoin-mn13 snodecoin-cli getinfo | grep blocks)
+mn13s=$(sudo -Hu snodecoin-mn13 snodecoin-cli masternode status | grep message)
+mn14b=$(sudo -Hu snodecoin-mn14 snodecoin-cli getinfo | grep blocks)
+mn14s=$(sudo -Hu snodecoin-mn14 snodecoin-cli masternode status | grep message)
+mn15b=$(sudo -Hu snodecoin-mn15 snodecoin-cli getinfo | grep blocks)
+mn15s=$(sudo -Hu snodecoin-mn15 snodecoin-cli masternode status | grep message)
+mn16b=$(sudo -Hu snodecoin-mn16 snodecoin-cli getinfo | grep blocks)
+mn16s=$(sudo -Hu snodecoin-mn16 snodecoin-cli masternode status | grep message)
+mn17b=$(sudo -Hu snodecoin-mn17 snodecoin-cli getinfo | grep blocks)
+mn17s=$(sudo -Hu snodecoin-mn17 snodecoin-cli masternode status | grep message)
+mn18b=$(sudo -Hu snodecoin-mn18 snodecoin-cli getinfo | grep blocks)
+mn18s=$(sudo -Hu snodecoin-mn18 snodecoin-cli masternode status | grep message)
+mn19b=$(sudo -Hu snodecoin-mn19 snodecoin-cli getinfo | grep blocks)
+mn19s=$(sudo -Hu snodecoin-mn19 snodecoin-cli masternode status | grep message)
+mn20b=$(sudo -Hu snodecoin-mn20 snodecoin-cli getinfo | grep blocks)
+mn20s=$(sudo -Hu snodecoin-mn20 snodecoin-cli masternode status | grep message)
+
+
+
 stampa_out(){
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -77,7 +100,16 @@ max=$(calcola_max "$mn7b" "$max")
 max=$(calcola_max "$mn8b" "$max")
 max=$(calcola_max "$mn9b" "$max")
 max=$(calcola_max "$mn10b" "$max")
-
+max=$(calcola_max "$mn11b" "$max")
+max=$(calcola_max "$mn12b" "$max")
+max=$(calcola_max "$mn13b" "$max")
+max=$(calcola_max "$mn14b" "$max")
+max=$(calcola_max "$mn15b" "$max")
+max=$(calcola_max "$mn16b" "$max")
+max=$(calcola_max "$mn17b" "$max")
+max=$(calcola_max "$mn18b" "$max")
+max=$(calcola_max "$mn19b" "$max")
+max=$(calcola_max "$mn20b" "$max")
 
 echo "versione 2, max $max"
 stampa_out "$mn1b" "$max" "$mn1s" 1
@@ -90,6 +122,15 @@ stampa_out "$mn7b" "$max" "$mn7s" 7
 stampa_out "$mn8b" "$max" "$mn8s" 8
 stampa_out "$mn9b" "$max" "$mn9s" 9
 stampa_out "$mn10b" "$max" "$mn10s" 10
-
+stampa_out "$mn11b" "$max" "$mn10s" 11
+stampa_out "$mn12b" "$max" "$mn10s" 12
+stampa_out "$mn13b" "$max" "$mn10s" 13
+stampa_out "$mn14b" "$max" "$mn10s" 14
+stampa_out "$mn15b" "$max" "$mn10s" 15
+stampa_out "$mn16b" "$max" "$mn10s" 16
+stampa_out "$mn17b" "$max" "$mn10s" 17
+stampa_out "$mn18b" "$max" "$mn10s" 18
+stampa_out "$mn19b" "$max" "$mn10s" 19
+stampa_out "$mn20b" "$max" "$mn10s" 20
 
 
