@@ -1,20 +1,27 @@
 attesa()
 {
-sleep 120
-
+  sleep 120
+}
+arresta_servizio()
+{
+  id=$1
+  echo -e "Arresto il servizio $id"
+  systemctl stop snodecoin-mn$id.service
+  
+}
+avvia_servizio()
+{
+  id=$1
+  systemctl start snodecoin-mn$id.service
+  echo -e "Avvio il servizio $id"
+  attesa()
 }
 
-
-echo "Fermo i servizi:"
-echo "1:"
-systemctl stop snodecoin-mn1.service
-echo "2:"
-systemctl stop snodecoin-mn2.service
-
+arresta_servizio 1
+arresta_servizio 2
 killall snodecoind
-echo "Attesa riavvio servizi:"
-sleep 10
-echo "Avvio nuovamente i servizi:"
-echo "1:"
-systemctl start snodecoin-mn1.service
-echo "Tutti i servizi sono stati avviati"
+
+avvia_servizio 1
+avvia_servizio 2
+
+echo "Riavvio completato"
