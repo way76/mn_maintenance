@@ -500,7 +500,7 @@ if [[ ("${NEW_NODE}" == "y" || "${NEW_NODE}" == "Y") ]]; then
   setup_node
   exit 0
 elif [[ "${NEW_NODE}" == "new" ]]; then
-  prepare_system
+  #prepare_system
   deploy_binary
   setup_node
 else
