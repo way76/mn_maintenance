@@ -34,6 +34,7 @@ echo "  5) unlock wallet       "
 echo "  6)   lock wallet       "
 echo "  7) status (getinfo)    "
 echo "  8) restart periodico   "
+echo "  10) aggiungi  addnodes "
 echo "  9) torna indietro      "
 
 
@@ -47,6 +48,7 @@ case $snd_azione in
   6) snd_wallet_lock;menu_snd;;
   7) snd_status_getinfo;menu_snd;;
   8) snd_restart_periodico;menu_snd;;
+  10) snd_add_nodes;menu_snd;;
   9) menu_coin;;
   *) menu_snd;;
 esac
