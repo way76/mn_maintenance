@@ -305,7 +305,7 @@ snd_status_peer()
 }
 snd_status_staking()
 {
-/usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn1/.snodecoin -conf=/home/snodecoin-mn1/.snodecoin/snodecoin.conf getstakingstatus
+/usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn21/.snodecoin -conf=/home/snodecoin-mn21/.snodecoin/snodecoin.conf getstakingstatus
 }
 snd_wallet_lock()
 {
