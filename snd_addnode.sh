@@ -21,6 +21,7 @@ sudo -Hu snodecoin-mn17 snodecoin-cli addnode $1 add
 sudo -Hu snodecoin-mn18 snodecoin-cli addnode $1 add
 sudo -Hu snodecoin-mn19 snodecoin-cli addnode $1 add
 sudo -Hu snodecoin-mn20 snodecoin-cli addnode $1 add
+sudo -Hu snodecoin-mn21 snodecoin-cli addnode $1 add
 }
 addnode "82.165.23.144:20001"
 addnode "82.165.23.144:20002"
