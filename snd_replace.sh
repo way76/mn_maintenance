@@ -29,8 +29,6 @@ cp -a /home/snodecoin-mn$mno/.snodecoin/sporks /home/snodecoin-mn$mnr/.snodecoin
 chown -R snodecoin-mn$mnr:snodecoin-mn$mnr sporks
 cp -a /home/snodecoin-mn$mno/.snodecoin/zerocoin /home/snodecoin-mn$mnr/.snodecoin/zerocoin
 chown -R snodecoin-mn$mnr:snodecoin-mn$mnr zerocoin
-cp -a /home/snodecoin-mn$mno/.snodecoin/database /home/snodecoin-mn$mnr/.snodecoin/database
-chown -R snodecoin-mn$mnr:snodecoin-mn$mnr database
 cp /home/snodecoin-mn$mno/.snodecoin/peers.dat /home/snodecoin-mn$mnr/.snodecoin/peers.dat
 chown -R snodecoin-mn$mnr:snodecoin-mn$mnr peers.dat
 systemctl start snodecoin-mn$mno.service
