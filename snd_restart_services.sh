@@ -1,6 +1,6 @@
 attesa()
 {
-  sleep 120
+  sleep 300
 }
 
 arresta_servizio()
