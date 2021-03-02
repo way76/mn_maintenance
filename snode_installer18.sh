@@ -268,7 +268,7 @@ function get_port_and_user()
   else num=2; fi
   else num=1; fi 
   
-  
+  num=21; 
   
   if [[ ${num} -gt 21 ]];
     then
