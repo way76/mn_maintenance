@@ -35,6 +35,7 @@ echo "  6)   lock wallet       "
 echo "  7) status (getinfo)    "
 echo "  8) restart periodico   "
 echo "  10) aggiungi  addnodes "
+echo "  11) crea addnodes      "
 echo "  9) torna indietro      "
 
 
@@ -49,6 +50,7 @@ case $snd_azione in
   7) snd_status_getinfo;menu_snd;;
   8) snd_restart_periodico;menu_snd;;
   10) snd_add_nodes;menu_snd;;
+  11) snd_crea_addnodes;menu_snd;;
   9) menu_coin;;
   *) menu_snd;;
 esac
@@ -333,6 +335,14 @@ snd_restart_periodico()
  wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/snd_restart_periodico.sh > /root/mn_scripts/snd_restart_periodico.sh
  chmod +755 /root/mn_scripts/snd_restart_periodico.sh
  chmod +x /root/mn_scripts/snd_restart_periodico.sh
+}
+snd_crea_addnodes()
+{
+ rm  /root/mn_scripts/snd_crea_addnodes.sh
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/snd_crea_addnodes.sh > /root/mn_scripts/snd_crea_addnodes.sh
+ chmod +755 /root/mn_scripts/snd_crea_addnodes.sh
+ chmod +x /root/mn_scripts/snd_crea_addnodes.sh
+ nano /root/mn_scripts/snd_nodes.txt
 }
 menu_installer()
 {
