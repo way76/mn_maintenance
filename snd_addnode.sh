@@ -25,12 +25,8 @@ sudo -Hu snodecoin-mn21 snodecoin-cli addnode $1 add
 }
 
 addnode "94.214.161.52:18988"
-addnode "104.40.215.96:18988"
-addnode "109.111.118.167:18988"
 addnode "173.66.179.250:18988"
+addnode "78.29.27.186:18988"
 addnode "173.249.63.116:18988"
 addnode "94.177.236.204:18988"
-addnode "127.0.0.1:18991"
-addnode "85.94.179.41:18988"
-addnode "159.253.73.144:18988"
 addnode "138.201.172.121:18988"
