@@ -394,22 +394,7 @@ marc_installer()
  /root/mn_scripts/marc_installer.sh
 }
 
-marc_getinfo()
-{
-  /usr/local/bin/marcoin-cli -datadir=/home/marcoin-mn1/.marcoin -conf=/home/marcoin-mn1/.marcoin/marcoin.conf getinfo
-}
-marc_staking_unlock()
-{
-  echo " echo /usr/local/bin/marcoin-cli -datadir=/home/marcoin-mn1/.marcoin -conf=/home/marcoin-mn1/.marcoin/marcoin.conf"
-}
-marc_staking_restart()
-{
-  systemctl restart marcoin-mn1.service
-}
-marc_staking_status()
-{
-  /usr/local/bin/marcoin-cli -datadir=/home/marcoin-mn1/.marcoin -conf=/home/marcoin-mn1/.marcoin/marcoin.conf getstakingstatus
-}
+
 vivo_installer()
 {
  rm  /root/mn_scripts/1vivobinMulti.sh
@@ -543,6 +528,22 @@ marc_copia()
  chmod +755 /root/mn_scripts/marc_replace.sh
  chmod +x /root/mn_scripts/marc_replace.sh
  /root/mn_scripts/marc_replace.sh
+}
+marc_getinfo()
+{
+  /usr/local/bin/marcoin-cli -datadir=/home/marcoin-mn21/.marcoin -conf=/home/marcoin-mn21/.marcoin/marcoin.conf getinfo
+}
+marc_staking_unlock()
+{
+  echo " echo /usr/local/bin/marcoin-cli -datadir=/home/marcoin-mn21/.marcoin -conf=/home/marcoin-mn21/.marcoin/marcoin.conf"
+}
+marc_staking_restart()
+{
+  systemctl restart marcoin-mn21.service
+}
+marc_staking_status()
+{
+  /usr/local/bin/marcoin-cli -datadir=/home/marcoin-mn21/.marcoin -conf=/home/marcoin-mn21/.marcoin/marcoin.conf getstakingstatus
 }
 
 ####################################################### VIVOCOIN
