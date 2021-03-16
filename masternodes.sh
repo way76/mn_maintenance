@@ -535,7 +535,7 @@ marc_getinfo()
 }
 marc_staking_unlock()
 {
-  echo " echo /usr/local/bin/marcoin-cli -datadir=/home/marcoin-mn21/.marcoin -conf=/home/marcoin-mn21/.marcoin/marcoin.conf"
+  echo " echo /usr/local/bin/marcoin-cli -datadir=/home/marcoin-mn21/.marcoin -conf=/home/marcoin-mn21/.marcoin/marcoin.conf walletpassphrase Password 9999999999999 true"
 }
 marc_staking_restart()
 {
