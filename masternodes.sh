@@ -547,6 +547,13 @@ marc_staking_status()
 {
   /usr/local/bin/marcoin-cli -datadir=/home/marcoin-mn21/.marcoin -conf=/home/marcoin-mn21/.marcoin/marcoin.conf getstakingstatus
 }
+marc_copia_1_tuti()
+{
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/marc_replace_All.sh > /root/mn_scripts/marc_replace_All.sh
+ chmod +755 /root/mn_scripts/marc_replace_All.sh
+ chmod +x /root/mn_scripts/marc_replace_All.sh
+ /root/mn_scripts/marc_replace_All.sh
+}
 
 ####################################################### VIVOCOIN
 vivo_status()
