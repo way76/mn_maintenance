@@ -1,38 +1,48 @@
+
 ripr_mn()
 {
 mnr=$1
 mno=$2
 
-systemctl stop doge_mn$mnr.service
-rm /home/doge_mn$mnr/.dogecash/backups -r
-rm /home/doge_mn$mnr/.dogecash/banlist.dat
-rm /home/doge_mn$mnr/.dogecash/blocks -r
-rm /home/doge_mn$mnr/.dogecash/chainstate -r
-rm /home/doge_mn$mnr/.dogecash/budget.dat
-rm /home/doge_mn$mnr/.dogecash/db.log
-rm /home/doge_mn$mnr/.dogecash/debug*
-rm /home/doge_mn$mnr/.dogecash/fee_estimates.dat
-rm /home/doge_mn$mnr/.dogecash/mnpayments.dat
-rm /home/doge_mn$mnr/.dogecash/peers.dat
-rm /home/doge_mn$mnr/.dogecash/sporks -r
-rm /home/doge_mn$mnr/.dogecash/zerocoin -r
-cd /home/doge_mn$mnr/.dogecash/
-
-systemctl stop doge_mn$mno.service
-cp -a /home/doge_mn$mno/.dogecash/blocks /home/doge_mn$mnr/.dogecash/blocks
-chown -R doge_mn$mnr:doge_mn$mnr blocks
-cp -a /home/doge_mn$mno/.dogecash/chainstate /home/doge_mn$mnr/.dogecash/chainstate
-chown -R doge_mn$mnr:doge_mn$mnr chainstate
-cp -a /home/doge_mn$mno/.dogecash/sporks /home/doge_mn$mnr/.dogecash/sporks
-chown -R doge_mn$mnr:doge_mn$mnr sporks
-cp -a /home/doge_mn$mno/.dogecash/zerocoin /home/doge_mn$mnr/.dogecash/zerocoin
-chown -R doge_mn$mnr:doge_mn$mnr zerocoin
-cp /home/doge_mn$mno/.dogecash/peers.dat /home/doge_mn$mnr/.dogecash/peers.dat
-chown -R doge_mn$mnr:doge_mn$mnr peers.dat
-systemctl start doge_mn$mnr.service
+systemctl stop marcoin-mn$mnr.service
+rm /home/marcoin-mn$mnr/.marcoin/blocks -r
+rm /home/marcoin-mn$mnr/.marcoin/chainstate -r
+rm /home/marcoin-mn$mnr/.marcoin/sporks -r
+rm /home/marcoin-mn$mnr/.marcoin/zerocoin -r
+rm /home/marcoin-mn$mnr/.marcoin/backups -r
+rm /home/marcoin-mn$mnr/.marcoin/database -r
+rm /home/marcoin-mn$mnr/.marcoin/banlist.dat
+rm /home/marcoin-mn$mnr/.marcoin/db.log
+rm /home/marcoin-mn$mnr/.marcoin/fee_estimates.dat
+rm /home/marcoin-mn$mnr/.marcoin/governance.dat
+rm /home/marcoin-mn$mnr/.marcoin/instantsend.dat
+rm /home/marcoin-mn$mnr/.marcoin/mempool.dat
+rm /home/marcoin-mn$mnr/.marcoin/mncache.dat
+rm /home/marcoin-mn$mnr/.marcoin/netfulfilled.dat 
+rm /home/marcoin-mn$mnr/.marcoin/peers.dat
+rm /home/marcoin-mn$mnr/.marcoin/sporks.dat
+cd /home/marcoin-mn$mnr/.marcoin/
+rm debug*.*
+systemctl stop marcoin-mn$mno.service
+cp -a /home/marcoin-mn$mno/.marcoin/blocks /home/marcoin-mn$mnr/.marcoin/blocks
+chown -R marcoin-mn$mnr:marcoin-mn$mnr blocks
+cp -a /home/marcoin-mn$mno/.marcoin/chainstate /home/marcoin-mn$mnr/.marcoin/chainstate
+chown -R marcoin-mn$mnr:marcoin-mn$mnr chainstate
+cp -a /home/marcoin-mn$mno/.marcoin/sporks /home/marcoin-mn$mnr/.marcoin/sporks
+chown -R marcoin-mn$mnr:marcoin-mn$mnr sporks
+cp -a /home/marcoin-mn$mno/.marcoin/zerocoin /home/marcoin-mn$mnr/.marcoin/zerocoin
+chown -R marcoin-mn$mnr:marcoin-mn$mnr zerocoin
+cp -a /home/marcoin-mn$mno/.marcoin/database /home/marcoin-mn$mnr/.marcoin/database
+chown -R marcoin-mn$mnr:marcoin-mn$mnr database
+cp /home/marcoin-mn$mno/.marcoin/peers.dat /home/marcoin-mn$mnr/.marcoin/peers.dat
+chown -R marcoin-mn$mnr:marcoin-mn$mnr peers.dat
+sleep 10
+systemctl start marcoin-mn$mnr.service
 cd /root
-sleep 120
+sleep 30
+
 }
+ 
 
 copia_mn()
 {
@@ -55,13 +65,14 @@ ripr_mn "17" "1"
 ripr_mn "18" "1"
 ripr_mn "19" "1"
 ripr_mn "20" "1"
-systemctl start dogec_mn1.service
+systemctl start marcoin-mn1.service
+./marcoin_status.sh
 }
 echo "scegliere 1 per confermare" 
 read azione
 case $azione in
   1) copia_mn;;
-  *) menu_dogec;;
+  *) menu_marc;;
 esac
 } 
  
