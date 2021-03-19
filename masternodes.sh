@@ -67,6 +67,7 @@ echo "  5) staking unlock      "
 echo "  6) staking restart     "
 echo "  7) staking status      "
 echo "  9) torna indietro      "
+echo " 10) copia mn1 su tutti  "
 
 
 read marc_azione
@@ -79,6 +80,7 @@ case $marc_azione in
   6) marc_staking_restart;menu_marc;;
   7) marc_staking_status;menu_marc;;
   9) menu_coin;;
+ 10) marc_copia_1_tuti;menu_marc;;
   *) menu_marc;;
 esac
 }
