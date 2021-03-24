@@ -22,6 +22,7 @@ echo -e "systemctl start ballcoin_mn$pos.service"
 
 
 echo "Fermo i servizi:"
+ferma_tutti_ball
 restart_service "1"
 restart_service "2"
 restart_service "3"
@@ -43,6 +44,5 @@ restart_service "18"
 restart_service "19"
 restart_service "20"
 restart_service "21"
-ferma_tutti_ball
 
 echo "Tutti i servizi sono stati avviati"
