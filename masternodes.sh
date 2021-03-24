@@ -594,10 +594,10 @@ ball_status()
 }
 ball_restart()
 {
- wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/ball_restart_service.sh > /root/mn_scripts/ball_restart_services.sh
- chmod +755 /root/mn_scripts/ball_restart_services.sh
- chmod +x /root/mn_scripts/ball_restart_services.sh
- /root/mn_scripts/ball_restart_services.sh
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/ball_restart_service.sh > /root/mn_scripts/ball_restart_service.sh
+ chmod +755 /root/mn_scripts/ball_restart_service.sh
+ chmod +x /root/mn_scripts/ball_restart_service.sh
+ /root/mn_scripts/ball_restart_service.sh
 }
 ball_copia()
 {
