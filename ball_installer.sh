@@ -320,6 +320,18 @@ function create_key()
   echo -e "${GREEN} Creating masternode private key${NC}"
   local privkey=$(sudo -u ${USER_NAME} ${CLI_PATH} -datadir=${HOME_FOLDER} -conf=${HOME_FOLDER}/${CONFIG_FILE} masternode genkey 2>&1)
  
+ 
+  local privkey=$(sudo -u ${USER_NAME} ${CLI_PATH} -datadir=${HOME_FOLDER} -conf=${HOME_FOLDER}/${CONFIG_FILE} masternode genkey 2>&1)
+  
+   
+  if [[ -z "${privkey}" ]] || [[ "${privkey^^}" = *"ERROR"* ]]; 
+  then
+  local privkey=$(sudo -u ballcoin-mn1 /usr/local/bin/ballcoin-cli -datadir=/home/ballcoin-mn1/.ballcoin -conf=/home/ballcoin-mn1/.ballcoin/ballcoin.conf masternode genkey 2>&1)
+  fi
+
+ 
+ 
+ 
   if [[ -z "${privkey}" ]] || [[ "${privkey^^}" = *"ERROR"* ]]; 
   then
     local retry=5
