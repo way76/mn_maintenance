@@ -4,9 +4,9 @@ sleep 60
 
 }
 
-ferma_tutti_dogec()
+ferma_tutti_ball()
 {
-  killall dogecashd -8
+  killall ballcoind -8
 }
 
 restart_service() {
@@ -43,6 +43,6 @@ restart_service "18"
 restart_service "19"
 restart_service "20"
 restart_service "21"
-ferma_tutti_dogec
+ferma_tutti_ball
 
 echo "Tutti i servizi sono stati avviati"
