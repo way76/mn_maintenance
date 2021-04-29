@@ -4,10 +4,11 @@
 menu_coin()
 {
 echo "Scegliere il menu del coin - versione 3"
-echo "  1) Snodecoin  2) Marcoin  3) BallCoin 4) Vivocoin 5) DogeCoin 6) TerraCoin 7) Paccoin  8) Block 9) Exit 10) Pivx 11) Installer"
+echo "  0) Staking 2) Marcoin  3) BallCoin 4) Vivocoin 5) DogeCoin 6) TerraCoin 7) Paccoin  8) Block 9) Exit 10) Pivx 11) Installer"
 
 read coin
 case $coin in
+  0) menu_staking;;
   1) menu_snd;;
   2) menu_marc;;
   3) menu_ball;;
@@ -22,6 +23,21 @@ case $coin in
   *) echo "invalid option";;
 esac
 }
+
+menu_staking()
+{
+  echo " 1) SNODECOIN      "
+  echo " 9) torna indietro "
+
+read staking_azione
+case $staking_azione in
+  1) SnodeCoin
+  9) menu_coin
+  *) menu_staking
+esac
+}
+
+
 
 menu_snd()
 {
