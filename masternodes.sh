@@ -26,31 +26,19 @@ esac
 menu_snd()
 {
 echo "                                                     SNODECOIN "
-echo "  1) status masternodes  "
-echo "  2) restart masternodes "
-echo "  3) copia masternode    "
-echo "  4) staking status      "
-echo "  5) unlock wallet       "
-echo "  6)   lock wallet       "
-echo "  7) status (getinfo)    "
-echo "  8) restart periodico   "
-echo "  10) aggiungi  addnodes "
-echo "  11) crea addnodes      "
+echo "  1) staking status      "
+echo "  2) unlock wallet       "
+echo "  3)   lock wallet       "
+echo "  4) status (getinfo)    "
 echo "  9) torna indietro      "
 
 
 read snd_azione
 case $snd_azione in
-  1) snd_status;menu_snd;;
-  2) snd_restart;menu_snd;;
-  3) snd_copia;menu_snd;;
-  4) snd_status_staking;menu_snd;;
-  5) snd_wallet_unlock;menu_snd;;
-  6) snd_wallet_lock;menu_snd;;
-  7) snd_status_getinfo;menu_snd;;
-  8) snd_restart_periodico;menu_snd;;
-  10) snd_add_nodes;menu_snd;;
-  11) snd_crea_addnodes;menu_snd;;
+  1) snd_status_staking;menu_snd;;
+  2) snd_wallet_unlock;menu_snd;;
+  3) snd_wallet_lock;menu_snd;;
+  4) snd_status_getinfo;menu_snd;;
   9) menu_coin;;
   *) menu_snd;;
 esac
@@ -274,7 +262,7 @@ pivx_masternode_status()
 ############################################# SNODECOIN
 snd_status_getinfo()
 {
-/usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn21/.snodecoin -conf=/home/snodecoin-mn21/.snodecoin/snodecoin.conf getinfo
+/usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn11/.snodecoin -conf=/home/snodecoin-mn1/.snodecoin/snodecoin.conf getinfo
 }
 snd_status()
 {
@@ -301,7 +289,7 @@ snd_copia()
 
 snd_status_sync()
 {
-/usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn21/.snodecoin -conf=/home/snodecoin-mn21/.snodecoin/snodecoin.conf mnsync status
+/usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn1/.snodecoin -conf=/home/snodecoin-mn1/.snodecoin/snodecoin.conf mnsync status
 }
 snd_status_peer()
 {
@@ -309,15 +297,15 @@ snd_status_peer()
 }
 snd_status_staking()
 {
-/usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn21/.snodecoin -conf=/home/snodecoin-mn21/.snodecoin/snodecoin.conf getstakingstatus
+/usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn1/.snodecoin -conf=/home/snodecoin-mn1/.snodecoin/snodecoin.conf getstakingstatus
 }
 snd_wallet_lock()
 {
-  /usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn21/.snodecoin -conf=/home/snodecoin-mn21/.snodecoin/snodecoin.conf walletlock
+  /usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn1/.snodecoin -conf=/home/snodecoin-mn1/.snodecoin/snodecoin.conf walletlock
 }
 snd_wallet_unlock()
 {
-  /usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn21/.snodecoin -conf=/home/snodecoin-mn21/.snodecoin/snodecoin.conf walletpassphrase Password@99Casuale 9999999999999 true
+  /usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn1/.snodecoin -conf=/home/snodecoin-mn1/.snodecoin/snodecoin.conf walletpassphrase Password@99Casuale 9999999999999 true
 }
 snd_add_nodes()
 {
