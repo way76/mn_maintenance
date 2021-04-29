@@ -3,13 +3,12 @@
 
 menu_coin()
 {
-echo "Scegliere il menu del coin - versione 1 del software"
+echo "Scegliere il menu del coin - versione 2 del software"
 echo "  0) Staking 2) Marcoin  3) BallCoin 4) Vivocoin 5) DogeCoin 6) TerraCoin 7) Paccoin  8) Block 9) Exit 10) Pivx 11) Installer"
 
 read coin
 case $coin in
   0) menu_staking;;
-  1) menu_snd;;
   2) menu_marc;;
   3) menu_ball;;
   4) menu_vivo;;
@@ -31,7 +30,7 @@ menu_staking()
 
 read staking_azione
 case $staking_azione in
-  1) SnodeCoin;;
+  1) menu_snd;;
   9) menu_coin;;
   *) menu_staking;;
 esac
