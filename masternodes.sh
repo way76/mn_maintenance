@@ -262,7 +262,7 @@ pivx_masternode_status()
 ############################################# SNODECOIN
 snd_status_getinfo()
 {
-/usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn11/.snodecoin -conf=/home/snodecoin-mn1/.snodecoin/snodecoin.conf getinfo
+/usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn1/.snodecoin -conf=/home/snodecoin-mn1/.snodecoin/snodecoin.conf getinfo
 }
 snd_status()
 {
@@ -293,7 +293,7 @@ snd_status_sync()
 }
 snd_status_peer()
 {
-/usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn21/.snodecoin -conf=/home/snodecoin-mn21/.snodecoin/snodecoin.conf getpeerinfo | grep -nw addr
+/usr/local/bin/snodecoin-cli -datadir=/home/snodecoin-mn1/.snodecoin -conf=/home/snodecoin-mn1/.snodecoin/snodecoin.conf getpeerinfo | grep -nw addr
 }
 snd_status_staking()
 {
