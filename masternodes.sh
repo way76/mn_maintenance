@@ -31,9 +31,9 @@ menu_staking()
 
 read staking_azione
 case $staking_azione in
-  1) SnodeCoin
-  9) menu_coin
-  *) menu_staking
+  1) SnodeCoin;;
+  9) menu_coin;;
+  *) menu_staking;;
 esac
 }
 
