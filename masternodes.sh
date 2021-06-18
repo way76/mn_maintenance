@@ -10,7 +10,6 @@ read coin
 case $coin in
   0) menu_staking;;
   2) menu_marc;;
-  3) menu_ball;;
   4) menu_vivo;;
   5) menu_dogec;;
   6) menu_trc;;
@@ -26,11 +25,13 @@ esac
 menu_staking()
 {
   echo " 1) SNODECOIN      "
+  echo " 2) BALLCOIN       "
   echo " 9) torna indietro "
 
 read staking_azione
 case $staking_azione in
   1) menu_snd;;
+  2) menu_ball;;
   9) menu_coin;;
   *) menu_staking;;
 esac
