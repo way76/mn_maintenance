@@ -4,7 +4,7 @@
 menu_coin()
 {
 echo "Scegliere il menu del coin - versione 2 del software"
-echo "  0) Staking 2) Marcoin  3) BallCoin 4) Vivocoin 5) DogeCoin 6) TerraCoin 7) Paccoin  8) Block 9) Exit 10) Pivx 11) Installer"
+echo "  0) Staking 2) Marcoin 4) Vivocoin 5) DogeCoin 6) TerraCoin 7) Paccoin  8) Block 9) Exit 10) Pivx 11) Installer"
 
 read coin
 case $coin in
@@ -59,6 +59,38 @@ case $snd_azione in
   *) menu_snd;;
 esac
 }
+menu_ball()
+{
+echo "                                                     BALLCOIN "
+echo "  1) staking status      "
+echo "  2) unlock wallet       "
+echo "  3)   lock wallet       "
+echo "  4) status (getinfo)    "
+echo "  9) torna indietro      "
+
+
+read ball_azione
+case $ball_azione in
+  1) ball_status_staking;menu_ball;;
+  2) ball_wallet_unlock;menu_ball;;
+  3) ball_wallet_lock;menu_ball;;
+  4) ball_status_getinfo;menu_ball;;
+  9) menu_coin;;
+  *) menu_snd;;
+esac
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 menu_marc()
 {
@@ -107,29 +139,6 @@ case $vivo_azione in
   4) vivo_copiaAll;menu_vivo;;
   9) menu_coin;;
   *) menu_vivo;;
-esac
-}
-
-menu_ball()
-{
-echo "                                                    BALLCOIN "
-echo "  1) status masternodes  "
-echo "  2) restart masternodes "
-echo "  3) copia masternode    "
-echo "  4) copia mn1 su tutti  "
-echo "  5) esegui addnodes     "
-echo "  9) torna indietro      "
-
-
-read ball_azione
-case $ball_azione in
-  1) ball_status;menu_ball;;
-  2) ball_restart;menu_ball;;
-  3) ball_copia;menu_ball;;
-  4) ball_copiatutti;menu_ball;;
-  5) ball_addnodes;menu_ball;;
-  9) menu_coin;;
-  *) menu_ball;;
 esac
 }
 
@@ -589,6 +598,25 @@ vivo_copiaAll()
  /root/mn_scripts/vivo_replaceAll.sh
 }
 ####################################################### BALLCOIN
+
+ball_status_staking()
+{
+  /usr/local/bin/ballcoin-cli -datadir=/home/ballcoin-mn1/.ballcoin -conf=/home/ballcoin-mn1/.ballcoin/ballcoin.conf getstakingstatus
+}
+
+ball_wallet_unlock()
+{
+  /usr/local/bin/ballcoin-cli -datadir=/home/ballcoin-mn1/.ballcoin -conf=/home/ballcoin-mn1/.ballcoin/ballcoin.conf walletpassphrase Password@99Casuale 99999999999 true
+}
+ball_wallet_lock()
+{
+/usr/local/bin/ballcoin-cli -datadir=/home/ballcoin-mn1/.ballcoin -conf=/home/ballcoin-mn1/.ballcoin/ballcoin.conf walletlock
+}
+ball_status_getinfo()
+{
+  /usr/local/bin/ballcoin-cli -datadir=/home/ballcoin-mn1/.ballcoin -conf=/home/ballcoin-mn1/.ballcoin/ballcoin.conf getinfo
+}
+
 ball_status()
 {
  wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/ball_status.sh > /root/mn_scripts/ball_status.sh
@@ -624,8 +652,6 @@ ball_addnodes()
  chmod +x /root/mn_scripts/ball_addnode.sh
  /root/mn_scripts/ball_addnode.sh
 }
-
-
 ####################################################### DOGECOIN
 dogec_status()
 {
