@@ -4,12 +4,11 @@
 menu_coin()
 {
 echo "Scegliere il menu del coin - versione 2 del software"
-echo "  0) Staking 2) Marcoin 4) Vivocoin 5) DogeCoin 6) TerraCoin 7) Paccoin  8) Block 9) Exit 10) Pivx 11) Installer"
+echo "  0) Staking 4) Vivocoin 5) DogeCoin 6) TerraCoin 7) Paccoin  8) Block 9) Exit 10) Pivx 11) Installer"
 
 read coin
 case $coin in
   0) menu_staking;;
-  2) menu_marc;;
   4) menu_vivo;;
   5) menu_dogec;;
   6) menu_trc;;
