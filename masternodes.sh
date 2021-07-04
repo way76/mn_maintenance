@@ -102,6 +102,7 @@ echo "  4) staking getinfo     "
 echo "  5) staking unlock      "
 echo "  6) staking restart     "
 echo "  7) staking status      "
+echo "  8) marc remover        "
 echo "  9) torna indietro      "
 echo " 10) copia mn1 su tutti  "
 
@@ -115,6 +116,7 @@ case $marc_azione in
   5) marc_staking_unlock;menu_marc;;
   6) marc_staking_restart;menu_marc;;
   7) marc_staking_status;menu_marc;;
+  8) marc_remover;menu_marc;;
   9) menu_coin;;
  10) marc_copia_1_tuti;menu_marc;;
   *) menu_marc;;
@@ -544,6 +546,17 @@ marc_copia()
  chmod +x /root/mn_scripts/marc_replace.sh
  /root/mn_scripts/marc_replace.sh
 }
+
+marc_remover()
+{
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/marc_remover.sh > /root/mn_scripts/marc_remover.sh
+ chmod +755 /root/mn_scripts/marc_remover.sh
+ chmod +x /root/mn_scripts/marc_remover.sh
+ /root/mn_scripts/marc_remover.sh
+}
+
+
+
 marc_getinfo()
 {
   /usr/local/bin/marcoin-cli -datadir=/home/marcoin-mn21/.marcoin -conf=/home/marcoin-mn21/.marcoin/marcoin.conf getinfo
