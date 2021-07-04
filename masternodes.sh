@@ -3,7 +3,7 @@
 
 menu_coin()
 {
-echo "Scegliere il menu del coin - versione 2 del software"
+echo "Scegliere il menu del coin - versione 3 del software"
 echo "  0) Staking 4) Vivocoin 5) DogeCoin 6) TerraCoin 7) Paccoin  8) Block 9) Exit 10) Pivx 11) Installer"
 
 read coin
