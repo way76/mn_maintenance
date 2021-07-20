@@ -1,6 +1,6 @@
 attesa()
 {
-sleep 60
+sleep 120
 
 }
 
@@ -13,7 +13,10 @@ restart_service() {
 mnb=$1
 pos=$1
 #max=$2
+echo "riavvio del servizio $pos in corso..."
 echo -e "systemctl stop doge_mn$pos.service"
+echo -e "systemctl start doge_mn$pos.service"
+attesa
 }
 
 
@@ -39,6 +42,6 @@ restart_service "18"
 restart_service "19"
 restart_service "20"
 restart_service "21"
-ferma_tutti_dogec
+
 
 echo "Tutti i servizi sono stati avviati"
