@@ -421,11 +421,11 @@ vivo_installer()
 }
 dogec_installer()
 {
- #rm  /root/mn_scripts/1vivobinMulti.sh
- bash -ic "$(wget -4qO- -o- raw.githubusercontent.com/matsuro-hadouken/multi-mn-installation/master/multi-nodes-installer.sh)" ; source ~/.bashrc
- #chmod +755 /root/mn_scripts/1vivobinMulti.sh
- #chmod +x /root/mn_scripts/1vivobinMulti.sh
- #/root/mn_scripts/1vivobinMulti.sh
+ rm  /root/mn_scripts/dogec_installer.sh
+ #bash -ic "$(wget -4qO- -o- raw.githubusercontent.com/matsuro-hadouken/multi-mn-installation/master/multi-nodes-installer.sh)" ; source ~/.bashrc
+ chmod +755 /root/mn_scripts/dogec_installer.sh
+ chmod +x /root/mn_scripts/dogec_installer.sh
+ /root/mn_scripts/dogec_installer.sh
 }
 terracoin_installer()
 {
