@@ -8,7 +8,7 @@
 
 TMP_FOLDER=$(mktemp -d)
 
-DAEMON_ARCHIVE=${1:-"https://github.com/dogecash/dogecash/releases/download/5.4.1/dogecash-5.4.1-x86_64-linux-gnu.tar.gz"}
+DAEMON_ARCHIVE=${1:-"https://github.com/dogecash/dogecash/releases/download/5.4.3/dogecash-5.4.3-x86_64-linux-gnu.tar.gz"}
 ARCHIVE_STRIP=""
 DEFAULT_PORT=55060
 
