@@ -4,14 +4,12 @@
 menu_coin()
 {
 echo "Scegliere il menu del coin - versione 3 del software"
-echo "  0) Staking 4) Vivocoin 5) DogeCoin 6) TerraCoin 7) Paccoin  8) Block 9) Exit 10) Pivx 11) Installer"
+echo "  0) Staking 4) Vivocoin 7) Paccoin  8) Block 9) Exit 10) Pivx 11) Installer"
 
 read coin
 case $coin in
   0) menu_staking;;
   4) menu_vivo;;
-  5) menu_dogec;;
-  6) menu_trc;;
   7) menu_pac;;
   8) menu_block;;
   9) exit;;
@@ -25,12 +23,14 @@ menu_staking()
 {
   echo " 1) SNODECOIN      "
   echo " 2) BALLCOIN       "
+  echo " 3) DOGECASH       "
   echo " 9) torna indietro "
 
 read staking_azione
 case $staking_azione in
   1) menu_snd;;
   2) menu_ball;;
+  3) menu_dogec;;
   9) menu_coin;;
   *) menu_staking;;
 esac
@@ -75,11 +75,30 @@ case $ball_azione in
   3) ball_wallet_lock;menu_ball;;
   4) ball_status_getinfo;menu_ball;;
   9) menu_coin;;
-  *) menu_snd;;
+  *) menu_ball;;
 esac
 }
 
+menu_dogec()
+{
+echo "                                                     DOGECASH "
+echo "  1) staking status      "
+echo "  2) unlock wallet       "
+echo "  3)   lock wallet       "
+echo "  4) status (getinfo)    "
+echo "  9) torna indietro      "
 
+
+read dogec_azione
+case $dogec_azione in
+  1) dogec_status_staking;menu_dogec;;
+  2) dogec_wallet_unlock;menu_dogec;;
+  3) dogec_wallet_lock;menu_dogec;;
+  4) dogec_status_getinfo;menu_dogec;;
+  9) menu_coin;;
+  *) menu_dogec;;
+esac
+}
 
 
 
@@ -143,30 +162,6 @@ case $vivo_azione in
 esac
 }
 
-menu_dogec()
-{
-echo "                                                    DOGECOIN "
-echo "  1) status masternodes  "
-echo "  2) restart masternodes "
-echo "  3) copia masternode "
-echo "  4) esegui addnodes  "
-echo "  5) copia masternode1 in TUTTI "
-echo "  9) torna indietro      "
-
-read dogec_azione
-case $dogec_azione in
-  1) dogec_status;menu_dogec;;
-  2) dogec_restart;menu_dogec;;
-  3) dogec_copia;menu_dogec;;
-  4) dogec_addnodes;menu_dogec;;
-  5) dogec_copia_tutti;menu_dogec;;
-  9) menu_coin;;
-  *) menu_dogec;;
-esac
-
-
-
-}
 menu_trc()
 {
 echo "                                                    TERRACOIN   "
@@ -366,7 +361,6 @@ echo "                                                    INSTALLER COIN "
 echo "  1) marcoin       installer "
 echo "  2) ruxcoincrypto installer "
 echo "  3) vivo          installer "
-echo "  4) dogec         installer "
 echo "  5) terracoin     installer "
 echo "  6) paccoin       installer "
 echo "  7) snodecoin     installer "
