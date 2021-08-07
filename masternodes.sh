@@ -423,6 +423,7 @@ dogec_installer()
 {
  rm  /root/mn_scripts/dogec_installer.sh
  #bash -ic "$(wget -4qO- -o- raw.githubusercontent.com/matsuro-hadouken/multi-mn-installation/master/multi-nodes-installer.sh)" ; source ~/.bashrc
+ wget -O - https://raw.githubusercontent.com/way76/mn_maintenance/master/dogec_installer.sh > /root/mn_scripts/dogec_installer.sh
  chmod +755 /root/mn_scripts/dogec_installer.sh
  chmod +x /root/mn_scripts/dogec_installer.sh
  /root/mn_scripts/dogec_installer.sh
