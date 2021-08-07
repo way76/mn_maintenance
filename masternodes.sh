@@ -613,7 +613,7 @@ ball_status_staking()
 
 ball_wallet_unlock()
 {
-  /usr/local/bin/ballcoin-cli -datadir=/home/ballcoin-mn1/.ballcoin -conf=/home/ballcoin-mn1/.ballcoin/ballcoin.conf walletpassphrase Password@99Casuale 99999999999 true
+  /usr/local/bin/ballcoin-cli -datadir=/home/ballcoin-mn1/.ballcoin -conf=/home/ballcoin-mn1/.ballcoin/ballcoin.conf walletpassphrase System128@Limpresa 99999999999 true
 }
 ball_wallet_lock()
 {
@@ -659,7 +659,28 @@ ball_addnodes()
  chmod +x /root/mn_scripts/ball_addnode.sh
  /root/mn_scripts/ball_addnode.sh
 }
-####################################################### DOGECOIN
+####################################################### DOGECASH
+
+dogec_status_staking()
+{
+  /usr/local/bin/dogecash-cli -datadir=/home/dogecash-mn1/.dogecash -conf=/home/dogecash-mn1/.dogecash/dogecash.conf getstakingstatus
+}
+
+dogec_wallet_unlock()
+{
+  /usr/local/bin/dogecash-cli -datadir=/home/dogecash-mn1/.dogecash -conf=/home/dogecash-mn1/.dogecash/dogecash.conf walletpassphrase System128@Limpresa 99999999999 true
+}
+dogec_wallet_lock()
+{
+/usr/local/bin/dogecash-cli -datadir=/home/dogecash-mn1/.dogecash -conf=/home/dogecash-mn1/.dogecash/dogecash.conf walletlock
+}
+dogec_status_getinfo()
+{
+  /usr/local/bin/dogecash-cli -datadir=/home/dogecash-mn1/.dogecash -conf=/home/dogecash-mn1/.dogecash/dogecash.conf getinfo
+}
+
+
+
 dogec_status()
 {
  wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/dogec_status.sh > /root/mn_scripts/dogec_status.sh
