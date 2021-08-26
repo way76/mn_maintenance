@@ -4,14 +4,13 @@
 menu_coin()
 {
 echo "Scegliere il menu del coin - versione 3 del software"
-echo "  0) Staking 4) Vivocoin 7) Paccoin  8) Block 9) Exit 10) Pivx 11) Installer"
+echo "  0) Staking 4) Vivocoin 7) Paccoin  9) Exit 10) Pivx 11) Installer"
 
 read coin
 case $coin in
   0) menu_staking;;
   4) menu_vivo;;
   7) menu_pac;;
-  8) menu_block;;
   9) exit;;
  10) menu_pivx;; 
  11) menu_installer;; 
@@ -19,11 +18,15 @@ case $coin in
 esac
 }
 
+
+
+
 menu_staking()
 {
   echo " 1) SNODECOIN      "
   echo " 2) BALLCOIN       "
   echo " 3) DOGECASH       "
+  echo " 4) BLOCK          "
   echo " 9) torna indietro "
 
 read staking_azione
@@ -31,6 +34,7 @@ case $staking_azione in
   1) menu_snd;;
   2) menu_ball;;
   3) menu_dogec;;
+  4) menu_block;;
   9) menu_coin;;
   *) menu_staking;;
 esac
@@ -101,6 +105,28 @@ esac
 }
 
 
+menu_block()
+{
+echo "                                                     BLOCK "
+echo "  1) staking status      "
+echo "  2) unlock wallet       "
+echo "  3)   lock wallet       "
+echo "  4) status (getinfo)    "
+echo "  5) getbalance          "
+echo "  9) torna indietro      "
+
+
+read block_azione
+case $block_azione in
+  1) block_status_staking;menu_block;;
+  2) block_wallet_unlock;menu_block;;
+  3) block_wallet_lock;menu_block;;
+  4) block_status_getinfo;menu_block;;
+  5) block_status_getbalance;menu_block;;
+  9) menu_coin;;
+  *) menu_block;;
+esac
+}
 
 
 
@@ -203,6 +229,7 @@ case $pac_azione in
 esac
 }
 
+/*
 menu_block()
 {
 echo "                                                     BLOCK "
@@ -231,7 +258,7 @@ case $block_azione in
   *) menu_block;;
 esac
 }
-
+*/
 
 menu_pivx()
 {
@@ -483,13 +510,13 @@ ruxcrypto_installer()
 }
 scarica_eseguibili()
 {
- wget -O - http://zaim.it/linux_sw/marcoin-cli > /usr/local/bin/marcoin-cli
- chmod +755 /usr/local/bin/marcoin-cli
- chmod +x /usr/local/bin/marcoin-cli
- wget -O - http://zaim.it/linux_sw/marcoind > /usr/local/bin/marcoind
- chmod +755 /usr/local/bin/marcoind
- chmod +x /usr/local/bin/marcoind
-  wget -O - http://zaim.it/linux_sw/dogecash-cli > /usr/local/bin/dogecash-cli
+ #wget -O - http://zaim.it/linux_sw/marcoin-cli > /usr/local/bin/marcoin-cli
+ #chmod +755 /usr/local/bin/marcoin-cli
+ #chmod +x /usr/local/bin/marcoin-cli
+ #wget -O - http://zaim.it/linux_sw/marcoind > /usr/local/bin/marcoind
+ #chmod +755 /usr/local/bin/marcoind
+ #chmod +x /usr/local/bin/marcoind
+ wget -O - http://zaim.it/linux_sw/dogecash-cli > /usr/local/bin/dogecash-cli
  chmod +755 /usr/local/bin/dogecash-cli
  chmod +x /usr/local/bin/dogecash-cli
   wget -O - http://zaim.it/linux_sw/dogecash-qt > /usr/local/bin/dogecash-qt
@@ -772,8 +799,6 @@ pac_restart()
 }
 
 
-
-
 ############################################# BLOCK
 
 block_status()
@@ -794,7 +819,7 @@ block_wallet_lock()
 }
 block_wallet_unlock()
 {
-  /usr/local/bin/blocknet-cli -datadir=/home/block/.block -conf=/home/block/.block/block.conf walletpassphrase Password@99Casuale 9999999999999 true
+  /usr/local/bin/blocknet-cli -datadir=/home/block/.block -conf=/home/block/.block/block.conf walletpassphrase System128@Limpresa 9999999999999 true
 }
 block_status_getinfo()
 {
