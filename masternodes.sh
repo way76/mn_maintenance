@@ -3,7 +3,7 @@
 
 menu_coin()
 {
-echo "Scegliere il menu del coin - versione 3 del software"
+echo "Scegliere il menu del coin - versione 4 del software"
 echo "  0) Staking 4) Vivocoin 7) Paccoin  9) Exit 10) Pivx 11) Installer"
 
 read coin
@@ -69,7 +69,7 @@ echo "  1) staking status      "
 echo "  2) unlock wallet       "
 echo "  3)   lock wallet       "
 echo "  4) status (getinfo)    "
-echo "  4) ripristina staking  "
+echo "  5) ripristina staking  "
 echo "  9) torna indietro      "
 
 
@@ -79,7 +79,7 @@ case $ball_azione in
   2) ball_wallet_unlock;menu_ball;;
   3) ball_wallet_lock;menu_ball;;
   4) ball_status_getinfo;menu_ball;;
-  5) ball_clear_staking;menu_ball;
+  5) ball_clear_staking;menu_ball;;
   9) menu_coin;;
   *) menu_ball;;
 esac
