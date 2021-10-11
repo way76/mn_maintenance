@@ -22,15 +22,13 @@ rm /home/ballcoin-mn$mnr/.ballcoin/sporks.dat
 cd /home/ballcoin-mn$mnr/.ballcoin/
 rm debug*.*
 systemctl stop ballcoin-mn$mno.service
-systemctl start ballcoin-mn$mno.service
 sleep 30
-systemctl start ballcoin-mn$mnr.service
 }
 
 ripristina_mn()
 {
 ripr_mn "1"
-systemctl start ballcoin-mn1.service
+/root/mn_scripts/ball_unlock.sh
 }
 echo "scegliere 1 per confermare" 
 read azione
