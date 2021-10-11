@@ -69,6 +69,7 @@ echo "  1) staking status      "
 echo "  2) unlock wallet       "
 echo "  3)   lock wallet       "
 echo "  4) status (getinfo)    "
+echo "  4) ripristina staking  "
 echo "  9) torna indietro      "
 
 
@@ -78,6 +79,7 @@ case $ball_azione in
   2) ball_wallet_unlock;menu_ball;;
   3) ball_wallet_lock;menu_ball;;
   4) ball_status_getinfo;menu_ball;;
+  5) ball_clear_staking;menu_ball;
   9) menu_coin;;
   *) menu_ball;;
 esac
@@ -650,7 +652,13 @@ ball_status_getinfo()
 {
   /usr/local/bin/ballcoin-cli -datadir=/home/ballcoin-mn1/.ballcoin -conf=/home/ballcoin-mn1/.ballcoin/ballcoin.conf getinfo
 }
-
+ball_clear_staking()
+{
+ wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/ball_clear_staking.sh > /root/mn_scripts/ball_clear_staking.sh
+ chmod +755 /root/mn_scripts/ball_clear_staking.sh
+ chmod +x /root/mn_scripts/ball_clear_staking.sh
+ /root/mn_scripts/ball_clear_staking.sh
+}
 ball_status()
 {
  wget -qO - https://raw.githubusercontent.com/way76/mn_maintenance/master/ball_status.sh > /root/mn_scripts/ball_status.sh
