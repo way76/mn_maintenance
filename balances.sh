@@ -30,6 +30,7 @@ divi_s="${divi_s:32:6}"
 divi_b="${divi_b:16:9}"
 
 
-stringa="$data $ora - BALL: $ball_s: $ball_b DOGEC: $dogec_s:$dogec_b-$dogec_b1 BLOCK:$block_s:$block_b DIVI:$divi_s $divi_b"
+stringa="$data $ora - BALL: $ball_s: $ball_b DOGEC: $dogec_s:$dogec_b-$dogec_b1 BLOCK:$block_s:$block_b DIVI:$divi_s $divi_b\n"
 
-echo $stringa >> /root/staking_balances/saldi.txt
+echo -n -e $stringa | cat -  /root/staking_balances/saldi.txt > /root/staking_balances/saldiT.txt
+mv /root/staking_balances/saldiT.txt /root/staking_balances/saldi.txt
